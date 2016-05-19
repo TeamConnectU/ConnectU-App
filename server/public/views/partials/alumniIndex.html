@@ -33,7 +33,11 @@
       <tr ng-show="alumni.expanded == us.first_name" ng-repeat-end="">
          <td colspan="8">
            <div>
-             {{alumni.message}}
+              <label>Phone Number: </label><span>{{us.phone}}</span></br>
+              <label>LinkedIn: </label><span>{{us.linkedin_url}}</span>
+           </div>
+           <div class = "well">
+             {{us.quote}}
            </div>
          </td>
        </tr>

@@ -16,7 +16,6 @@ angular.module('connectUApp')
         vm.expanded = null;
       }
     };
-
-    vm.message = 'Whoa, exanded';
+    
 
   }]);//closes controller
