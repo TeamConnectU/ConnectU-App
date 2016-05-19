@@ -4,7 +4,7 @@
   <table st-table="displayedCollection" st-safe-src="rowCollection" class="table">
     <thread>
       <tr>
-        <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+        <th colspan="8"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
       </tr>
       <tr>
         <th st-sort="first_name">First Name</th>
@@ -16,26 +16,27 @@
         <th st-sort="current_workplace">Workplace</th>
       </tr>
     </thread>
-    <tbody>
+    <tbody ng-repeat = "us in alumni.users">
       <tr>
-        <td>{{alumni.user4.first_name}}</td>
-        <td>{{alumni.user4.last_name}}</td>
-        <td>{{alumni.user4.high_school}}</td>
-        <td>{{alumni.user4.college}}</td>
-        <td>{{alumni.user4.focus}}</td>
-        <td>{{alumni.user4.city}}</td>
-        <td>{{alumni.user4.current_workplace}}</td>
+        <td>{{us.first_name}}</td>
+        <td>{{us.last_name}}</td>
+        <td>{{us.high_school}}</td>
+        <td>{{us.college}}</td>
+        <td>{{us.focus}}</td>
+        <td>{{us.city}}</td>
+        <td>{{us.current_workplace}}</td>
         <td>
-          <button type="button" class="btn btn-sm">
-            <i class="glyphicon glyphicon-minus">
-            </i>
-          </button>
-          <button type="button" class="btn btn-sm">
-            <i class="glyphicon glyphicon-plus">
-            </i>
-          </button>
+            <button class="fa fa-lg fa-plus-square-o" ng-hide="alumni.expanded == us.first_name" ng-click="alumni.moreInfo(us)"></button>
+            <button class="fa fa-lg fa-minus-square" ng-show="alumni.expanded == us.first_name" ng-click="alumni.moreInfo(us)"></button>
         </td>
       </tr>
+      <tr ng-show="alumni.expanded == us.first_name" ng-repeat-end="">
+         <td colspan="8">
+           <div>
+             {{alumni.message}}
+           </div>
+         </td>
+       </tr>
     </tbody>
   </table>
 <!-- </div> -->
