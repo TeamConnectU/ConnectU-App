@@ -1,24 +1,30 @@
 <h1>This is the Alumni Index view</h1>
 
 <!-- <div ng-controller ="safeCtrl"> -->
-  <table st-table="displayedCollection" st-safe-src="rowCollection">
+  <table st-table="displayedCollection" st-safe-src="rowCollection" class="table">
     <thread>
       <tr>
         <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
       </tr>
       <tr>
-        <th st-sort="firstName">First Name</th>
-        <th st-sort="lastName">Last Name</th>
-        <th st-sort="highSchool">High School</th>
+        <th st-sort="first_name">First Name</th>
+        <th st-sort="last_name">Last Name</th>
+        <th st-sort="high_school">High School</th>
         <th st-sort="college">College</th>
-        <th st-sort="focusMajor">Focus/Major</th>
-        <th st-sort="location">Location</th>
-        <th st-sort="workplace">Workplace</th>
+        <th st-sort="focus">Focus/Major</th>
+        <th st-sort="city">Location</th>
+        <th st-sort="current_workplace">Workplace</th>
       </tr>
     </thread>
     <tbody>
-      <tr ng-repeat="row in displayedCollection">
-        <td></td>
+      <tr>
+        <td>{{alumni.user4.first_name}}</td>
+        <td>{{alumni.user4.last_name}}</td>
+        <td>{{alumni.user4.high_school}}</td>
+        <td>{{alumni.user4.college}}</td>
+        <td>{{alumni.user4.focus}}</td>
+        <td>{{alumni.user4.city}}</td>
+        <td>{{alumni.user4.current_workplace}}</td>
         <td>
           <button type="button" class="btn btn-sm">
             <i class="glyphicon glyphicon-minus">
