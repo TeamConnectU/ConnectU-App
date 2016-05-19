@@ -71,6 +71,7 @@ angular.module('connectUApp')
     seeking_internship: false,
     seeking_employment: false,
     admin: true,
+    photo_url: "https://scontent.xx.fbcdn.net/v/t1.0-9/12472231_766327402117_1243867241360422927_n.jpg?oh=002a0aa80ed8f0c86e550c06f17fe33f&oe=579D83FC"
   };
 
 
