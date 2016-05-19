@@ -1,7 +1,7 @@
 angular.module('connectUApp')
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
-      .when('/talentPool', {
+      .when('/', {
         templateUrl: 'views/partials/talentPool.html',
         controller: 'TalentPoolController',
         controllerAs: 'talent'
