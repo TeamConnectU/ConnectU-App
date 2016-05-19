@@ -21,6 +21,7 @@ main {
 
 }
 
+
 .centerText{
   text-align: center;
   display: block;
@@ -30,14 +31,18 @@ main {
   float: right;
 }
 
+.footerText {
+  padding-top: 20px;
+  font-size: .75em;
+}
+
 .login {
   margin: 60px 20px;
   font-size: 1.25em;
 }
 
 .adminLogin {
-  padding: 20px;
-  font-size: 1em;
+  padding-left: 20px;
 }
 
 #connectLogo {
