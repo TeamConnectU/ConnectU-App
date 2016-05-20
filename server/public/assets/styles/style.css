@@ -210,6 +210,56 @@ main {
       display: block;
     }
 }
+/*Galaxy S3*/
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 2) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
+    }
+    .onlyMobile {
+      display: block;
+    }
+}
+
+/*Galaxy S4*/
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
+    }
+    .onlyMobile {
+      display: block;
+    }
+}
+
+/*Galaxy S5*/
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
+    }
+    .onlyMobile {
+      display: block;
+    }
+}
 
 
 .st-sort-ascent:before{
