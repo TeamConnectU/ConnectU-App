@@ -127,8 +127,10 @@ main {
   content: '\25B2';
 }
 
-<<<<<<< HEAD
-=======
+.st-sort-descent:before{
+  content: '\25BC';
+}
+
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 667px)
@@ -145,7 +147,6 @@ main {
     }
 }
 
->>>>>>> d493e69b9678a56ec5a617c4b1bf780c6139a05f
 
 /*------------------fonts------------------*/
 @font-face {
