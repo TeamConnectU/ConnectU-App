@@ -39,6 +39,9 @@
                     <li>
                       <a href = "/alumniIndex">Alumni Index</a>
                     </li>
+                    <li>
+                      <a data-toggle="modal" href="#registerModal">Register</a>
+                    </li>
                   </ul>
                 </div>
               </nav>
@@ -55,10 +58,76 @@
         </a>
       </row>
       <row>
-        <p class="centerText footerText"> © Copyright 2016
+        <p class="centerText footerText textGreen"> © Copyright 2016
           <a href="/adminLogin" class="adminLogin">Admin Login</a>
         </p>
       </row>
     </footer>
   </body>
+
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="textGreen">ConnectU Registration</h4>
+        </div>
+        <div class="modal-body">
+          <label>Email*:</label>
+          <input type="email" name="email" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>First Name*:</label>
+          <input type="text" name="firstName" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>Last Name*:</label>
+          <input type="text" name="lastName" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>Zip:</label>
+          <input type="number" name="zip" maxlength="5" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>Phone:</label>
+          <input type="tel" name="phone" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>The BrandLab Internship Site*:</label>
+          <input type="text" name="internshipSite" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <label>The BrandLab Internship Year*:</label>
+          <input type="number" name="internshipYear" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>High School*:</label>
+          <input type="text" name="highSchool" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>College:</label>
+          <input type="text" name="college" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>Current Workplace:</label>
+          <input type="text" name="workplace" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>Focus/Major:</label>
+          <input type="text" name="focus" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>Slack ID*:</label>
+          <input type="text" name="slack" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>Photo URL:</label>
+          <input type="url" name="photo" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <label>Quote:</label>
+          <textarea rows="4" cols="50" name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
+
+          <label>Seeking:</label>
+          <input type="checkbox" name="seekingInternship">Internship
+          <input type="checkbox" name="seekingInternship">Employment
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
+          <button type="button" class="btn btn-primary">Register and Enter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </html>
