@@ -122,15 +122,33 @@ main {
   margin-left: auto;
   margin-right: auto;
 }
-
-.st-sort-ascent:before{
-  content: '\25B2';
+/*iphone 4 and 4s*/
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
+    }
 }
-
-.st-sort-descent:before{
-  content: '\25BC';
+/*iphone 5 and 5s*/
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
+    }
 }
-
+/*iphone 6 and 6s*/
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 667px)
@@ -142,10 +160,30 @@ main {
       opacity:0;
       visibility: collapse;
     }
-    .modal-body {
-      /*max-height: 80vh;*/
+}
+/*iphone 6+*/
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
     }
 }
+
+
+.st-sort-ascent:before{
+  content: '\25B2';
+}
+
+.st-sort-descent:before{
+  content: '\25BC';
+}
+
 
 
 /*------------------fonts------------------*/
