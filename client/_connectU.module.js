@@ -1,1 +1,1 @@
-angular.module('connectUApp', ['ngRoute']);
+angular.module('connectUApp', ['ngRoute', 'smart-table']);

@@ -1,7 +1,6 @@
 <h1>This is the Alumni Index view</h1>
-
 <!-- <div ng-controller ="safeCtrl"> -->
-  <table st-table="displayedCollection" st-safe-src="rowCollection" class="table">
+  <table st-table="alumni.displayUsers" st-safe-src="alumni.users" class="table">
     <thread>
       <tr>
         <th colspan="8"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
@@ -16,7 +15,7 @@
         <th st-sort="current_workplace">Workplace</th>
       </tr>
     </thread>
-    <tbody ng-repeat = "us in alumni.users">
+    <tbody st-select-row="row" st-select-mode="multiple" ng-repeat = "us in alumni.displayUsers">
       <tr>
         <td>{{us.first_name}}</td>
         <td>{{us.last_name}}</td>
@@ -32,13 +31,20 @@
       </tr>
       <tr ng-show="alumni.expanded == us.first_name" ng-repeat-end="">
          <td colspan="8">
-           <div>
+           <div class="row">
+             <div class="col-md-6">
+               <div class="section">
+                <!-- <img src = "{{us.photo_url}}" class = "img-circle" height = "150px"/> -->
               <label>Phone Number: </label><span>{{us.phone}}</span></br>
               <label>LinkedIn: </label><span>{{us.linkedin_url}}</span>
+              </div>
+              <div class="col-md-6">
+              <div class="section">
+                {{us.quote}}
+              </div>
            </div>
-           <div class = "well">
-             {{us.quote}}
-           </div>
+         </div>
+       </div>
          </td>
        </tr>
     </tbody>
