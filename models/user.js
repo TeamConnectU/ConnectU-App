@@ -18,11 +18,11 @@ var userSchema = new Schema({
   seeking_internship: {type: Boolean},
   seeking_employment: {type: Boolean},
   admin: {type: Boolean, default: false},
-  internship: {[{site: String, year: Number}]},
+  internship: [{site: String, year: Number}],
   photo_url: {type: String},
+  password: {type: String}
 
-
-})
+});
 
 var userModel = mongoose.model('user', userSchema);
 
