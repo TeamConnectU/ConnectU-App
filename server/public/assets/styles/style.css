@@ -124,6 +124,22 @@ main {
 }
 
 
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
+    }
+    .modal-body {
+      /*max-height: 80vh;*/
+    }
+}
+
 
 /*------------------fonts------------------*/
 @font-face {
