@@ -149,6 +149,13 @@ main {
     }
 }
 
+.st-sort-ascent:before{
+  content: '\25B2';
+}
+
+.st-sort-descent:before{
+  content: '\25BC';
+}
 
 /*iphone 6 and 6s*/
 @media only screen
