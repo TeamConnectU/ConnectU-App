@@ -16,7 +16,7 @@
       </tr>
     </thread>
     <tbody st-select-row="row" st-select-mode="multiple" ng-repeat = "us in alumni.displayUsers">
-      <tr>
+      <tr ng-click="alumni.moreInfo(us)">
         <td class = "col_1">{{us.first_name}}</td>
         <td class = "col_2">{{us.last_name}}</td>
         <td class = "col_3">{{us.high_school}}</td>
