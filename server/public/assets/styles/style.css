@@ -1,3 +1,17 @@
+h1 {
+  font-family: 'Fenix', serif;
+  text-transform: uppercase;
+  color: #3faa77;
+}
+
+a {
+  color: #3faa77;
+}
+
+a:hover {
+  color: #d5e04e;
+}
+
 body {
   min-height: 1000px;
   color: #282828;
@@ -7,8 +21,8 @@ body {
 }
 
 header {
-margin-bottom: 30px;
-background-color: #272C45;
+  margin-bottom: 30px;
+  background-color: #272C45;
 }
 
 footer {
@@ -21,8 +35,17 @@ main {
 
 }
 
+.alignBottom {
+  position: absolute;
+  bottom: 20px;
+}
 
-.centerText{
+.alignRight {
+  position: absolute;
+  right: 20px;
+}
+
+.centerText {
   text-align: center;
   display: block;
 }
@@ -36,6 +59,10 @@ main {
   font-size: .75em;
 }
 
+.linkMargin {
+  margin-left: 10px;
+}
+
 .login {
   margin: 60px 20px;
   font-size: 1.25em;
@@ -43,6 +70,24 @@ main {
 
 .adminLogin {
   padding-left: 20px;
+}
+
+.smallText {
+  font-size: .75em;
+}
+
+.talentPool {
+  margin-top: 30px;
+  min-height: 300px;
+}
+
+.textGreen {
+  color: #3faa77;
+}
+
+#bottomSpace {
+  display: block;
+  height: 200px;
 }
 
 #connectLogo {
@@ -55,6 +100,7 @@ main {
   margin-left: auto;
   margin-right: auto;
 }
+
 
 /*------------------fonts------------------*/
 @font-face {
