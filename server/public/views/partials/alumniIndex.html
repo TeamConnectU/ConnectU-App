@@ -3,7 +3,7 @@
   <table st-table="alumni.displayUsers" st-safe-src="alumni.users" class="table">
     <thread>
       <tr>
-        <th colspan="8"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+        <th colspan="8"><input st-search="" class="form-control" placeholder="search by name, school, focus, location, workplace..." type="text"/></th>
       </tr>
       <tr>
         <th class = "col_1" st-sort="first_name">First Name</th>
@@ -16,7 +16,7 @@
       </tr>
     </thread>
     <tbody st-select-row="row" st-select-mode="multiple" ng-repeat = "us in alumni.displayUsers">
-      <tr>
+      <tr ng-click="alumni.moreInfo(us)">
         <td class = "col_1">{{us.first_name}}</td>
         <td class = "col_2">{{us.last_name}}</td>
         <td class = "col_3">{{us.high_school}}</td>
@@ -34,9 +34,12 @@
            <div class="row">
              <div class="col-md-6">
                <div class="section">
-                <!-- <img src = "{{us.photo_url}}" class = "img-circle" height = "150px"/> -->
-              <label>Phone Number: </label><span>{{us.phone}}</span></br>
-              <label>LinkedIn: </label><span>{{us.linkedin_url}}</span>
+                <img src = "{{us.photo_url}}" class = "img-circle" height = "150px"/><br />
+                <span><label>High School: </label>{{us.high_school}}</span><br />
+                <span><label>College: </label>{{us.college}}</span><br />
+                <span><label>Phone Number: </label>{{us.phone}}</span></br>
+                <span><label>Current Workplace: </label>{{us.current_workplace}}</span><br />
+                <span><label>LinkedIn: </label>{{us.linkedin_url}}</span>
               </div>
               <div class="col-md-6">
               <div class="section">
