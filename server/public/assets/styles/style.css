@@ -122,6 +122,14 @@ main {
   margin-left: auto;
   margin-right: auto;
 }
+
+.onlyMobile {
+  display: none;
+  /*width:0;
+  height:0;
+  opacity:0;
+  visibility: collapse;*/
+}
 /*iphone 4 and 4s*/
 @media only screen
   and (min-device-width: 320px)
@@ -133,6 +141,9 @@ main {
       height:0;
       opacity:0;
       visibility: collapse;
+    }
+    .onlyMobile {
+      display: block;
     }
 }
 /*iphone 5 and 5s*/
@@ -147,6 +158,9 @@ main {
       opacity:0;
       visibility: collapse;
     }
+    .onlyMobile {
+      display: block;
+    }
 }
 /*iphone 6 and 6s*/
 @media only screen
@@ -160,6 +174,9 @@ main {
       opacity:0;
       visibility: collapse;
     }
+    .onlyMobile {
+      display: block;
+    }
 }
 /*iphone 6+*/
 @media only screen
@@ -172,6 +189,9 @@ main {
       height:0;
       opacity:0;
       visibility: collapse;
+    }
+    .onlyMobile {
+      display: block;
     }
 }
 
