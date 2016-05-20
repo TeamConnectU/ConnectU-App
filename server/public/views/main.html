@@ -11,6 +11,7 @@
     <link rel = "stylesheet" href = "vendor/bootstrap/dist/css/bootstrap.min.css" />
     <!-- CUSTOM -->
     <script src = "assets/scripts/composite.all.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Fenix|Cabin:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel = "stylesheet" href = "assets/styles/style.css" />
     <!-- ANGULAR ROUTE PATH -->
     <base href = "/" />
@@ -20,7 +21,9 @@
     <header class="container-fluid" ng-controller="MainController as main">
       <row>
         <img id="connectLogo" src="assets/styles/images/TBL-connect_logo_RGB_horizontal_BIG.png" alt="ConnectU Logo" height="150px">
-        <a href="/login" class="floatRight login">Alumni Login</a>
+        <a href="/login" class="floatRight login" ng-hide="main.loggedIn">Alumni Login</a>
+        <a href="/logout" class="floatRight login" ng-show="main.loggedIn">Log Out</a>
+        <a href="/profile" class="floatRight login" ng-show="main.loggedIn">My Profile</a>
       </row>
     </header>
 
