@@ -194,6 +194,22 @@ main {
       display: block;
     }
 }
+/*HTC One*/
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
+    }
+    .onlyMobile {
+      display: block;
+    }
+}
 
 
 .st-sort-ascent:before{
