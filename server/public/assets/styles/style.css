@@ -127,9 +127,25 @@ main {
   content: '\25B2';
 }
 
-.st-sort-descent:before{
-  content: '\25BC';
+<<<<<<< HEAD
+=======
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .col_3, .col_4, .col_7 {
+      display:none;
+      width:0;
+      height:0;
+      opacity:0;
+      visibility: collapse;
+    }
+    .modal-body {
+      /*max-height: 80vh;*/
+    }
 }
+
+>>>>>>> d493e69b9678a56ec5a617c4b1bf780c6139a05f
 
 /*------------------fonts------------------*/
 @font-face {

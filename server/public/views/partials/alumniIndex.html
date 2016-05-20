@@ -6,24 +6,24 @@
         <th colspan="8"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
       </tr>
       <tr>
-        <th st-sort="first_name">First Name</th>
-        <th st-sort="last_name">Last Name</th>
-        <th st-sort="high_school">High School</th>
-        <th st-sort="college">College</th>
-        <th st-sort="focus">Focus/Major</th>
-        <th st-sort="city">Location</th>
-        <th st-sort="current_workplace">Workplace</th>
+        <th class = "col_1" st-sort="first_name">First Name</th>
+        <th class = "col_2" st-sort="last_name">Last Name</th>
+        <th class = "col_3" st-sort="high_school">High School</th>
+        <th class = "col_4" st-sort="college">College</th>
+        <th class = "col_5" st-sort="focus">Focus/Major</th>
+        <th class = "col_6" st-sort="city">Location</th>
+        <th class = "col_7" st-sort="current_workplace">Workplace</th>
       </tr>
     </thread>
     <tbody st-select-row="row" st-select-mode="multiple" ng-repeat = "us in alumni.displayU sers">
       <tr>
-        <td>{{us.first_name}}</td>
-        <td>{{us.last_name}}</td>
-        <td>{{us.high_school}}</td>
-        <td>{{us.college}}</td>
-        <td>{{us.focus}}</td>
-        <td>{{us.city}}</td>
-        <td>{{us.current_workplace}}</td>
+        <td class = "col_1">{{us.first_name}}</td>
+        <td class = "col_2">{{us.last_name}}</td>
+        <td class = "col_3">{{us.high_school}}</td>
+        <td class = "col_4">{{us.college}}</td>
+        <td class = "col_5">{{us.focus}}</td>
+        <td class = "col_6">{{us.city}}</td>
+        <td class = "col_7">{{us.current_workplace}}</td>
         <td>
             <button class="fa fa-lg fa-plus-square-o" ng-hide="alumni.expanded == us.first_name" ng-click="alumni.moreInfo(us)"></button>
             <button class="fa fa-lg fa-minus-square" ng-show="alumni.expanded == us.first_name" ng-click="alumni.moreInfo(us)"></button>
