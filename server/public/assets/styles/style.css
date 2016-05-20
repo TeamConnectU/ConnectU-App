@@ -148,15 +148,6 @@ main {
       visibility: collapse;
     }
 }
-
-.st-sort-ascent:before{
-  content: '\25B2';
-}
-
-.st-sort-descent:before{
-  content: '\25BC';
-}
-
 /*iphone 6 and 6s*/
 @media only screen
   and (min-device-width: 375px)
@@ -170,7 +161,7 @@ main {
       visibility: collapse;
     }
 }
-
+/*iphone 6+*/
 @media only screen
   and (min-device-width: 414px)
   and (max-device-width: 736px)
@@ -183,6 +174,16 @@ main {
       visibility: collapse;
     }
 }
+
+
+.st-sort-ascent:before{
+  content: '\25B2';
+}
+
+.st-sort-descent:before{
+  content: '\25BC';
+}
+
 
 
 /*------------------fonts------------------*/
