@@ -17,6 +17,7 @@ angular.module('connectUApp')
     seeking_internship: true,
     seeking_employment: true,
     admin: false,
+    photo_url: "https://scontent.xx.fbcdn.net/v/t1.0-9/1723404_10205413741884455_4098320721678136536_n.jpg?oh=8848e1f58c2d8611725b5b6fa4cc7037&oe=57E5E5C2"
   };
 
   var user2 = {
@@ -35,10 +36,11 @@ angular.module('connectUApp')
     seeking_internship: false,
     seeking_employment: true,
     admin: false,
+    photo_url: "https://scontent.xx.fbcdn.net/v/t1.0-9/12923114_10154034892457278_4682748302341015996_n.jpg?oh=bb588ae6a14d490a7ccc9f7c17808cd0&oe=57D89E5B"
   };
 
   var user3 = {
-    email: 'Suzanna@gmail.com',
+    email: 'Erika@gmail.com',
     first_name: 'Erika',
     last_name: 'Klein',
     city: 'Minneapolis',
@@ -53,6 +55,7 @@ angular.module('connectUApp')
     seeking_internship: true,
     seeking_employment: false,
     admin: false,
+    photo_url: "https://scontent.xx.fbcdn.net/v/t1.0-9/12495012_10153864383727002_5184833811162327650_n.jpg?oh=8c36e4a8ed1d654a659e5ab45ec90806&oe=57D55E09"
   };
 
   var user4 = {

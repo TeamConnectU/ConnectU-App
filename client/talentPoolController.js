@@ -4,4 +4,7 @@ angular.module('connectUApp')
 
     vm.user4 = ConnectUService.user4;
 
+    vm.users = [];
+    vm.users.push(ConnectUService.user1, ConnectUService.user2, ConnectUService.user3, ConnectUService.user4);
+
   }]);//closes controller

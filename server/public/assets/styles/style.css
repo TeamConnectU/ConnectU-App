@@ -1,3 +1,17 @@
+h1 {
+  font-family: 'Fenix', serif;
+  text-transform: uppercase;
+  color: #3faa77;
+}
+
+a {
+  color: #3faa77;
+}
+
+a:hover {
+  color: #d5e04e;
+}
+
 body {
   min-height: 1000px;
   color: #282828;
@@ -7,8 +21,8 @@ body {
 }
 
 header {
-margin-bottom: 30px;
-background-color: #272C45;
+  margin-bottom: 30px;
+  background-color: #272C45;
 }
 
 footer {
@@ -20,9 +34,40 @@ footer {
 main {
 
 }
+/*messing with modal*/
+.modal.fade .modal-dialog {
+	-webkit-transform: scale(0.1);
+	-moz-transform: scale(0.1);
+	-ms-transform: scale(0.1);
+	transform: scale(0.1);
+	top: 250px;
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
 
+.modal.fade.in .modal-dialog {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	-webkit-transform: translate3d(0, -100px, 0);
+	transform: translate3d(0, -100px, 0);
+	opacity: 1;
+}
+/*done messing with modal*/
+.alignBottom {
+  position: absolute;
+  bottom: 20px;
+}
 
-.centerText{
+.alignRight {
+  position: absolute;
+  right: 20px;
+}
+
+.centerText {
   text-align: center;
   display: block;
 }
@@ -36,6 +81,10 @@ main {
   font-size: .75em;
 }
 
+.linkMargin {
+  margin-left: 10px;
+}
+
 .login {
   margin: 60px 20px;
   font-size: 1.25em;
@@ -43,6 +92,24 @@ main {
 
 .adminLogin {
   padding-left: 20px;
+}
+
+.smallText {
+  font-size: .75em;
+}
+
+.talentPool {
+  margin-top: 30px;
+  min-height: 300px;
+}
+
+.textGreen {
+  color: #3faa77;
+}
+
+#bottomSpace {
+  display: block;
+  height: 200px;
 }
 
 #connectLogo {
@@ -56,13 +123,7 @@ main {
   margin-right: auto;
 }
 
-.st-sort-ascent:before{
-  content: '\25B2';
-}
 
-.st-sort-descent:before{
-  content: '\25BC';
-}
 
 /*------------------fonts------------------*/
 @font-face {
