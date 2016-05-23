@@ -3,10 +3,10 @@ angular.module('connectUApp')
     var vm = this;
 
     vm.users = [];
+    vm.searchUsers = 'Max, Oliver, Erika, Suzanna';
     vm.users.push(ConnectUService.user1, ConnectUService.user2, ConnectUService.user3, ConnectUService.user4);
 
 
-    console.log(vm.users);
 
     vm.moreInfo = function(us) {
       console.log('works');
@@ -16,6 +16,6 @@ angular.module('connectUApp')
         vm.expanded = null;
       }
     };
-    
+
 
   }]);//closes controller
