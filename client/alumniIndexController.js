@@ -8,8 +8,8 @@ angular.module('connectUApp')
 
     vm.moreInfo = function(us) {
       console.log('works');
-      if (vm.expanded != us.first_name) {
-        vm.expanded = us.first_name;
+      if (vm.expanded != us._id) {
+        vm.expanded = us._id;
       } else {
         vm.expanded = null;
       }
