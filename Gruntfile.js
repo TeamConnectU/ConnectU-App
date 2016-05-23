@@ -34,7 +34,8 @@ module.exports = function(grunt) {
                    "angular-aria/angular-aria.min.js",
                    "angular-material/angular-material.min.js",
                    "angular-material/angular-material.min.css",
-                   "angular-smart-table/dist/smart-table.min.js"
+                   "angular-smart-table/dist/smart-table.min.js",
+                   "angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"
                ],
                "dest": "server/public/vendor/"
            }
