@@ -3,7 +3,7 @@
   <table st-table="alumni.displayUsers" st-safe-src="alumni.someUsers.info" class="table">
     <thread>
       <tr>
-        <th colspan="8"><input st-search="" ng-model="selected" class="form-control" uib-typeahead = "item.searchableText as item.focus for item in alumni.displayUsers" placeholder="search by name, school, focus, location, workplace..." type="text"/></th>
+        <th colspan="8"><input st-search="" ng-model="selected" class="form-control" uib-typeahead = "item.searchableText as item.first_name for item in alumni.displayUsers" placeholder="search by name, school, focus, location, workplace..." type="text"/></th>
       </tr>
       <tr>
         <th class = "col_1" st-sort="first_name">First Name</th>
