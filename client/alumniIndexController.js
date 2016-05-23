@@ -2,16 +2,15 @@ angular.module('connectUApp')
   .controller('AlumniIndexController', ['$http', 'ConnectUService', function($http, ConnectUService){
     var vm = this;
 
-    vm.users = [];
-    vm.searchUsers = ['Max, Oliver, Erika, Suzanna'];
-    vm.users.push(ConnectUService.user1, ConnectUService.user2, ConnectUService.user3, ConnectUService.user4);
+
+    vm.someUsers = ConnectUService.someUsers;
 
 
 
     vm.moreInfo = function(us) {
       console.log('works');
-      if (vm.expanded != us.first_name) {
-        vm.expanded = us.first_name;
+      if (vm.expanded != us._id) {
+        vm.expanded = us._id;
       } else {
         vm.expanded = null;
       }

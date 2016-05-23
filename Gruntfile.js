@@ -35,7 +35,8 @@ module.exports = function(grunt) {
                    "angular-material/angular-material.min.js",
                    "angular-material/angular-material.min.css",
                    "angular-smart-table/dist/smart-table.min.js",
-                   "angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"
+                   "angular-ui-bootstrap/dist/ui-bootstrap-tpls.js",
+                   "font-awesome/css/font-awesome.min.css"
                ],
                "dest": "server/public/vendor/"
            }

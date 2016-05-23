@@ -107,6 +107,10 @@ main {
   color: #3faa77;
 }
 
+.userImage {
+  float: left;
+}
+
 #bottomSpace {
   display: block;
   height: 200px;
@@ -125,11 +129,12 @@ main {
 
 .onlyMobile {
   display: none;
-  /*width:0;
-  height:0;
-  opacity:0;
-  visibility: collapse;*/
+  /*width:0;*/
+  /*height:0;*/
+  /*opacity:0;*/
+  /*visibility: collapse;*/
 }
+
 /*iphone 4 and 4s*/
 @media only screen
   and (min-device-width: 320px)
@@ -143,7 +148,7 @@ main {
       visibility: collapse;
     }
     .onlyMobile {
-      display: block;
+      display: inline;
     }
 }
 /*iphone 5 and 5s*/
@@ -159,7 +164,7 @@ main {
       visibility: collapse;
     }
     .onlyMobile {
-      display: block;
+      display: inline;
     }
 }
 /*iphone 6 and 6s*/
@@ -175,7 +180,8 @@ main {
       visibility: collapse;
     }
     .onlyMobile {
-      display: block;
+      display: inline;
+      /*visibility: hidden;*/
     }
 }
 /*iphone 6+*/
@@ -191,7 +197,7 @@ main {
       visibility: collapse;
     }
     .onlyMobile {
-      display: block;
+      display: inline;
     }
 }
 /*HTC One*/
@@ -207,7 +213,7 @@ main {
       visibility: collapse;
     }
     .onlyMobile {
-      display: block;
+      display: inline;
     }
 }
 /*Galaxy S3*/
@@ -223,7 +229,7 @@ main {
       visibility: collapse;
     }
     .onlyMobile {
-      display: block;
+      display: inline;
     }
 }
 
@@ -240,7 +246,7 @@ main {
       visibility: collapse;
     }
     .onlyMobile {
-      display: block;
+      display: inline;
     }
 }
 
@@ -257,7 +263,7 @@ main {
       visibility: collapse;
     }
     .onlyMobile {
-      display: block;
+      display: inline;
     }
 }
 
