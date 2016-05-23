@@ -30,6 +30,11 @@ module.exports = function(grunt) {
                    "jquery/dist/jquery.min.js",
                    "angular/angular.min.js",
                    "angular-route/angular-route.min.js",
+                   "angular-animate/angular-animate.min.js",
+                   "angular-aria/angular-aria.min.js",
+                   "angular-material/angular-material.min.js",
+                   "angular-material/angular-material.min.css",
+                   "angular-smart-table/dist/smart-table.min.js"
                ],
                "dest": "server/public/vendor/"
            }
