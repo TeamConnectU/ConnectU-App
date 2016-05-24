@@ -12,6 +12,7 @@ angular.module('connectUApp')
     vm.loggedIn = false;
 
     vm.registerUser = function(){
+      console.log('clicked');
       console.log(vm.newUser);
       ConnectUService.postUsers(vm.newUser);
       vm.newUser = {};
