@@ -11,7 +11,7 @@ angular.module('connectUApp')
         someUsers.info = response.data;
         console.log('someUsers.info:', someUsers.info);
       });
-    }
+    };
 
     getUsers();
 
@@ -19,7 +19,7 @@ angular.module('connectUApp')
   return {
 
     someUsers: someUsers
-  }
+  };
 
 
 }]);//closes app.factory()

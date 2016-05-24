@@ -22,9 +22,10 @@
     "cookie-parser": "^1.4.2",
     "cookie-session": "^2.0.0-alpha.1",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "font-awesome": "^4.6.1",
     "jquery": "^2.2.3",
     "mongoose": "^4.4.17",
-    "font-awesome": "^4.6.1",
     "passport": "^0.3.2",
     "passport-linkedin-oauth2": "^1.4.1"
   },
