@@ -96,7 +96,7 @@
             <input type="number" name="zip" maxlength="5" class="form-control" aria-describedby="sizing-addon1"></input>
 
             <label>Phone:</label>
-            <input type="tel" name="phone" ng-model = "main.newUser.phone" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="tel" name="phone" maxlength="12" ng-model = "main.newUser.phone" class="form-control" aria-describedby="sizing-addon1"></input>
 
             <label>The BrandLab Internship Site*:</label>
             <input type="text" name="internshipSite" ng-model = "main.newUser.internship[0]" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
@@ -104,16 +104,16 @@
             <input type="number" name="internshipYear" ng-model = "main.newUser.internship[1]" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
             <label>High School*:</label>
-            <input type="text" name="highSchool" ng-model = "main.newUser.high_school" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.high_school" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
             <label>College:</label>
-            <input type="text" name="college" ng-model = "main.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="text" name="college" uib-typeahead = "item.college for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
 
             <label>Current Workplace:</label>
-            <input type="text" name="workplace" ng-model = "main.newUser.current_workplace" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="text" name="workplace" ng-model = "main.newUser.current_workplace" uib-typeahead = "item.current_workplace for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3"  class="form-control" aria-describedby="sizing-addon1"></input>
 
             <label>Focus/Major:</label>
-            <input type="text" name="focus" ng-model = "main.newUser.focus" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="text" name="focus" ng-model = "main.newUser.focus" uib-typeahead = "item.focus for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" class="form-control" aria-describedby="sizing-addon1"></input>
 
             <label>Slack ID*:</label>
             <input type="text" name="slack" ng-model = "main.newUser.slack_id" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>

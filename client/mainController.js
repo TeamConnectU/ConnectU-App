@@ -2,7 +2,8 @@ angular.module('connectUApp')
   .controller('MainController', ['$http', 'ConnectUService', function($http, ConnectUService){
     var vm = this;
 
-    vm.someUsers = ConnectUService.someUsers
+    vm.someUsers = ConnectUService.someUsers;
+    console.log("maincontroller", vm.someUsers);
 
     vm.newUser = {};
 
