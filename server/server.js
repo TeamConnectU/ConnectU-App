@@ -5,13 +5,14 @@ var path = require('path');
 var passport = require('passport');
 var session = require('express-session');
 var User = require('../models/user');
+var linkedIn = require('../models/linkedIn');
 
-//[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ LOCAL ROUTES ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+//[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ LOCAL ROUTES ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 
-//[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]] MONGODB ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+//[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]] MONGODB ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var mongoURI = 'mongodb://localhost/connectU';
 var MongoDB = mongoose.connect(mongoURI).connection;
 
@@ -22,7 +23,7 @@ MongoDB.once('open', function() {
     console.log('MongoDB connection open');
 });
 
-//[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ EXPRESS ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+//[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ EXPRESS ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var app = express();
 
 app.use(bodyParser.json());
@@ -42,62 +43,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-//[[[[[[[[[[[[[[[[[[[[[[[ PASSPORT LINKEDIN STRATEGY ]]]]]]]]]]]]]]]]]]]]]]]]]]
-passport.use(new LinkedInStrategy({
-    consumerKey: '773a8a5y9gfyug',
-    consumerSecret: 'V3KSkOqbhSUHUmzv',
-    callbackURL: 'http://localhost:3000/auth/linkedin/callback'
-  },
-  // linkedin sends back the tokens and progile info
-  function(token, tokenSecret, profile, done) {
-
-    var searchQuery = {
-      name: profile.displayName
-    };
-
-    var updates = {
-      linkedin_id: profile.id,
-      email: profile.email-address,
-      first_name: profile.first-name,
-      last_name: profile.last-name,
-      photo_url: profile.picture-url,
-      linkedin_url: profile.public-profile-url
-    };
-
-    var options = {
-      upsert: true
-    };
-
-    // update the user if s/he exists or add a new user
-    User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
-      if(err) {
-        return done(err);
-      } else {
-        return done(null, user);
-      }
-    });
-  }
-
-));
-
-passport.serializeUser(function(user, done){
-  console.log('Hit serializeUser');
-  done(null, user.id); //Trail of breadcrumbs back to user
-});
-
-passport.deserializeUser(function(userId, done) {
-  console.log('Hit deserializeUser');
-
-  User.findById(id, function(err, user){
-    if(err){
-      done(err);
-    } else {
-      done(null, user);
-    }
-  });
-
-});
 
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ SERVER ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var server = app.listen(process.env.PORT || 3000, function(){
