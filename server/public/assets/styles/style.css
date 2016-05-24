@@ -68,9 +68,17 @@ main {
   right: 20px;
 }
 
+.backgroundGray {
+  background-color: rgba(109, 110, 113, 0.15);
+}
+
 .centerText {
   text-align: center;
   display: block;
+}
+
+.fenix {
+  font-family: 'Fenix', serif;
 }
 
 .floatRight {
@@ -80,6 +88,10 @@ main {
 .footerText {
   padding-top: 20px;
   font-size: .75em;
+}
+
+.italics {
+  font-style: italic;
 }
 
 .linkMargin {
@@ -93,6 +105,14 @@ main {
 
 .adminLogin {
   padding-left: 20px;
+}
+
+.radius {
+  border-radius: 5px;
+}
+
+.smallMargin {
+  margin: 5px;
 }
 
 .smallText {
@@ -110,6 +130,7 @@ main {
 
 .userImage {
   float: left;
+  margin-right: 10px;
 }
 
 #bottomSpace {
