@@ -9,6 +9,8 @@ angular.module('connectUApp')
     console.log('usersSeekingEmployment before loop:', usersSeekingEmployment);
 
     var getUsers = function(){
+      usersSeekingInternship = [];
+      usersSeekingEmployment = [];
       console.log('get called');
       $http.get('/users')
       .then(function(response) {
