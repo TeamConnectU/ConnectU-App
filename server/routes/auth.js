@@ -2,10 +2,10 @@ var router = require('express').Router();
 var passport = require('passport');
 var linkedIn = require('../../models/linkedIn');
 
-router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));
+router.get('/linkedin', linkedIn.authenticate('linkedin'));
 
 router.get('/linkedin/callback',
-  passportLinkedIn.authenticate('linkedin', { failureRedirect: '/login' }),
+  linkedIn.authenticate('linkedin', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication
     res.json(req.user);
