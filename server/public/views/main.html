@@ -22,8 +22,8 @@
     <base href = "/" />
   </head>
 
-  <body>
-    <header class="container-fluid" ng-controller="MainController as main">
+  <body ng-controller="MainController as main">
+    <header class="container-fluid">
       <row>
         <img id="connectLogo" src="assets/styles/images/TBL-connect_logo_RGB_horizontal_BIG.png" alt="ConnectU Logo" height="150px">
         <a href="/login" class="floatRight login" ng-hide="main.loggedIn">Alumni Login</a>
@@ -83,54 +83,54 @@
         </div>
         <div class="modal-body">
           <label>Email*:</label>
-          <input type="email" name="email" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="email" name="email" ng-model = "main.newUser.email" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>First Name*:</label>
-          <input type="text" name="firstName" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="firstName" ng-model = "main.newUser.first_name" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Last Name*:</label>
-          <input type="text" name="lastName" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="lastName" ng-model = "main.newUser.last_name" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Zip:</label>
           <input type="number" name="zip" maxlength="5" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Phone:</label>
-          <input type="tel" name="phone" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="tel" name="phone" ng-model = "main.newUser.phone" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>The BrandLab Internship Site*:</label>
-          <input type="text" name="internshipSite" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="internshipSite" ng-model = "main.newUser.internship[0]" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
           <label>The BrandLab Internship Year*:</label>
-          <input type="number" name="internshipYear" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="number" name="internshipYear" ng-model = "main.newUser.internship[1]" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>High School*:</label>
-          <input type="text" name="highSchool" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="highSchool" ng-model = "main.newUser.high_school" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>College:</label>
-          <input type="text" name="college" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="college" ng-model = "main.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Current Workplace:</label>
-          <input type="text" name="workplace" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="workplace" ng-model = "main.newUser.current_workplace" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Focus/Major:</label>
-          <input type="text" name="focus" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="focus" ng-model = "main.newUser.focus" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Slack ID*:</label>
-          <input type="text" name="slack" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="slack" ng-model = "main.newUser.slack_id" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Photo URL:</label>
-          <input type="url" name="photo" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="url" name="photo" ng-model = "main.newUser.photo_url" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Quote:</label>
-          <textarea rows="4" cols="50" name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
+          <textarea rows="4" cols="50" ng-model = "main.newUser.quote" name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
 
           <label>Seeking:</label>
-          <input type="checkbox" name="seekingInternship">Internship
-          <input type="checkbox" name="seekingInternship">Employment
+          <input type="checkbox" name="seekingInternship" ng-model = "main.newUser.seeking_internship">Internship
+          <input type="checkbox" name="seekingEmployment" ng-model = "main.newUser.seeking_employment">Employment
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
-          <button type="button" class="btn btn-primary">Register and Enter</button>
+          <button type="button" class="btn btn-primary" ng-click = "main.registerUser()">Register and Enter</button>
         </div>
       </div>
     </div>
