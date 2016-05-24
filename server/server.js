@@ -4,8 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var passport = require('passport');
 var session = require('express-session');
-var User = require('../models/user');
-var linkedIn = require('../models/linkedIn');
+var localStrategy = require('passport-local').Strategy;
 
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ LOCAL ROUTES ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var indexRouter = require('./routes/index');
@@ -43,6 +42,60 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+//[[[[[[[[[[[[[[]]]][[[[[[[[[ PASSPORT STRATEGY ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+
+passport.use('local', new localStrategy({
+  passReqToCallback: true,
+  usernameField: 'username'
+ },
+  function(request, username, password, done){
+    console.log('CHECKING PASSWORD');
+
+    User.findOne({username: username}, function(err, user){
+      if(err){
+        console.log(err);
+      }
+
+      if(!user){
+        return done(null, false, {message: 'Incorrect username or password'});
+      }
+
+      user.comparePassword(password, function(err, isMatch){
+        if(err){
+          console.log(err);
+        }
+
+        if(isMatch){
+          return done(null, user);
+        } else {
+          return done(null, false, {message: 'Incorrect username or password'});
+        }
+
+      });
+
+    });
+
+  }
+));
+
+passport.serializeUser(function(user, done){
+  console.log('Hit serializeUser');
+  done(null, user.id); //Trail of breadcrumbs back to user
+});
+
+passport.deserializeUser(function(id, done){
+  console.log('Hit deserializeUser');
+
+  User.findById(id, function(err, user){
+    if(err){
+      done(err);
+    } else {
+      done(null, user);
+    }
+  });
+
+});
 
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ SERVER ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var server = app.listen(process.env.PORT || 3000, function(){
