@@ -121,6 +121,18 @@ main {
   margin: 10px auto;
 }
 
+#linkedInLogIn {
+  background-image: url('assets/styles/images/Sign-in-Large---Default.png');
+}
+
+#linkedInLogIn:active {
+  background-image: url('assets/styles/images/Sign-in-Large---Active.png');
+}
+
+#linkedInLogIn:hover {
+  background-image: url('assets/styles/images/Sign-in-Large---Hover.png');
+}
+
 #TBLLogo {
   display: block;
   margin-top: 20px;
