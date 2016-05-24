@@ -3,10 +3,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
 var passport = require('passport');
-var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
-var cookieParser = require('cookie-parser');
-var cookieSession = require('cookie-session');
 var session = require('express-session');
+var User = require('../models/user');
 
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ LOCAL ROUTES ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var indexRouter = require('./routes/index');
@@ -35,71 +33,73 @@ app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
 
-app.use(cookieParser());
-app.use(cookieSession({
-  name: 'linkedin-oauth-session-example',
-  keys: ['773a8a5y9gfyug', 'V3KSkOqbhSUHUmzv']
+app.use(session({
+  secret:'keyboard cat',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {maxAge: 600000, secure: false}
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 //[[[[[[[[[[[[[[[[[[[[[[[ PASSPORT LINKEDIN STRATEGY ]]]]]]]]]]]]]]]]]]]]]]]]]]
-
 passport.use(new LinkedInStrategy({
-  clientID: '773a8a5y9gfyug',
-  clientSecret: 'V3KSkOqbhSUHUmzv',
-  callbackURL: 'http://localhost:3000/auth/linkedin/callback',
-  scope: ['r_emailaddress', 'r_basicprofile'],
-  state: true
-}, function(accessToken, refreshToken, profile, done) {
-  MongoDB('users')
-    .where({ linkedin_id: profile.id })
-    .orWhere({ email: profile.emails[0].value })
-    .first()
-    .then(function (user) {
-      if ( !user ) {
-        return MongoDB('users').insert({
-          linkedin_id: profile.id,
-          email: profile.emails[0].value,
-          first_name: profile.name.givenName,
-          last_name: profile.name.familyName,
-          photo_url: profile.photos[0].value
-        }, 'id').then(function (id) {
-          return done(null, id[0]);
-        });
+    consumerKey: '773a8a5y9gfyug',
+    consumerSecret: 'V3KSkOqbhSUHUmzv',
+    callbackURL: 'http://localhost:3000/auth/linkedin/callback'
+  },
+  // linkedin sends back the tokens and progile info
+  function(token, tokenSecret, profile, done) {
+
+    var searchQuery = {
+      name: profile.displayName
+    };
+
+    var updates = {
+      linkedin_id: profile.id,
+      email: profile.email-address,
+      first_name: profile.first-name,
+      last_name: profile.last-name,
+      photo_url: profile.picture-url,
+      linkedin_url: profile.public-profile-url
+    };
+
+    var options = {
+      upsert: true
+    };
+
+    // update the user if s/he exists or add a new user
+    User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
+      if(err) {
+        return done(err);
       } else {
-        return done(null, user.id);
+        return done(null, user);
       }
     });
-}));
+  }
 
-passport.serializeUser(function(user, done) {
-  // later this will be where you selectively send to the browser
-  // an identifier for your user, like their primary key from the
-  // database, or their ID from linkedin
+));
 
-  done(null, user);
+passport.serializeUser(function(user, done){
+  console.log('Hit serializeUser');
+  done(null, user.id); //Trail of breadcrumbs back to user
 });
 
 passport.deserializeUser(function(userId, done) {
-  // here is where you will go to the database and get the
-  // user each time from it's id, after you set up your db
+  console.log('Hit deserializeUser');
 
-  if ( userId ) {
-    MongoDB('users')
-      .where({ id: userId })
-      .first()
-      .then(function (user) {
-        ( !user ) ? done() : done(null, user);
-      })
-      .catch(function (err) {
-        done(err, null);
-      });
-  } else {
-    done();
-  }
+  User.findById(id, function(err, user){
+    if(err){
+      done(err);
+    } else {
+      done(null, user);
+    }
+  });
+
 });
 
+//[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ SERVER ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var server = app.listen(process.env.PORT || 3000, function(){
   var port = server.address().port;
   console.log('Listening on port:', port + ". Press ctrl-c to end.");
