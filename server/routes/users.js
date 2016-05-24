@@ -9,7 +9,7 @@ router.get('/', function(req, res){
         } else {
             res.send(users);
         }
-    });
+    }).sort({ "last_name": 1, "first_name": 1 });
 });
 
 router.post('/add', function(req, res){
