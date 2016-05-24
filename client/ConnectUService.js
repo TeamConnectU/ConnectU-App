@@ -2,6 +2,7 @@ angular.module('connectUApp')
   .factory('ConnectUService', ['$http', function($http){
 
     var someUsers = {};
+    // var newUser = {};
 
     var getUsers = function(){
       console.log('get called');
@@ -12,13 +13,21 @@ angular.module('connectUApp')
         console.log('someUsers.info:', someUsers.info);
       });
     }
-
     getUsers();
 
 
-  return {
+    var postUsers = function(userInfo){
+      console.log('clicked postUsers', userInfo);
+        $http.post('/users/add',  userInfo).then(function(response){
+          console.log('$http response', response);
+      });
+    }
 
-    someUsers: someUsers
+
+  return {
+    someUsers: someUsers,
+    postUsers: postUsers,
+    getUsers: getUsers
   }
 
 

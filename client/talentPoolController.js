@@ -1,4 +1,4 @@
-angular.module('connectUApp')
+git angular.module('connectUApp')
   .controller('TalentPoolController', ['$http', 'ConnectUService', function($http, ConnectUService){
     var vm = this;
 
