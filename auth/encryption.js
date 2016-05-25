@@ -2,7 +2,7 @@ var bcrypt = require('bcrypt');
 
 var SALT_WORK_FACTOR = 10;
 
-var publicAPI = {
+var adminAPI = {
   encryptPassword: function(password){
     var salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
     console.log('Produced a salt of:', salt);
