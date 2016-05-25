@@ -92,7 +92,7 @@ angular.module('connectUApp')
           console.log('twentyUsers:', twentyUsers);
         }
       } else { //if there are less than 20 to get, get all
-        while (array.length < 0){
+        while (array.length > 0){
           var i = 0;
           twentyUsers[i] = array.pop();
           console.log('twentyUsers:', twentyUsers);
