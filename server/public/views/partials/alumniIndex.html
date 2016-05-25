@@ -31,26 +31,20 @@
         </td>
       </tr>
       <tr ng-show="alumni.expanded == us._id" ng-repeat-end="">
-         <td colspan="8">
-           <div class="row backgroundGray radius">
-             <div class="col-md-6">
-               <div class="section">
+        <td colspan="8">
+          <div class="row backgroundGray radius">
+              <div class="section">
                 <img src = "{{us.photo_url}}" class = "userImage img-circle" height = "150px"/><br />
                 <span class = "onlyMobile"><label>High School: </label> &nbsp {{us.high_school}}</span><br />
                 <span class = "onlyMobile"><label>College: </label> &nbsp {{us.college}}</span><br />
-                <span><label>Phone Number: </label> &nbsp {{us.phone}}</span></br>
+                <span class = "displayInline"><label>Phone Number: </label> &nbsp {{us.phone}}</span><br />
                 <span class = "onlyMobile"><label>Current Workplace: </label> &nbsp {{us.current_workplace}}</span><br />
-                <span><label>LinkedIn: </label> &nbsp <a href="{{us.linkedin_url}}" target="_blank">LinkedIn</a></span>
+                <span class = "displayInline"><label>LinkedIn: </label> &nbsp <a href="{{us.linkedin_url}}" target="_blank">LinkedIn</a></span>
+                <span class="section fenix italics rightMarginThirty floatRight">{{us.quote}}</span>
               </div>
-              <div class="col-md-6">
-              <div class="section fenix italics smallMargin">
-                {{us.quote}}
-              </div>
-           </div>
-         </div>
-       </div>
-         </td>
-       </tr>
+          </div>
+        </td>
+      </tr>
     </tbody>
   </table>
   <div id="bottomSpace"></div>

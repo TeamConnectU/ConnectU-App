@@ -8,105 +8,15 @@
 
 <div class="container">
   <row>
-    <div class="col-md-3 talentPool">
+    <div class="col-md-3 talentPool" ng-repeat="alumni in talent.twentyUsers">
+      <row>
+        <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
+        {{alumni.first_name}} &nbsp {{alumni.last_name}} <br />
+        {{alumni.college}} <br />
+        Interested in: &nbsp {{alumni.focus}} <br />
+      </row>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-  </row>
-  <row>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-  </row>
-  <row>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-  </row>
-  <row>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button>
-    </div>
-    <div class="col-md-3 talentPool">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignBottom alignRight" data-toggle="modal" data-target="#myModal">
+      <button type="button" class="btn btn-primary btn-sm alignRight" data-toggle="modal" data-target="#myModal">
       More
       </button>
     </div>
