@@ -57,7 +57,7 @@ angular.module('connectUApp')
         // console.log('clicked postUsers', userInfo);
         // console.log('zip_code', zip_code);
         getCityAndState(userInfo, zip_code);
-        // console.log('completed user model', userInfo);
+        console.log('completed user model', userInfo);
         $http.post('/users/add',  userInfo).then(function(response){
           // console.log('$http response', response);
       });
