@@ -3,3 +3,4 @@ npm-debug.log
 server/public/assets/scripts/composite.all.min.js
 adminMongo
 .DS_Store
+MOCK_DATA.json
