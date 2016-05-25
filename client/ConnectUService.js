@@ -84,8 +84,8 @@ angular.module('connectUApp')
     //get 20 to display
     var get20 = function(array){
       console.log('get20 called');
-      var i = 0;
       if (array.length > 20){
+        var i = 0;
         while (i < 20){
           twentyUsers[i] = array.pop();
           i++;
@@ -93,7 +93,8 @@ angular.module('connectUApp')
         }
       } else { //if there are less than 20 to get, get all
         while (array.length < 0){
-          twentyUsers = array.pop();
+          var i = 0;
+          twentyUsers[i] = array.pop();
           console.log('twentyUsers:', twentyUsers);
         }
       }
