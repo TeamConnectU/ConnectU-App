@@ -1,8 +1,9 @@
 var router = require('express').Router();
 var passport = require('passport');
-var linkedIn = require('../../models/linkedIn');
-var encryptLib = require('../../models/encryption');
+var passportLinkedIn = require('../../auth/linkedIn');
+var encryptLib = require('../../auth/encryption');
 var adminModel = require('../../models/admin');
+var LinkedInStrategy = require('passport-linkedin');
 
 //Passport-LinkedIn routes
 router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));

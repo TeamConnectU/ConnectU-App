@@ -1,8 +1,11 @@
-var User = require('./user');
+var User = require('../models/user');
 var mongoose = require('mongoose');
 var express = require('express');
 var session = require('express-session');
+var passport = require('passport');
 var authRouter = require('../server/routes/auth');
+var LinkedInStrategy = require('passport-linkedin');
+
 
 passport.use(new LinkedInStrategy({
     consumerKey: '773a8a5y9gfyug',
@@ -44,22 +47,14 @@ passport.use(new LinkedInStrategy({
 
 ));
 
-passport.serializeUser(function(user, done){
-  console.log('Hit serializeUser');
-  done(null, user.id); //Trail of breadcrumbs back to user
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(userId, done) {
-  console.log('Hit deserializeUser');
-
-  User.findById(id, function(err, user){
-    if(err){
-      done(err);
-    } else {
-      done(null, user);
-    }
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
   });
-
 });
 
-module.exports = linkedIn;
+module.exports = passport;

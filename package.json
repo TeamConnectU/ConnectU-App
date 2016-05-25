@@ -26,7 +26,8 @@
     "jquery": "^2.2.3",
     "mongoose": "^4.4.17",
     "passport": "^0.3.2",
-    "passport-linkedin": "^1.0.0"
+    "passport-linkedin": "^1.0.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

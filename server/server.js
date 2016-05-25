@@ -47,18 +47,18 @@ app.use(passport.session());
 
 passport.use('local', new localStrategy({
   passReqToCallback: true,
-  usernameField: 'username'
+  usernameField: 'email'
  },
-  function(request, username, password, done){
+  function(request, email, password, done){
     console.log('CHECKING PASSWORD');
 
-    User.findOne({username: username}, function(err, user){
+    User.findOne({email: email}, function(err, user){
       if(err){
         console.log(err);
       }
 
       if(!user){
-        return done(null, false, {message: 'Incorrect username or password'});
+        return done(null, false, {message: 'Incorrect email or password'});
       }
 
       user.comparePassword(password, function(err, isMatch){
@@ -69,7 +69,7 @@ passport.use('local', new localStrategy({
         if(isMatch){
           return done(null, user);
         } else {
-          return done(null, false, {message: 'Incorrect username or password'});
+          return done(null, false, {message: 'Incorrect email or password'});
         }
 
       });
@@ -81,13 +81,13 @@ passport.use('local', new localStrategy({
 
 passport.serializeUser(function(user, done){
   console.log('Hit serializeUser');
-  done(null, user.id); //Trail of breadcrumbs back to user
+  done(null, user.email-address);
 });
 
 passport.deserializeUser(function(id, done){
   console.log('Hit deserializeUser');
 
-  User.findById(id, function(err, user){
+  User.findById(email, function(err, user){
     if(err){
       done(err);
     } else {
