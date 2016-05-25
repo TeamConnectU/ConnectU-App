@@ -5,6 +5,8 @@ angular.module('connectUApp')
     vm.someUsers = ConnectUService.someUsers;
     console.log("maincontroller", vm.someUsers);
 
+    vm.zip_code = '';
+
     vm.newUser = {};
 
 
@@ -15,7 +17,7 @@ angular.module('connectUApp')
     vm.registerUser = function(){
       console.log('clicked');
       console.log(vm.newUser);
-      ConnectUService.postUsers(vm.newUser);
+      ConnectUService.postUsers(vm.newUser, vm.zip_code);
       vm.newUser = {};
       ConnectUService.getUsers();
     }

@@ -10,6 +10,7 @@ var localStrategy = require('passport-local').Strategy;
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var getCityRouter = require('./routes/getCity');
 
 //[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]] MONGODB ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var mongoURI = 'mongodb://localhost/connectU';
@@ -32,6 +33,7 @@ app.use(express.static('server/public'));
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
+app.use('/getCity', getCityRouter);
 
 app.use(session({
   secret:'keyboard cat',

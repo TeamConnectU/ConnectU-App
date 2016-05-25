@@ -6,6 +6,7 @@ angular.module('connectUApp')
     var usersSeekingInternship = [];
     var usersSeekingEmployment = [];
     var twentyUsers = [];
+    var zipAPIResponse = {};
 
     console.log('usersSeekingInternship before loop:', usersSeekingInternship);
     console.log('usersSeekingEmployment before loop:', usersSeekingEmployment);
@@ -48,21 +49,34 @@ angular.module('connectUApp')
 
         get20(shuffledUsers);
       });
-    }
+    };
 
     getUsers();
 
-    var postUsers = function(userInfo){
-      console.log('clicked postUsers', userInfo);
+    var postUsers = function(userInfo, zip_code){
+        // console.log('clicked postUsers', userInfo);
+        // console.log('zip_code', zip_code);
+        getCityAndState(userInfo, zip_code);
+        // console.log('completed user model', userInfo);
         $http.post('/users/add',  userInfo).then(function(response){
-          console.log('$http response', response);
+          // console.log('$http response', response);
       });
-    }
+    };
+
+    var getCityAndState = function(userInfo, zip_code){
+      $http.get('/getCity/' + zip_code).then(function(response){
+          zipAPIResponse = response.data;
+          // console.log('zipAPI Response', zipAPIResponse);
+          userInfo.city = zipAPIResponse.city;
+          userInfo.state = zipAPIResponse.state;
+
+    });
+  };
 
 
     //The Fisher-Yates shuffle
     var shuffle = function(array) {
-      console.log('shuffle called');
+      // console.log('shuffle called');
       var tempArr = array;
       var m = tempArr.length, t, i;
 
