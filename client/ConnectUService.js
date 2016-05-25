@@ -43,9 +43,9 @@ angular.module('connectUApp')
         usersSeekingInternship = shuffle(usersSeekingInternship);
         usersSeekingEmployment = shuffle(usersSeekingEmployment);
 
-        console.log('shuffledUsers:', shuffledUsers);
-        console.log('usersSeekingInternship after shuffle:', usersSeekingInternship);
-        console.log('usersSeekingEmployment after shuffle:', usersSeekingEmployment);
+        // console.log('shuffledUsers:', shuffledUsers);
+        // console.log('usersSeekingInternship after shuffle:', usersSeekingInternship);
+        // console.log('usersSeekingEmployment after shuffle:', usersSeekingEmployment);
 
         get20(shuffledUsers);
       });
@@ -53,23 +53,14 @@ angular.module('connectUApp')
 
     getUsers();
 
-    var postUsers = function(userInfo, zip_code){
-        // console.log('clicked postUsers', userInfo);
-        // console.log('zip_code', zip_code);
-        getCityAndState(userInfo, zip_code);
-        console.log('completed user model', userInfo);
-        $http.post('/users/add',  userInfo).then(function(response){
-          // console.log('$http response', response);
-      });
-    };
 
-    var getCityAndState = function(userInfo, zip_code){
+    var postUsers = function(userInfo, zip_code){
       $http.get('/getCity/' + zip_code).then(function(response){
           zipAPIResponse = response.data;
-          // console.log('zipAPI Response', zipAPIResponse);
           userInfo.city = zipAPIResponse.city;
           userInfo.state = zipAPIResponse.state;
-
+          $http.post('/users/add',  userInfo).then(function(response){
+          });
     });
   };
 
