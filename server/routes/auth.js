@@ -9,7 +9,7 @@ var LinkedInStrategy = require('passport-linkedin');
 router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));
 
 router.get('/linkedin/callback',
-  linkedIn.authenticate('linkedin', { failureRedirect: '/login' }),
+  passportLinkedIn.authenticate('linkedin', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication
     res.json(req.user);
