@@ -3,10 +3,12 @@ angular.module('connectUApp')
     var vm = this;
 
     vm.users = [];
+    vm.twentyUsers = [];
     vm.usersSeekingInternship = [];
     vm.usersSeekingEmployment = [];
 
     vm.users = ConnectUService.someUsers;
+    vm.twentyUsers = ConnectUService.twentyUsers;
     vm.usersSeekingInternship = ConnectUService.usersSeekingInternship;
     vm.usersSeekingEmployment = ConnectUService.usersSeekingEmployment;
 

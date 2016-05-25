@@ -58,6 +58,11 @@ main {
 	opacity: 1;
 }
 /*done messing with modal*/
+
+.adminLogin {
+  padding-left: 20px;
+}
+
 .alignBottom {
   position: absolute;
   bottom: 20px;
@@ -75,6 +80,10 @@ main {
 .centerText {
   text-align: center;
   display: block;
+}
+
+.displayInline {
+  display: inline;
 }
 
 .fenix {
@@ -103,12 +112,16 @@ main {
   font-size: 1.25em;
 }
 
-.adminLogin {
-  padding-left: 20px;
+.medMargin {
+  margin: 20px;
 }
 
 .radius {
   border-radius: 5px;
+}
+
+.rightMarginThirty {
+  margin-right: 30%;
 }
 
 .smallMargin {
@@ -130,7 +143,7 @@ main {
 
 .userImage {
   float: left;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 #bottomSpace {
