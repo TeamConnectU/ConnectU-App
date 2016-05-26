@@ -132,9 +132,21 @@ main {
   font-size: .75em;
 }
 
+.selected {
+  color: white;
+  background-color: #3faa77;
+  padding: 4px;
+}
+
 .talentPool {
   margin-top: 30px;
   min-height: 300px;
+}
+
+.talentFilter:hover {
+  color: white;
+  background-color: #3faa77;
+  padding: 4px;
 }
 
 .textGreen {
@@ -148,7 +160,7 @@ main {
 
 #bottomSpace {
   display: block;
-  height: 150px;
+  height: 200px;
 }
 
 #connectLogo {
