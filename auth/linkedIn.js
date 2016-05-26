@@ -5,21 +5,19 @@ var session = require('express-session');
 var passport = require('passport');
 var authRouter = require('../server/routes/auth');
 var LinkedInStrategy = require('passport-linkedin');
+var config = require('./_config');
 
 
 passport.use(new LinkedInStrategy({
-    consumerKey: '773a8a5y9gfyug',
-    consumerSecret: 'V3KSkOqbhSUHUmzv',
-    callbackURL: 'http://localhost:3000/auth/linkedin/callback'
-  },
+  consumerKey: config.linkedin.clientID,
+  consumerSecret: config.linkedin.clientSecret,
+  callbackURL: config.linkedin.callbackURL
+},
   // linkedin sends back the tokens and profile info
   function(token, tokenSecret, profile, done) {
 
     var searchQuery = {
-      linkedin_id: profile.id,
-      // email: profile.email-address,
-      // first_name: profile.first-name,
-      // last_name: profile.last-name
+      linkedin_id: profile.id
     };
 
     var updates = {
