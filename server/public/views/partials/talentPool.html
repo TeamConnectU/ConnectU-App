@@ -1,7 +1,7 @@
 <div class="floatRight smallText textGreen"> Filter by:
-  <a class="linkMargin" href="/allTalent">All</a>
-  <a class="linkMargin" href="/seekingEmployment">Seeking Employment</a>
-  <a class="linkMargin" href="/seekingInternship">Seeking Internship</a>
+  <a id = "all" class="talentFilter linkMargin " ng-class="{selected: talent.allSelected}" ng-click = "talent.switchToAll()" >All</a>
+  <a id = "emp" class="talentFilter linkMargin " ng-class="{selected: talent.empSelected}" ng-click = "talent.switchToEmp()" >Seeking Employment</a>
+  <a id = "int" class="talentFilter linkMargin " ng-class="{selected: talent.intSelected}" ng-click = "talent.switchToInt()" >Seeking Internship</a>
 </div>
 
 <h1>Alumni Talent Pool</h1>
@@ -22,6 +22,15 @@
     </div>
   </row>
 </div>
+<br />
+<br />
+<br />
+<row class="col-md-11">
+  <button class="floatRight" ng-show="talent.allSelected" ng-click="talent.switchToAll()">More</button>
+  <button class="floatRight" ng-show="talent.intSelected" ng-click="talent.switchToInt()">More</button>
+  <button class="floatRight" ng-show="talent.empSelected" ng-click="talent.switchToEmp">More</button>
+</row>
+<br />
 <div id="bottomSpace"></div>
 
 <!-- Modal -->
