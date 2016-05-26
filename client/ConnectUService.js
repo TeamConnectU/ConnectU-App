@@ -34,9 +34,9 @@ angular.module('connectUApp')
           }
         }
 
-        console.log('someUsers.info after loop:', someUsers.info);
-        console.log('usersSeekingInternship after loop:', usersSeekingInternship);
-        console.log('usersSeekingEmployment after loop:', usersSeekingEmployment);
+        // console.log('someUsers.info after loop:', someUsers.info);
+        // console.log('usersSeekingInternship after loop:', usersSeekingInternship);
+        // console.log('usersSeekingEmployment after loop:', usersSeekingEmployment);
 
         //shuffles lists for Talent pool page
         shuffledUsers = shuffle(shuffledUsers);
@@ -94,16 +94,15 @@ angular.module('connectUApp')
         while (i < 20){
           twentyUsers[i] = array.pop();
           i++;
-          console.log('twentyUsers:', twentyUsers);
         }
       } else { //if there are less than 20 to get, get all
         var i = 0;
         while (array.length > 0){
           twentyUsers[i] = array.pop();
-          console.log('twentyUsers:', twentyUsers);
           i++;
         }
       }
+      console.log('twentyUsers:', twentyUsers);
     }
 
 
