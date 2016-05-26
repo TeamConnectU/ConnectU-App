@@ -5,7 +5,6 @@ var path = require('path');
 var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
-var encryptLib = require('../auth/encryption');
 
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ LOCAL ROUTES ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var indexRouter = require('./routes/index');
@@ -64,7 +63,7 @@ passport.use('local', new localStrategy({
         return done(null, false, {message: 'Incorrect username or password'});
       }
 
-      user.encryptLib.comparePassword(password, function(err, isMatch){
+      user.comparePassword(password, function(err, isMatch){
         if(err){
           console.log(err);
         }
