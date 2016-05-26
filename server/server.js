@@ -60,7 +60,7 @@ passport.use('local', new localStrategy({
       }
 
       if(!user){
-        return done(null, false, {message: 'Incorrect email or password'});
+        return done(null, false, {message: 'Incorrect username or password'});
       }
 
       user.comparePassword(password, function(err, isMatch){
@@ -71,7 +71,7 @@ passport.use('local', new localStrategy({
         if(isMatch){
           return done(null, user);
         } else {
-          return done(null, false, {message: 'Incorrect email or password'});
+          return done(null, false, {message: 'Incorrect username or password'});
         }
 
       });
