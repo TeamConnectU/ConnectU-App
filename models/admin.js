@@ -10,7 +10,7 @@ var adminSchema = new Schema({
 
   });
 
-  UserSchema.pre('save', function(next){
+  adminSchema.pre('save', function(next){
     console.log('Running pre save user function');
     var user = this;
     //If password has not changed, do not proceed
@@ -32,7 +32,7 @@ var adminSchema = new Schema({
     });
   });
 
-  UserSchema.methods.comparePassword = function(candidatePassword, done){
+  adminSchema.methods.comparePassword = function(candidatePassword, done){
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
       if(err){
         return done(err);
