@@ -3,7 +3,7 @@ angular.module('connectUApp')
     var vm = this;
 
     vm.users = ConnectUService.someUsers;
-    vm.twentyUsers = ConnectUService.twentyUsers;
+    vm.data = ConnectUService.data;
     vm.usersSeekingInternship = ConnectUService.usersSeekingInternship;
     vm.usersSeekingEmployment = ConnectUService.usersSeekingEmployment;
 
@@ -11,20 +11,6 @@ angular.module('connectUApp')
     vm.allSelected = true;
     vm.intSelected = false;
     vm.empSelected = false;
-
-    vm.open = function (alumni) {
-
-      var modalInstance = $uibModal.open({
-        animation: vm.animationsEnabled,
-        templateUrl: 'myModalContent.html',
-        controller: 'IndividualDetailController',
-        controllerAs: 'detail',
-        resolve: {
-          items: function () {
-            return alumni;
-          }
-        }
-      });
 
     vm.switchToAll = function(){
       console.log('switchToAll clicked');
@@ -54,7 +40,22 @@ angular.module('connectUApp')
       vm.empSelected = false;
       ConnectUService.get20(ConnectUService.usersSeekingInternship);
     }
-};
+
+    vm.open = function (alumni) {
+
+      var modalInstance = $uibModal.open({
+        animation: vm.animationsEnabled,
+        templateUrl: 'myModalContent.html',
+        controller: 'IndividualDetailController',
+        controllerAs: 'detail',
+        resolve: {
+          items: function () {
+            return alumni;
+          }
+        }
+      });
+
+    };
 
 
-  }]);//closes controller
+}]);//closes controller
