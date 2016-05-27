@@ -7,7 +7,6 @@ var SALT_WORK_FACTOR = 10;
 var adminSchema = new Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true, unique: true}
-
   });
 
   adminSchema.pre('save', function(next){

@@ -17,10 +17,8 @@ var userSchema = new Schema({
   quote: {type: String},
   seeking_internship: {type: Boolean},
   seeking_employment: {type: Boolean},
-  admin: {type: Boolean, default: false},
   internship: [{site: String, year: Number}],
-  photo_url: {type: String},
-  password: {type: String}
+  photo_url: {type: String}
 
 });
 
