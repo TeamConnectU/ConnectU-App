@@ -45,4 +45,6 @@ var adminSchema = new Schema({
 
   var adminModel = mongoose.model('admin', adminSchema);
 
+  
+
   module.exports = adminModel;
