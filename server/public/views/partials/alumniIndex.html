@@ -16,7 +16,7 @@
         <th class = "col_7" st-sort="current_workplace">Workplace</th>
       </tr>
     </thread>
-    <tbody st-select-row="row" st-select-mode="multiple" ng-repeat = "us in alumni.displayUsers">
+    <tbody st-select-row="row" st-select-mode="multiple" ng-repeat = "us in alumni.displayUsers track by $index">
       <tr ng-click="alumni.moreInfo(us)">
         <td class = "col_1">{{us.first_name}}</td>
         <td class = "col_2">{{us.last_name}}</td>
