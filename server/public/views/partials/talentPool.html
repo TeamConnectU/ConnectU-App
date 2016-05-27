@@ -36,12 +36,18 @@
         <h3 class="modal-title">{{detail.alumni.first_name}} &nbsp {{detail.alumni.last_name}} </h3>
     </div>
     <div class="modal-body">
+      <div class="mainDetails row">
       <img src="{{detail.alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
-      <div>
-        Internships: {{detail.alumni.internship.site}},{{detail.alumni.internship.year}} </br>
-        Current City: {{detail.alumni.city}}, {{detail.alumni.state}}
+      <a href = "detail.alumni.linkedin_url">LinkedIn</a></br>
+      <strong>College</strong>: {{detail.alumni.college}}</br>
+      <strong>High School</strong>: {{detail.alumni.high_school}}
+      </div>
+      <div class = "row">
+        <strong>Current City</strong>: {{detail.alumni.city}}, {{detail.alumni.state}}</br>
+        <strong>Focus/Major</strong>: {{detail.alumni.focus}}</br>
+
         <div class = "well">
-          {{detail.alumni.quote}}
+          <em>{{detail.alumni.quote}}</em>
         </div>
       </div>
     </div>
