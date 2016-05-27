@@ -158,6 +158,16 @@ main {
   margin: 10px;
 }
 
+.styledTextArea {
+  border: 5px solid #888;
+  width: 30%;
+  margin: 30px 0 0 0;
+}
+
+#sendSlackButton {
+  margin: 0 0 60px 0;
+}
+
 #bottomSpace {
   display: block;
   height: 200px;
