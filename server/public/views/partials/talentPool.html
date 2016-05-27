@@ -8,7 +8,7 @@
 
 <div class="container">
   <row>
-    <div class="col-md-3 talentPool" ng-repeat="alumni in talent.twentyUsers" data-toggle="modal" data-target="#myModal">
+    <div class="col-md-3 talentPool" ng-repeat="alumni in talent.twentyUsers" data-toggle="modal" data-target="#myModal" ng-click="talent.open(alumni)">
       <row>
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
         {{alumni.first_name}} &nbsp {{alumni.last_name}} <br />
@@ -16,9 +16,6 @@
         Interested in: &nbsp {{alumni.focus}} <br />
       </row>
       <!-- Button trigger modal -->
-      <!-- <button type="button" class="btn btn-primary btn-sm alignRight" data-toggle="modal" data-target="#myModal">
-      More
-      </button> -->
     </div>
   </row>
 </div>
@@ -34,21 +31,21 @@
 <div id="bottomSpace"></div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">{{talent.alumni.first_name}} &nbsp {{talent.alumni.last_name}}</h4>
-      </div>
-      <div class="modal-body">
-        <img src = {{talent.alumni.photo_url}} class = "img-circle" height = "300px"/><br />
-        School: {{talent.alumni.college}} <br>
-        Focus: {{talent.alumni.focus}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{detail.alumni.first_name}} &nbsp {{detail.alumni.last_name}} </h3>
+    </div>
+    <div class="modal-body">
+      <img src="{{detail.alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
+      <div>
+        Internships: {{detail.alumni.internship.site}},{{detail.alumni.internship.year}} </br>
+        Current City: {{detail.alumni.city}}, {{detail.alumni.state}}
+        <div class = "well">
+          {{detail.alumni.quote}}
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="detail.cancel()">close</button>
+    </div>
+</script>
