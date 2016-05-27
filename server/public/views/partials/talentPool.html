@@ -8,8 +8,7 @@
 
 <div class="container">
   <row>
-    <div ng-repeat="alumni in talent.data.twentyUsers" data-toggle="modal" data-target="#myModal" ng-click = "talent.open
-    ()">
+    <div ng-repeat="alumni in talent.data.twentyUsers" data-toggle="modal" data-target="#myModal" ng-click = "talent.open()">
       <div class="clearfix" ng-if="$index % 4 == 0"></div>
       <row class= "col-md-3 talentPool">
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
