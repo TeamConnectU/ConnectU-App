@@ -19,9 +19,14 @@ angular.module('connectUApp')
       vm.slackClicked = false;
       user.customMessage = '';
     }
+    vm.cancelSlackMessage = function(user){
+      vm.slackClicked = false;
+      user.customMessage = '';
+    }
 
     vm.moreInfo = function(us) {
       // console.log('works');
+      vm.slackClicked = false;
       if (vm.expanded != us._id) {
         vm.expanded = us._id;
       } else {

@@ -112,7 +112,7 @@ angular.module('connectUApp')
       var slackRecipient = user.slack_id;
       var slackMessage = user.customMessage;
       $http.post('https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-46067180946-8876c76749&channel='+slackRecipient+'&text='+slackMessage+'&username=ConnectU-BOT').then(function(){
-        console.log('message sent?');
+        console.log('message sent');
       })
     }
 
