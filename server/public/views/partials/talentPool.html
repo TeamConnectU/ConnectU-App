@@ -8,7 +8,7 @@
 
 <div class="container">
   <row>
-    <div class="col-md-3 talentPool" ng-repeat="alumni in talent.twentyUsers" data-toggle="modal" data-target="#myModal">
+    <div class="col-md-3 talentPool" ng-repeat="alumni in talent.twentyUsers" data-toggle="modal" data-target="#myModal" ng-click="talent.open(alumni)">
       <row>
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
         {{alumni.first_name}} &nbsp {{alumni.last_name}} <br />
@@ -16,7 +16,6 @@
         Interested in: &nbsp {{alumni.focus}} <br />
       </row>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary btn-sm alignRight" data-toggle="modal" data-target="#myModal" ng-click="talent.open(alumni)">
     </div>
   </row>
 </div>
