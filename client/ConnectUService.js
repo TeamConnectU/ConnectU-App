@@ -8,6 +8,7 @@ angular.module('connectUApp')
     var twentyUsers = [];
     var zipAPIResponse = {};
 
+
     console.log('usersSeekingInternship before loop:', usersSeekingInternship);
     console.log('usersSeekingEmployment before loop:', usersSeekingEmployment);
 
@@ -55,11 +56,12 @@ angular.module('connectUApp')
 
 
     var postUsers = function(userInfo, zip_code){
+      console.log('postUsers ran');
       $http.get('/getCity/' + zip_code).then(function(response){
           zipAPIResponse = response.data;
           userInfo.city = zipAPIResponse.city;
           userInfo.state = zipAPIResponse.state;
-          $http.post('/users/add',  userInfo).then(function(response){
+          $http.post('/users/add', userInfo).then(function(response){
           });
     });
   };
@@ -106,6 +108,14 @@ angular.module('connectUApp')
     }
 
 
+    var slackProbe = function(user){
+
+      var slackRecipient = user.slack_id;
+      var autoMessage = 'Hey! I would like to get in contact with you!'
+      $http.post('https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-46067180946-8876c76749&channel='+slackRecipient+'&text='+autoMessage+'&username=ConnectU-BOT').then(function(){
+        console.log('message sent?');
+      })
+    }
 
 
   return {
@@ -116,7 +126,8 @@ angular.module('connectUApp')
     usersSeekingEmployment: usersSeekingEmployment,
     shuffledUsers: shuffledUsers,
     get20: get20,
-    twentyUsers: twentyUsers
+    twentyUsers: twentyUsers,
+    slackProbe: slackProbe,
   }
 
 
