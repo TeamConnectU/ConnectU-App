@@ -5,6 +5,7 @@ angular.module('connectUApp')
 
     vm.someUsers = ConnectUService.someUsers;
 
+    vm.slackProbe = ConnectUService.slackProbe;
 
 
     vm.moreInfo = function(us) {
