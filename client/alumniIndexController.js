@@ -4,12 +4,24 @@ angular.module('connectUApp')
 
 
     vm.someUsers = ConnectUService.someUsers;
-
     vm.slackProbe = ConnectUService.slackProbe;
 
+    vm.slackClicked = false;
+
+
+    vm.showSlackMessage = function (){
+      vm.slackClicked = true;
+    }
+
+    vm.sendSlackMessage = function (user){
+      console.log('clicked sendSlackMessage()');
+      vm.slackProbe(user);
+      vm.slackClicked = false;
+      user.customMessage = '';
+    }
 
     vm.moreInfo = function(us) {
-      console.log('works');
+      // console.log('works');
       if (vm.expanded != us._id) {
         vm.expanded = us._id;
       } else {

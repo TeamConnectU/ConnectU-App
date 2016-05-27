@@ -40,8 +40,10 @@
                 <span class = "displayInline"><label>Phone Number: </label> &nbsp {{us.phone}}</span><br />
                 <span class = "onlyMobile"><label>Current Workplace: </label> &nbsp {{us.current_workplace}}</span><br />
                 <span class = "displayInline">&nbsp <a href="{{us.linkedin_url}}" target="_blank"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a></span>
-                <span class = "displayInline">&nbsp <i class="fa fa-slack fa-2x" aria-hidden="true" ng-click = "alumni.slackProbe(us)"></i></span>
-                <!-- <span class = "displayInline">&nbsp <textarea ng-if = "alumni.slackClicked === true" rows = "1" cols = "50"></textarea></span> -->
+                <span class = "displayInline">&nbsp <i class="fa fa-slack fa-2x" aria-hidden="true" ng-click = "alumni.showSlackMessage()"></i></span>
+                <span class = "displayInline">&nbsp <textarea ng-show = "alumni.slackClicked" rows = "1" cols = "40" ng-model = "us.customMessage"></textarea></span>
+                <span class = "displayInline">&nbsp <button class = "btn btn-md" ng-show = "alumni.slackClicked" ng-click = "alumni.sendSlackMessage(us)">Slack 'Em!</button></span>
+
                 <span class="section fenix italics rightMarginThirty floatRight">{{us.quote}}</span>
               </div>
           </div>

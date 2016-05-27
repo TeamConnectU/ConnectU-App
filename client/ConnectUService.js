@@ -109,10 +109,9 @@ angular.module('connectUApp')
 
 
     var slackProbe = function(user){
-
       var slackRecipient = user.slack_id;
-      var autoMessage = 'Hey! I would like to get in contact with you!'
-      $http.post('https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-46067180946-8876c76749&channel='+slackRecipient+'&text='+autoMessage+'&username=ConnectU-BOT').then(function(){
+      var slackMessage = user.customMessage;
+      $http.post('https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-46067180946-8876c76749&channel='+slackRecipient+'&text='+slackMessage+'&username=ConnectU-BOT').then(function(){
         console.log('message sent?');
       })
     }
