@@ -2,19 +2,19 @@ angular.module('connectUApp')
   .factory('ConnectUService', ['$http', function($http){
     var data = {};
     var someUsers = {};
-    var shuffledUsers = [];
-    var usersSeekingInternship = [];
-    var usersSeekingEmployment = [];
-    data.twentyUsers = [];
+    data.shuffledUsers = [];
+    data.usersSeekingInternship = [];
+    data.usersSeekingEmployment = [];
+    // data.twentyUsers = [];
     var zipAPIResponse = {};
 
 
-    console.log('usersSeekingInternship before loop:', usersSeekingInternship);
-    console.log('usersSeekingEmployment before loop:', usersSeekingEmployment);
+    // console.log('usersSeekingInternship before loop:', usersSeekingInternship);
+    // console.log('usersSeekingEmployment before loop:', usersSeekingEmployment);
 
     var getUsers = function(){
-      usersSeekingInternship = [];
-      usersSeekingEmployment = [];
+      // data.usersSeekingInternship = [];
+      // data.usersSeekingEmployment = [];
       console.log('get called');
       $http.get('/users')
       .then(function(response) {
@@ -24,31 +24,31 @@ angular.module('connectUApp')
 
         //creates arrays for sorting in talent pool
         for (var i = 0; i < someUsers.info.length; i++){
-          shuffledUsers.push(someUsers.info[i]);
+          data.shuffledUsers.push(someUsers.info[i]);
           if (someUsers.info[i].seeking_internship === true && someUsers.info[i].seeking_employment === true){
-            usersSeekingInternship.push(someUsers.info[i]);
-            usersSeekingEmployment.push(someUsers.info[i]);
+            data.usersSeekingInternship.push(someUsers.info[i]);
+            data.usersSeekingEmployment.push(someUsers.info[i]);
           } else if (someUsers.info[i].seeking_internship === true && someUsers.info[i].seeking_employment === false){
-            usersSeekingInternship.push(someUsers.info[i]);
+            data.usersSeekingInternship.push(someUsers.info[i]);
           } else if (someUsers.info[i].seeking_internship === false && someUsers.info[i].seeking_employment === true){
-            usersSeekingEmployment.push(someUsers.info[i]);
+            data.usersSeekingEmployment.push(someUsers.info[i]);
           }
         }
 
         console.log('someUsers.info after loop:', someUsers.info);
-        console.log('usersSeekingInternship after loop:', usersSeekingInternship);
-        console.log('usersSeekingEmployment after loop:', usersSeekingEmployment);
+        console.log('usersSeekingInternship after loop:', data.usersSeekingInternship);
+        console.log('usersSeekingEmployment after loop:', data.usersSeekingEmployment);
 
         //shuffles lists for Talent pool page
-        shuffledUsers = shuffle(shuffledUsers);
-        usersSeekingInternship = shuffle(usersSeekingInternship);
-        usersSeekingEmployment = shuffle(usersSeekingEmployment);
+        data.shuffledUsers = shuffle(data.shuffledUsers);
+        data.usersSeekingInternship = shuffle(data.usersSeekingInternship);
+        data.usersSeekingEmployment = shuffle(data.usersSeekingEmployment);
 
         // console.log('shuffledUsers:', shuffledUsers);
         // console.log('usersSeekingInternship after shuffle:', usersSeekingInternship);
         // console.log('usersSeekingEmployment after shuffle:', usersSeekingEmployment);
 
-        get20(shuffledUsers);
+        // get20(shuffledUsers);
       });
     };
 
@@ -89,20 +89,20 @@ angular.module('connectUApp')
     }
 
     //get 20 to display
-    var get20 = function(array){
-      console.log('get20 called');
-      if (array.length > 20){
-        data.twentyUsers = [];
-        var i = 0;
-        while (i < 20){
-          data.twentyUsers[i] = array.pop();
-          i++;
-        }
-      } else { //if there are less than 20 to get, get all
-          data.twentyUsers = array;
-      }
-      console.log('twentyUsers:', data.twentyUsers);
-    }
+    // var get20 = function(array){
+    //   console.log('get20 called');
+    //   if (array.length > 20){
+    //     data.twentyUsers = [];
+    //     var i = 0;
+    //     while (i < 20){
+    //       data.twentyUsers[i] = array.pop();
+    //       i++;
+    //     }
+    //   } else { //if there are less than 20 to get, get all
+    //       data.twentyUsers = array;
+    //   }
+    //   console.log('twentyUsers:', data.twentyUsers);
+    // }
 
 
     var slackProbe = function(user){
@@ -118,10 +118,10 @@ angular.module('connectUApp')
     someUsers: someUsers,
     postUsers: postUsers,
     getUsers: getUsers,
-    usersSeekingInternship: usersSeekingInternship,
-    usersSeekingEmployment: usersSeekingEmployment,
-    shuffledUsers: shuffledUsers,
-    get20: get20,
+    // usersSeekingInternship: usersSeekingInternship,
+    // usersSeekingEmployment: usersSeekingEmployment,
+    // shuffledUsers: shuffledUsers,
+    // get20: get20,
     data: data,
     slackProbe: slackProbe,
   }
