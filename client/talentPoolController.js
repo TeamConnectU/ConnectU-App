@@ -3,24 +3,47 @@ angular.module('connectUApp')
     var vm = this;
 
     vm.users = ConnectUService.someUsers;
-    vm.data = ConnectUService.data;
-    vm.usersSeekingInternship = ConnectUService.usersSeekingInternship;
-    vm.usersSeekingEmployment = ConnectUService.usersSeekingEmployment;
+    vm.data = ConnectUService.data.shuffledUsers;
+    console.log('vm.data:', vm.data);
+
 
     //these are for ng-show to change more button to get more data from correct array
     vm.allSelected = true;
     vm.intSelected = false;
     vm.empSelected = false;
 
+    //pagination functionality
+    vm.totalItems = vm.data.length;
+    vm.currentPage = 1;
+    vm.viewby = 20;
+    vm.maxSize = 2;
+    vm.itemsPerPage = vm.viewby;
+
+
+    //pagination functions
+  vm.setPage = function (pageNo) {
+    vm.currentPage = pageNo;
+  };
+
+  vm.pageChanged = function() {
+    console.log('Page changed to: ' + vm.currentPage);
+  };
+
+  vm.setItemsPerPage = function(num) {
+  vm.itemsPerPage = num;
+  vm.currentPage = 1; //reset to first page
+}
+  //end of pagination functions
+
+
+    //filter functions
     vm.switchToAll = function(){
       console.log('switchToAll clicked');
       vm.allSelected = true;
       vm.intSelected = false;
       vm.empSelected = false;
-      ConnectUService.get20(ConnectUService.shuffledUsers);
-      console.log('twentyUsers in all call:', vm.twentyUsers);
-      console.log('shuffledUsers length:', ConnectUService.shuffledUsers.length);
-
+      vm.currentPage = 1;
+      vm.data = ConnectUService.data.shuffledUsers;
     }
 
     vm.switchToEmp = function(){
@@ -28,9 +51,8 @@ angular.module('connectUApp')
       vm.allSelected = false;
       vm.intSelected = false;
       vm.empSelected = true;
-      console.log('CUS.EMP:', ConnectUService.usersSeekingEmployment);
-      ConnectUService.get20(ConnectUService.usersSeekingEmployment);
-      console.log('20Users:', vm.twentyUsers);
+      vm.currentPage = 1;
+      vm.data = ConnectUService.data.usersSeekingEmployment;
     }
 
     vm.switchToInt = function(){
@@ -38,8 +60,11 @@ angular.module('connectUApp')
       vm.allSelected = false;
       vm.intSelected = true;
       vm.empSelected = false;
-      ConnectUService.get20(ConnectUService.usersSeekingInternship);
+      vm.currentPage = 1;
+      vm.data = ConnectUService.data.usersSeekingInternship;
     }
+    //end of filter functions
+    
 
     vm.open = function (alumni) {
 

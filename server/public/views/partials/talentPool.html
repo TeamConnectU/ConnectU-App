@@ -8,7 +8,7 @@
 
 <div class="container">
   <row>
-    <div ng-repeat="alumni in talent.data.twentyUsers" data-toggle="modal" data-target="#myModal" ng-click = "talent.open(alumni)">
+    <div ng-repeat="alumni in talent.data.slice(((talent.currentPage-1)*talent.itemsPerPage), ((talent.currentPage)*talent.itemsPerPage))" data-toggle="modal" data-target="#myModal" ng-click = "talent.open(alumni)">
       <div class="clearfix" ng-if="$index % 4 == 0"></div>
       <row class= "col-md-3 talentPool">
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
@@ -24,9 +24,8 @@
 <br />
 <br />
 <row class="col-md-11">
-  <button class="floatRight" ng-show="talent.allSelected" ng-click="talent.switchToAll()">More</button>
-  <button class="floatRight" ng-show="talent.intSelected" ng-click="talent.switchToInt()">More</button>
-  <button class="floatRight" ng-show="talent.empSelected" ng-click="talent.switchToEmp">More</button>
+  <uib-pagination class="pagination-sm floatRight linkMargin" max-size = "talent.maxSize" total-items="talent.totalItems" ng-model="talent.currentPage" ng-change="talent.pageChanged()"></uib-pagination>
+  <div class = "floatRight footerText">View <select ng-model="talent.viewby" ng-change="talent.setItemsPerPage(talent.viewby)"><option>20</option><option>40</option><option>80</option><option>100</option></select> records at a time. </div>
 </row>
 <br />
 <div id="bottomSpace"></div>
