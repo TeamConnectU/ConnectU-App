@@ -1,12 +1,13 @@
 angular.module('connectUApp')
   .factory('ConnectUService', ['$http', function($http){
-
+    var data = {};
     var someUsers = {};
     var shuffledUsers = [];
     var usersSeekingInternship = [];
     var usersSeekingEmployment = [];
-    var twentyUsers = [];
+    data.twentyUsers = [];
     var zipAPIResponse = {};
+
 
     console.log('usersSeekingInternship before loop:', usersSeekingInternship);
     console.log('usersSeekingEmployment before loop:', usersSeekingEmployment);
@@ -34,9 +35,9 @@ angular.module('connectUApp')
           }
         }
 
-        // console.log('someUsers.info after loop:', someUsers.info);
-        // console.log('usersSeekingInternship after loop:', usersSeekingInternship);
-        // console.log('usersSeekingEmployment after loop:', usersSeekingEmployment);
+        console.log('someUsers.info after loop:', someUsers.info);
+        console.log('usersSeekingInternship after loop:', usersSeekingInternship);
+        console.log('usersSeekingEmployment after loop:', usersSeekingEmployment);
 
         //shuffles lists for Talent pool page
         shuffledUsers = shuffle(shuffledUsers);
@@ -55,11 +56,12 @@ angular.module('connectUApp')
 
 
     var postUsers = function(userInfo, zip_code){
+      console.log('postUsers ran');
       $http.get('/getCity/' + zip_code).then(function(response){
           zipAPIResponse = response.data;
           userInfo.city = zipAPIResponse.city;
           userInfo.state = zipAPIResponse.state;
-          $http.post('/users/add',  userInfo).then(function(response){
+          $http.post('/users/add', userInfo).then(function(response){
           });
     });
   };
@@ -90,22 +92,26 @@ angular.module('connectUApp')
     var get20 = function(array){
       console.log('get20 called');
       if (array.length > 20){
+        data.twentyUsers = [];
         var i = 0;
         while (i < 20){
-          twentyUsers[i] = array.pop();
+          data.twentyUsers[i] = array.pop();
           i++;
         }
       } else { //if there are less than 20 to get, get all
-        var i = 0;
-        while (array.length > 0){
-          twentyUsers[i] = array.pop();
-          i++;
-        }
+          data.twentyUsers = array;
       }
-      console.log('twentyUsers:', twentyUsers);
+      console.log('twentyUsers:', data.twentyUsers);
     }
 
 
+    var slackProbe = function(user){
+      var slackRecipient = user.slack_id;
+      var slackMessage = user.customMessage;
+      $http.post('https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-46067180946-8876c76749&channel='+slackRecipient+'&text='+slackMessage+'&username=ConnectU-BOT').then(function(){
+        console.log('message sent');
+      })
+    }
 
 
   return {
@@ -116,7 +122,8 @@ angular.module('connectUApp')
     usersSeekingEmployment: usersSeekingEmployment,
     shuffledUsers: shuffledUsers,
     get20: get20,
-    twentyUsers: twentyUsers
+    data: data,
+    slackProbe: slackProbe,
   }
 
 

@@ -1,9 +1,9 @@
 angular.module('connectUApp')
-  .controller('TalentPoolController', ['$http', 'ConnectUService', function($http, ConnectUService){
+  .controller('TalentPoolController', ['$http', '$uibModal', 'ConnectUService', function($http, $uibModal, ConnectUService){
     var vm = this;
 
     vm.users = ConnectUService.someUsers;
-    vm.twentyUsers = ConnectUService.twentyUsers;
+    vm.data = ConnectUService.data;
     vm.usersSeekingInternship = ConnectUService.usersSeekingInternship;
     vm.usersSeekingEmployment = ConnectUService.usersSeekingEmployment;
 
@@ -11,8 +11,6 @@ angular.module('connectUApp')
     vm.allSelected = true;
     vm.intSelected = false;
     vm.empSelected = false;
-
-
 
     vm.switchToAll = function(){
       console.log('switchToAll clicked');
@@ -43,6 +41,21 @@ angular.module('connectUApp')
       ConnectUService.get20(ConnectUService.usersSeekingInternship);
     }
 
+    vm.open = function (alumni) {
+
+      var modalInstance = $uibModal.open({
+        animation: vm.animationsEnabled,
+        templateUrl: 'myModalContent.html',
+        controller: 'IndividualDetailController',
+        controllerAs: 'detail',
+        resolve: {
+          items: function () {
+            return alumni;
+          }
+        }
+      });
+
+    };
 
 
-  }]);//closes controller
+}]);//closes controller
