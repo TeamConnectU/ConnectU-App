@@ -14,7 +14,7 @@
         <div class ="talentPoolText">
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
         {{alumni.first_name}} &nbsp {{alumni.last_name}} </br>
-        <span ng-show="alumni.college">{{alumni.college}}</span></br>
+        <span ng-show="alumni.college">{{alumni.college}}</br></span>
         <strong>Interested in</strong>: &nbsp {{alumni.focus}} </br>
         </div>
       </row>
@@ -51,8 +51,12 @@
       <strong>High School</strong>: {{detail.alumni.high_school}}</br>
       <strong>Current City</strong>: {{detail.alumni.city}}, {{detail.alumni.state}}</br>
       <strong>Focus/Major</strong>: {{detail.alumni.focus}}</br>
-      <strong>Internship</strong>: <span ng-show ="detail.alumni.internship[0]">{{detail.alumni.internship[0].site}} : {{detail.alumni.internship[0].year}}</span>, <span ng-show = "detail.alumni.internship[1]">{{detail.alumni.internship[1].site}} : {{detail.alumni.internship[1].year}}</span>
-      <span ng-show = "detail.alumni.internship[2]">{{detail.alumni.internship[2].site}} : {{detail.alumni.internship[2].year}}</span>
+      <strong>The BrandLab Internship(s)</strong>: <span ng-show ="detail.alumni.internship[0]">{{detail.alumni.internship[0].site}} : {{detail.alumni.internship[0].year}}</span>
+      <span ng-show = "detail.alumni.internship[1]">&nbsp | &nbsp {{detail.alumni.internship[1].site}} : {{detail.alumni.internship[1].year}}</span>
+      <span ng-show = "detail.alumni.internship[2]">&nbsp | &nbsp {{detail.alumni.internship[2].site}} : {{detail.alumni.internship[2].year}}</span>
+      <span ng-show = "detail.alumni.internship[3]">&nbsp | &nbsp {{detail.alumni.internship[3].site}} : {{detail.alumni.internship[3].year}}</span>
+      <span ng-show = "detail.alumni.internship[4]">&nbsp | &nbsp {{detail.alumni.internship[4].site}} : {{detail.alumni.internship[4].year}}</span>
+      <span ng-show = "detail.alumni.internship[5]">&nbsp | &nbsp {{detail.alumni.internship[5].site}} : {{detail.alumni.internship[5].year}}</span>
       </br>
       </br>
       <em>"{{detail.alumni.quote}}"</em>

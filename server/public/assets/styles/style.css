@@ -345,6 +345,19 @@ main {
   content: '\25BC';
 }
 
+.section {
+  margin-top: 3%;
+}
+
+.firstTable{
+  border-right: 1px solid black;
+  margin-bottom: 5%;
+}
+
+.secondTable{
+  border-right: 1px solid black;
+}
+
 .talentPoolText{
   text-align: center;
 }
