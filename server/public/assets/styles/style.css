@@ -132,6 +132,10 @@ main {
   font-size: .75em;
 }
 
+.smallPadding {
+  padding: 4px;
+}
+
 .selected {
   color: white;
   background-color: #3faa77;
