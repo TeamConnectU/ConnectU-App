@@ -77,6 +77,10 @@ main {
   background-color: rgba(109, 110, 113, 0.15);
 }
 
+.backgroundLightGray {
+  background-color: rgba(109, 110, 113, 0.05);
+}
+
 .centerText {
   text-align: center;
   display: block;
@@ -114,6 +118,10 @@ main {
 
 .medMargin {
   margin: 20px;
+}
+
+.medPadding {
+  padding: 20px;
 }
 
 .radius {
@@ -159,7 +167,7 @@ main {
 
 .userImage {
   float: left;
-  margin: 10px;
+  margin: 40px;
 }
 
 .styledTextArea {
@@ -182,7 +190,7 @@ main {
 }
 
 .firstTable{
-  border-right: 1px solid black;
+  border-left: 1px solid black;
 }
 
 
