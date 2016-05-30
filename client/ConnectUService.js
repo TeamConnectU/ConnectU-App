@@ -12,6 +12,10 @@ angular.module('connectUApp')
     // console.log('usersSeekingEmployment before loop:', usersSeekingEmployment);
 
     var getUsers = function(){
+      data.shuffledUsers = [];
+      data.usersSeekingInternship = [];
+      data.usersSeekingEmployment = [];
+
       console.log('get called');
       $http.get('/users')
       .then(function(response) {
@@ -59,6 +63,7 @@ angular.module('connectUApp')
           userInfo.state = zipAPIResponse.state;
           $http.post('/users/add', userInfo).then(function(response){
           });
+          getUsers();
       });
     };
 
@@ -68,6 +73,7 @@ angular.module('connectUApp')
       console.log('/users/remove/' + id);
       $http.delete('/users/remove/' + id).then(function(response){
         console.log('deleted', user);
+        getUsers();
       })
     }
 
