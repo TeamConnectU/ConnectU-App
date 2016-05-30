@@ -7,7 +7,7 @@ angular.module('connectUApp')
     vm.slackProbe = ConnectUService.slackProbe;
 
     vm.slackClicked = false;
-    vm.isAdmin = false;
+    vm.isAdmin = true;
 
     vm.deletePressed = function(us){
       console.log('deletePressed');
