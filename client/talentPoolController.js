@@ -64,7 +64,7 @@ angular.module('connectUApp')
       vm.data = ConnectUService.data.usersSeekingInternship;
     }
     //end of filter functions
-    
+
 
     vm.open = function (alumni) {
 

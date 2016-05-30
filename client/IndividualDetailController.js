@@ -3,6 +3,7 @@ angular.module('connectUApp')
     var vm = this;
     vm.alumni = items;
 
+
     vm.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };

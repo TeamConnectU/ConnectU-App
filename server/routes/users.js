@@ -39,6 +39,7 @@ router.put('/update', function(req, res){
 });
 
 router.delete('/remove/:id', function(req, res){
+  console.log('delete call hit user router');
   var userID = req.params.id;
     User.findOneAndRemove({_id: userID}).exec(function(err, user){
         if(err){
