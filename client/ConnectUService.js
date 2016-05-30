@@ -16,12 +16,12 @@ angular.module('connectUApp')
       data.usersSeekingInternship = [];
       data.usersSeekingEmployment = [];
 
-      console.log('get called');
+      // console.log('get called');
       $http.get('/users')
       .then(function(response) {
-        console.log('response:', response);
+        // console.log('response:', response);
         someUsers.info = response.data;
-        console.log('someUsers.info before loop:', someUsers.info);
+        // console.log('someUsers.info before loop:', someUsers.info);
 
         //creates arrays for sorting in talent pool
         for (var i = 0; i < someUsers.info.length; i++){
@@ -36,9 +36,9 @@ angular.module('connectUApp')
           }
         }
 
-        console.log('someUsers.info after loop:', someUsers.info);
-        console.log('usersSeekingInternship after loop:', data.usersSeekingInternship);
-        console.log('usersSeekingEmployment after loop:', data.usersSeekingEmployment);
+        // console.log('someUsers.info after loop:', someUsers.info);
+        // console.log('usersSeekingInternship after loop:', data.usersSeekingInternship);
+        // console.log('usersSeekingEmployment after loop:', data.usersSeekingEmployment);
 
         //shuffles lists for Talent pool page
         data.shuffledUsers = shuffle(data.shuffledUsers);
@@ -56,7 +56,7 @@ angular.module('connectUApp')
 
 
     var postUsers = function(userInfo, zip_code){
-      console.log('postUsers ran');
+      // console.log('postUsers ran');
       $http.get('/getCity/' + zip_code).then(function(response){
           zipAPIResponse = response.data;
           userInfo.city = zipAPIResponse.city;

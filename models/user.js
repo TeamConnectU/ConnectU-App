@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var internshipSchema = new Schema({
+  site: {type: String},
+  year: {type: Number}
+})
+
 var userSchema = new Schema({
   email: {type: String, required: true, unique: true},
   first_name: {type: String, required: true},
@@ -17,8 +22,10 @@ var userSchema = new Schema({
   quote: {type: String},
   seeking_internship: {type: Boolean},
   seeking_employment: {type: Boolean},
-  internship: [{site: String, year: Number}],
-  photo_url: {type: String}
+  admin: {type: Boolean, default: false},
+  internships: [internshipSchema],
+  photo_url: {type: String},
+  password: {type: String}
 
 });
 

@@ -7,57 +7,60 @@
         <!-- ng-model="selected" uib-typeahead = "item.searchableText as item.first_name for item in alumni.displayUsers" -->
       </tr>
       <tr>
-        <th class = "col_1" st-sort="first_name">First Name</th>
+        <th class = "col_1 backgroundLightGray" st-sort="first_name" width="8%">First Name</th>
         <th class = "col_2" st-sort="last_name">Last Name</th>
-        <th class = "col_3" st-sort="high_school">High School</th>
+        <th class = "col_3 backgroundLightGray" st-sort="high_school">High School</th>
         <th class = "col_4" st-sort="college">College</th>
-        <th class = "col_5" st-sort="focus">Focus/Major</th>
+        <th class = "col_5 backgroundLightGray" st-sort="focus">Focus/Major</th>
         <th class = "col_6" st-sort="city">Location</th>
-        <th class = "col_7" st-sort="current_workplace">Workplace</th>
+        <th class = "col_7 backgroundLightGray" st-sort="current_workplace">Workplace</th>
       </tr>
     </thread>
     <tbody st-select-row="row" st-select-mode="multiple" ng-repeat = "us in alumni.displayUsers track by $index">
       <tr ng-click="alumni.moreInfo(us)">
-        <td class = "col_1">{{us.first_name}}</td>
+        <td class = "col_1 backgroundLightGray">{{us.first_name}}</td>
         <td class = "col_2">{{us.last_name}}</td>
-        <td class = "col_3">{{us.high_school}}</td>
+        <td class = "col_3 backgroundLightGray">{{us.high_school}}</td>
         <td class = "col_4">{{us.college}}</td>
-        <td class = "col_5">{{us.focus}}</td>
+        <td class = "col_5 backgroundLightGray">{{us.focus}}</td>
         <td class = "col_6">{{us.city}}, {{us.state}}</td>
-        <td class = "col_7">{{us.current_workplace}}</td>
+        <td class = "col_7 backgroundLightGray">{{us.current_workplace}}</td>
         <td>
             <button class="btn-sm btn-danger" ng-show="alumni.isAdmin" ng-click="alumni.deletePressed(us)">Delete</button>
         </td>
       </tr>
       <tr ng-show="alumni.expanded == us._id" ng-repeat-end="">
         <td colspan="8">
-          <div class="row backgroundGray radius">
+          <div class="row backgroundGray radius smallMargin medPadding">
             <h1>{{us.first_name}} {{us.last_name}}</h1>
               <div class="section">
-                <div class= "col-md-3 firstTable">
-                <img src = "{{us.photo_url}}" class = "userImage img-circle" width = "180px" height = "180px"/>
-                <span class = "displayInline">&nbsp <a href="{{us.linkedin_url}}" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></span>
-                <span class = "displayInline">&nbsp <i class="fa fa-slack fa-3x" aria-hidden="true" ng-click = "alumni.showSlackMessage()"></i></span>
+                <div class= "col-md-3">
+                <img src = "{{us.photo_url}}" class = "userImage img-circle medMargin" width = "180px"/>
+                <div class = "medPadding">
+                  <span class = "displayInline">&nbsp; <a href="{{us.linkedin_url}}" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></span>
+                  <span class = "displayInline">&nbsp; <i class="fa fa-slack fa-3x" aria-hidden="true" ng-click = "alumni.showSlackMessage()"></i></span>
+                  <p class = "smallText">View LinkedIn Profile or send Slack PM</p>
+                </div>
               </div>
-                <div class= "col-md-9">
-                <span class = "onlyMobile"><label>High School: </label> &nbsp {{us.high_school}}</span><br />
-                <span class = "onlyMobile"><label>College: </label> &nbsp {{us.college}}</span><br />
-                <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Phone Number: </label> &nbsp {{us.phone}}</span><br />
-                <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Email: </label> &nbsp <a href="mailto: us.email"> {{us.email}} </a></span><br />
-                <span ng-show="us.seeking_internship || us.seeking_employment">
-                  <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Seeking:</label> &nbsp
-                    <span ng-show="us.seeking_internship">Internship</span>
-                    <span ng-show="us.seeking_internship && us.seeking_employment"> &nbsp | &nbsp </span>
-                    <span ng-show="us.seeking_employment">Employment</span>
-                  </span>
+                <div class= "col-md-9 firstTable">
+                  <span class = "onlyMobile"><label>High School: </label> &nbsp; {{us.high_school}}</span><br />
+                  <span class = "onlyMobile"><label>College: </label> &nbsp; {{us.college}}</span><br />
+                  <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Phone Number: </label> &nbsp; {{us.phone}}</span><br />
+                  <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Email: </label> &nbsp; <a href="mailto: us.email"> {{us.email}} </a></span><br />
+                  <span ng-show="us.seeking_internship || us.seeking_employment">
+                    <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Seeking:</label> &nbsp;
+                      <span ng-show="us.seeking_internship">Internship</span>
+                      <span ng-show="us.seeking_internship && us.seeking_employment"> &nbsp; | &nbsp; </span>
+                      <span ng-show="us.seeking_employment">Employment</span>
+                    </span>
                   <br />
                 </span>
-                <span class = "displayInline"><label>The BrandLab Internship(s):</label> &nbsp {{us.internship[0].site}} : {{us.internship[0].year}}
-                  <span ng-show="us.internship[1]"> &nbsp | &nbsp {{us.internship[1].site}}, {{us.internship[1].year}} </span>
-                  <span ng-show="us.internship[2]"> &nbsp | &nbsp {{us.internship[2].site}}, {{us.internship[2].year}} </span>
-                  <span ng-show="us.internship[3]"> &nbsp | &nbsp {{us.internship[3].site}}, {{us.internship[3].year}} </span>
-                  <span ng-show="us.internship[4]"> &nbsp | &nbsp {{us.internship[4].site}}, {{us.internship[4].year}} </span>
-                  <span ng-show="us.internship[5]"> &nbsp | &nbsp {{us.internship[5].site}}, {{us.internship[5].year}} </span>
+                <span class = "displayInline"><label>The BrandLab Internship(s):</label> &nbsp; {{us.internships[0].site}} : {{us.internships[0].year}}
+                  <span ng-show="us.internships[1]"> &nbsp; | &nbsp; {{us.internships[1].site}}, {{us.internships[1].year}} </span>
+                  <span ng-show="us.internships[2]"> &nbsp; | &nbsp; {{us.internships[2].site}}, {{us.internships[2].year}} </span>
+                  <span ng-show="us.internships[3]"> &nbsp; | &nbsp; {{us.internships[3].site}}, {{us.internships[3].year}} </span>
+                  <span ng-show="us.internships[4]"> &nbsp; | &nbsp; {{us.internships[4].site}}, {{us.internships[4].year}} </span>
+                  <span ng-show="us.internships[5]"> &nbsp; | &nbsp; {{us.internships[5].site}}, {{us.internships[5].year}} </span>
                 </span>
                 <span class = "onlyMobile"><label>Current Workplace: </label> &nbsp {{us.current_workplace}}</span><br />
               </div>
@@ -65,9 +68,9 @@
                 <span class="section fenix italics medMargin centerText">"{{us.quote}}"</span>
               </div>
               <div clas = "well">
-                <span class = "displayInline">&nbsp <textarea placeholder = "Write your custom greeting here" class = "styledTextArea" ng-show = "alumni.slackClicked" rows = "3" cols = "40" ng-model = "us.customMessage"></textarea></span>
-                <span class = "displayInline">&nbsp <button id = "sendSlackButton" class = "btn btn-md btn-primary" ng-show = "alumni.slackClicked" ng-click = "alumni.sendSlackMessage(us)">Slack 'Em!</button></span>
-                <span class = "displayInline">&nbsp <button id = "sendSlackButton" class = "btn btn-md btn-danger" ng-show = "alumni.slackClicked" ng-click = "alumni.cancelSlackMessage(us)">Or nah...</button></span>
+                <span class = "displayInline">&nbsp; <textarea placeholder = "Write your custom greeting here" class = "styledTextArea" ng-show = "alumni.slackClicked" rows = "3" cols = "40" ng-model = "us.customMessage"></textarea></span>
+                <span class = "displayInline">&nbsp; <button id = "sendSlackButton" class = "btn btn-md btn-primary" ng-show = "alumni.slackClicked" ng-click = "alumni.sendSlackMessage(us)">Slack 'Em!</button></span>
+                <span class = "displayInline">&nbsp; <button id = "sendSlackButton" class = "btn btn-md btn-danger" ng-show = "alumni.slackClicked" ng-click = "alumni.cancelSlackMessage(us)">Or nah...</button></span>
               </div>
           </div>
         </div>
@@ -81,17 +84,13 @@
   <script type="text/ng-template" id="myModalContent2.html">
     <div class="modal-header">
       <div class = "removal">
-      <h2>Are you sure you want to delete?</h2>
+      <h4 class="textGreen">Are you sure you want to delete?</h4>
     </div>
     </div>
     <div class ="modal-body">
       <div class = "removal">
       <button class="btn btn-warning" type="button" ng-click="remove.cancel()">No</button>
-      &nbsp
-      &nbsp
-      &nbsp
-      &nbsp
-      <button class="btn btn-danger" type="button" ng-click="remove.removeUser(remove.us)">Yes</button>
+      <button class="btn btn-danger linkMargin" type="button" ng-click="remove.removeUser(remove.us)">Yes</button>
     </div>
     </div>
   </script>
