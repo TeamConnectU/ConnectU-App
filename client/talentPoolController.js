@@ -2,7 +2,7 @@ angular.module('connectUApp')
   .controller('TalentPoolController', ['$http', '$uibModal', 'ConnectUService', function($http, $uibModal, ConnectUService){
     var vm = this;
 
-    vm.users = ConnectUService.someUsers;
+    // vm.users = ConnectUService.someUsers;
     vm.data = ConnectUService.data.shuffledUsers;
     console.log('vm.data:', vm.data);
 
