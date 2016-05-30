@@ -26,8 +26,7 @@
         <td class = "col_6">{{us.city}}, {{us.state}}</td>
         <td class = "col_7">{{us.current_workplace}}</td>
         <td>
-            <button class="fa fa-lg fa-plus-square-o" ng-hide="alumni.expanded == us._id" ng-click="alumni.moreInfo(us)"></button>
-            <button class="fa fa-lg fa-minus-square" ng-show="alumni.expanded == us._id" ng-click="alumni.moreInfo(us)"></button>
+            <button class="btn-sm btn-danger" ng-show="alumni.isAdmin" ng-click="alumni.removeUser(us)">Delete</button>
         </td>
       </tr>
       <tr ng-show="alumni.expanded == us._id" ng-repeat-end="">
@@ -37,8 +36,26 @@
                 <img src = "{{us.photo_url}}" class = "userImage img-circle" height = "150px"/><br />
                 <span class = "onlyMobile"><label>High School: </label> &nbsp {{us.high_school}}</span><br />
                 <span class = "onlyMobile"><label>College: </label> &nbsp {{us.college}}</span><br />
-                <span class = "displayInline"><label>Phone Number: </label> &nbsp {{us.phone}}</span><br />
+                <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Phone Number: </label> &nbsp {{us.phone}}</span><br />
+                <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Email: </label> &nbsp <a href="mailto: us.email"> {{us.email}} </a></span><br />
+                <span ng-show="us.seeking_internship || us.seeking_employment">
+                  <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Seeking:</label> &nbsp
+                    <span ng-show="us.seeking_internship">Internship</span>
+                    <span ng-show="us.seeking_internship && us.seeking_employment"> &nbsp / &nbsp </span>
+                    <span ng-show="us.seeking_employment">Employment</span>
+                  </span>
+                  <br />
+                </span>
+                <span class = "displayInline"><label>The BrandLab Internship(s):</label> &nbsp {{us.internship[0].site}}, {{us.internship[0].year}}
+                  <span ng-show="us.internship[1]"> &nbsp / &nbsp {{us.internship[1].site}}, {{us.internship[1].year}} </span>
+                  <span ng-show="us.internship[2]"> &nbsp / &nbsp {{us.internship[2].site}}, {{us.internship[2].year}} </span>
+                  <span ng-show="us.internship[3]"> &nbsp / &nbsp {{us.internship[3].site}}, {{us.internship[3].year}} </span>
+                  <span ng-show="us.internship[4]"> &nbsp / &nbsp {{us.internship[4].site}}, {{us.internship[4].year}} </span>
+                  <span ng-show="us.internship[5]"> &nbsp / &nbsp {{us.internship[5].site}}, {{us.internship[5].year}} </span>
+                </span>
                 <span class = "onlyMobile"><label>Current Workplace: </label> &nbsp {{us.current_workplace}}</span><br />
+
+
                 <span class = "displayInline">&nbsp <a href="{{us.linkedin_url}}" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></span>
                 <span class = "displayInline">&nbsp <i class="fa fa-slack fa-3x" aria-hidden="true" ng-click = "alumni.showSlackMessage()"></i></span>
                 <div>
@@ -46,7 +63,7 @@
                   <span class = "displayInline">&nbsp <button id = "sendSlackButton" class = "btn btn-lg btn-primary" ng-show = "alumni.slackClicked" ng-click = "alumni.sendSlackMessage(us)">Slack 'Em!</button></span>
                   <span class = "displayInline">&nbsp <button id = "sendSlackButton" class = "btn btn-lg btn-danger" ng-show = "alumni.slackClicked" ng-click = "alumni.cancelSlackMessage(us)">Or nah...</button></span>
                 </div>
-                <span class="section fenix italics rightMarginThirty floatRight">{{us.quote}}</span>
+                <span class="section fenix italics medMargin centerText">{{us.quote}}</span>
               </div>
           </div>
         </td>

@@ -5,7 +5,6 @@ angular.module('connectUApp')
     data.shuffledUsers = [];
     data.usersSeekingInternship = [];
     data.usersSeekingEmployment = [];
-    // data.twentyUsers = [];
     var zipAPIResponse = {};
 
 
@@ -13,8 +12,6 @@ angular.module('connectUApp')
     // console.log('usersSeekingEmployment before loop:', usersSeekingEmployment);
 
     var getUsers = function(){
-      // data.usersSeekingInternship = [];
-      // data.usersSeekingEmployment = [];
       console.log('get called');
       $http.get('/users')
       .then(function(response) {
@@ -48,7 +45,6 @@ angular.module('connectUApp')
         // console.log('usersSeekingInternship after shuffle:', usersSeekingInternship);
         // console.log('usersSeekingEmployment after shuffle:', usersSeekingEmployment);
 
-        // get20(shuffledUsers);
       });
     };
 
@@ -63,8 +59,17 @@ angular.module('connectUApp')
           userInfo.state = zipAPIResponse.state;
           $http.post('/users/add', userInfo).then(function(response){
           });
-    });
-  };
+      });
+    };
+
+    var deleteUser = function(user){
+      console.log('Controller says: Alumni to be deleted is', user);
+      id = user._id;
+      console.log('/users/remove/' + id);
+      $http.delete('/users/remove/' + id).then(function(response){
+        console.log('deleted', user);
+      })
+    }
 
 
     //The Fisher-Yates shuffle
@@ -88,21 +93,6 @@ angular.module('connectUApp')
       return tempArr;
     }
 
-    //get 20 to display
-    // var get20 = function(array){
-    //   console.log('get20 called');
-    //   if (array.length > 20){
-    //     data.twentyUsers = [];
-    //     var i = 0;
-    //     while (i < 20){
-    //       data.twentyUsers[i] = array.pop();
-    //       i++;
-    //     }
-    //   } else { //if there are less than 20 to get, get all
-    //       data.twentyUsers = array;
-    //   }
-    //   console.log('twentyUsers:', data.twentyUsers);
-    // }
 
 
     var slackProbe = function(user){
@@ -118,10 +108,7 @@ angular.module('connectUApp')
     someUsers: someUsers,
     postUsers: postUsers,
     getUsers: getUsers,
-    // usersSeekingInternship: usersSeekingInternship,
-    // usersSeekingEmployment: usersSeekingEmployment,
-    // shuffledUsers: shuffledUsers,
-    // get20: get20,
+    deleteUser: deleteUser,
     data: data,
     slackProbe: slackProbe,
   }
