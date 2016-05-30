@@ -19,6 +19,7 @@ router.post('/add', function(req, res){
             res.sendStatus(500);
         } else {
             console.log('User successfully saved!');
+            console.log('res.req.body:', res.req.body);
             res.sendStatus(200);
         }
     });
