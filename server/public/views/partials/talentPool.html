@@ -50,12 +50,12 @@
       <strong>High School</strong>: {{detail.alumni.high_school}}</br>
       <strong>Current City</strong>: {{detail.alumni.city}}, {{detail.alumni.state}}</br>
       <strong>Focus/Major</strong>: {{detail.alumni.focus}}</br>
-      <strong>The BrandLab Internship(s)</strong>: <span ng-show ="detail.alumni.internship[0]">{{detail.alumni.internship[0].site}} : {{detail.alumni.internship[0].year}}</span>
-      <span ng-show = "detail.alumni.internship[1]">&nbsp; | &nbsp; {{detail.alumni.internship[1].site}} : {{detail.alumni.internship[1].year}}</span>
-      <span ng-show = "detail.alumni.internship[2]">&nbsp; | &nbsp; {{detail.alumni.internship[2].site}} : {{detail.alumni.internship[2].year}}</span>
-      <span ng-show = "detail.alumni.internship[3]">&nbsp; | &nbsp; {{detail.alumni.internship[3].site}} : {{detail.alumni.internship[3].year}}</span>
-      <span ng-show = "detail.alumni.internship[4]">&nbsp; | &nbsp; {{detail.alumni.internship[4].site}} : {{detail.alumni.internship[4].year}}</span>
-      <span ng-show = "detail.alumni.internship[5]">&nbsp; | &nbsp; {{detail.alumni.internship[5].site}} : {{detail.alumni.internship[5].year}}</span>
+      <strong>The BrandLab <span ng-if = "!detail.alumni.internships[1]">Internship</span><span ng-if = "detail.alumni.internships[1]">Internships</span></strong>: <span ng-show ="detail.alumni.internships[0]">{{detail.alumni.internships[0].site}} : {{detail.alumni.internships[0].year}}</span>
+      <span ng-show = "detail.alumni.internships[1]">&nbsp; | &nbsp; {{detail.alumni.internships[1].site}} : {{detail.alumni.internships[1].year}}</span>
+      <span ng-show = "detail.alumni.internships[2]">&nbsp; | &nbsp; {{detail.alumni.internships[2].site}} : {{detail.alumni.internships[2].year}}</span>
+      <span ng-show = "detail.alumni.internships[3]">&nbsp; | &nbsp; {{detail.alumni.internships[3].site}} : {{detail.alumni.internships[3].year}}</span>
+      <span ng-show = "detail.alumni.internships[4]">&nbsp; | &nbsp; {{detail.alumni.internships[4].site}} : {{detail.alumni.internships[4].year}}</span>
+      <span ng-show = "detail.alumni.internships[5]">&nbsp; | &nbsp; {{detail.alumni.internships[5].site}} : {{detail.alumni.internships[5].year}}</span>
       </br>
       </br>
       <em>"{{detail.alumni.quote}}"</em>

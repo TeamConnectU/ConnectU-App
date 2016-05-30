@@ -55,7 +55,7 @@
                     </span>
                   <br />
                 </span>
-                <span class = "displayInline"><label>The BrandLab Internship(s):</label> &nbsp; {{us.internships[0].site}} : {{us.internships[0].year}}
+                <span class = "displayInline"><label>The BrandLab <span ng-if = "!us.internships[1]">Internship</span><span ng-if = "us.internships[1]">Internships</span>:</label> &nbsp; {{us.internships[0].site}} : {{us.internships[0].year}}
                   <span ng-show="us.internships[1]"> &nbsp; | &nbsp; {{us.internships[1].site}}, {{us.internships[1].year}} </span>
                   <span ng-show="us.internships[2]"> &nbsp; | &nbsp; {{us.internships[2].site}}, {{us.internships[2].year}} </span>
                   <span ng-show="us.internships[3]"> &nbsp; | &nbsp; {{us.internships[3].site}}, {{us.internships[3].year}} </span>
