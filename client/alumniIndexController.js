@@ -1,5 +1,5 @@
 angular.module('connectUApp')
-  .controller('AlumniIndexController', ['$http', 'ConnectUService', function($http, ConnectUService){
+  .controller('AlumniIndexController', ['$http', '$uibModal', 'ConnectUService', function($http, $uibModal, ConnectUService){
     var vm = this;
 
 
@@ -9,14 +9,22 @@ angular.module('connectUApp')
     vm.slackClicked = false;
     vm.isAdmin = true;
 
-    vm.deletePressed = function(){
+    vm.deletePressed = function(us){
       console.log('deletePressed');
-    }
 
-    vm.removeUser = function(user){
-      console.log('clicked remove');
-      ConnectUService.deleteUser(user);
-    }
+      var modalInstance = $uibModal.open({
+        animation: vm.animationsEnabled,
+        templateUrl: 'myModalContent2.html',
+        controller: 'DeleteController',
+        controllerAs: 'remove',
+        resolve: {
+          deleteItems: function () {
+            return us;
+          }
+        }
+    });
+  };
+
 
     vm.showSlackMessage = function (){
       vm.slackClicked = true;

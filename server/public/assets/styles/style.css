@@ -185,9 +185,6 @@ main {
   border-right: 1px solid black;
 }
 
-.secondTable{
-  border-right: 1px solid black;
-}
 
 .talentPoolText{
   text-align: center;
@@ -196,6 +193,10 @@ main {
 .linkedInURL {
   text-align: center;
   border-right: 1px solid black;
+}
+
+.removal {
+  text-align: center;
 }
 
 
