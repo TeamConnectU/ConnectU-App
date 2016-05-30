@@ -11,10 +11,12 @@
     <div ng-repeat="alumni in talent.data.slice(((talent.currentPage-1)*talent.itemsPerPage), ((talent.currentPage)*talent.itemsPerPage))" data-toggle="modal" data-target="#myModal" ng-click = "talent.open(alumni)">
       <div class="clearfix" ng-if="$index % 4 == 0"></div>
       <row class= "col-md-3 talentPool">
+        <div class ="talentPoolText">
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
-        {{alumni.first_name}} &nbsp {{alumni.last_name}} <br />
-        {{alumni.college}} <br />
-        Interested in: &nbsp {{alumni.focus}} <br />
+        {{alumni.first_name}} &nbsp {{alumni.last_name}} </br>
+        <span ng-show="alumni.college">{{alumni.college}}</span></br>
+        <strong>Interested in</strong>: &nbsp {{alumni.focus}} </br>
+        </div>
       </row>
       <!-- Button trigger modal -->
     </div>
@@ -33,22 +35,29 @@
 <!-- Modal -->
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
-        <h3 class="modal-title">{{detail.alumni.first_name}} &nbsp {{detail.alumni.last_name}} </h3>
+        <h1 class="modal-title">{{detail.alumni.first_name}} &nbsp {{detail.alumni.last_name}} </h1>
     </div>
     <div class="modal-body">
       <div class="mainDetails row">
-      <img src="{{detail.alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
-      <a href = "detail.alumni.linkedin_url">LinkedIn</a></br>
-      <strong>College</strong>: {{detail.alumni.college}}</br>
-      <strong>High School</strong>: {{detail.alumni.high_school}}
-      </div>
-      <div class = "row">
-        <strong>Current City</strong>: {{detail.alumni.city}}, {{detail.alumni.state}}</br>
-        <strong>Focus/Major</strong>: {{detail.alumni.focus}}</br>
-
-        <div class = "well">
-          <em>{{detail.alumni.quote}}</em>
+      <div class = "col-md-6">
+        <div class = "linkedInURL">
+        <img src="{{detail.alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" />
+        <a href = "detail.alumni.linkedin_url"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></br>
+        </br>
         </div>
+      </div>
+      <div class = "col-md-6">
+      <span ng-show="detail.alumni.college"><strong>College</strong>: {{detail.alumni.college}}</span></br>
+      <strong>High School</strong>: {{detail.alumni.high_school}}</br>
+      <strong>Current City</strong>: {{detail.alumni.city}}, {{detail.alumni.state}}</br>
+      <strong>Focus/Major</strong>: {{detail.alumni.focus}}</br>
+      <strong>Internship</strong>: <span ng-show ="detail.alumni.internship[0]">{{detail.alumni.internship[0].site}} : {{detail.alumni.internship[0].year}}</span>, <span ng-show = "detail.alumni.internship[1]">{{detail.alumni.internship[1].site}} : {{detail.alumni.internship[1].year}}</span>
+      <span ng-show = "detail.alumni.internship[2]">{{detail.alumni.internship[2].site}} : {{detail.alumni.internship[2].year}}</span>
+      </br>
+      </br>
+      <em>"{{detail.alumni.quote}}"</em>
+      </br>
+      </br>
       </div>
     </div>
     <div class="modal-footer">

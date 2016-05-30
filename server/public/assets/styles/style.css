@@ -345,7 +345,14 @@ main {
   content: '\25BC';
 }
 
+.talentPoolText{
+  text-align: center;
+}
 
+.linkedInURL {
+  text-align: center;
+  border-right: 1px solid black;
+}
 
 /*------------------fonts------------------*/
 @font-face {
