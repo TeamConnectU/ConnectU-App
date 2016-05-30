@@ -1,7 +1,7 @@
 <div class="floatRight smallText textGreen"> Filter by:
-  <a id = "all" class="talentFilter linkMargin " ng-class="{selected: talent.allSelected}" ng-click = "talent.switchToAll()" >All</a>
-  <a id = "emp" class="talentFilter linkMargin " ng-class="{selected: talent.empSelected}" ng-click = "talent.switchToEmp()" >Seeking Employment</a>
-  <a id = "int" class="talentFilter linkMargin " ng-class="{selected: talent.intSelected}" ng-click = "talent.switchToInt()" >Seeking Internship</a>
+  <a id = "all" class="talentFilter linkMargin smallPadding" ng-class="{selected: talent.allSelected}" ng-click = "talent.switchToAll()" >All</a>
+  <a id = "emp" class="talentFilter linkMargin smallPadding" ng-class="{selected: talent.empSelected}" ng-click = "talent.switchToEmp()" >Seeking Employment</a>
+  <a id = "int" class="talentFilter linkMargin smallPadding" ng-class="{selected: talent.intSelected}" ng-click = "talent.switchToInt()" >Seeking Internship</a>
 </div>
 
 <h1>Alumni Talent Pool</h1>
@@ -13,12 +13,11 @@
       <row class= "col-md-3 talentPool">
         <div class ="talentPoolText">
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
-        {{alumni.first_name}} &nbsp {{alumni.last_name}} </br>
-        <span ng-show="alumni.college">{{alumni.college}}</span></br>
-        <strong>Interested in</strong>: &nbsp {{alumni.focus}} </br>
+        <strong>{{alumni.first_name}} &nbsp; {{alumni.last_name}} </br></strong>
+        <span class="smallText" ng-show="alumni.college">{{alumni.college}}</br></span>
+        <span class="smallText"><strong>Interested in</strong>: &nbsp; {{alumni.focus}} </br></span>
         </div>
       </row>
-      <!-- Button trigger modal -->
     </div>
   </row>
 </div>
@@ -35,14 +34,14 @@
 <!-- Modal -->
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
-        <h1 class="modal-title">{{detail.alumni.first_name}} &nbsp {{detail.alumni.last_name}} </h1>
+        <h1 class="modal-title">{{detail.alumni.first_name}} &nbsp; {{detail.alumni.last_name}} </h1>
     </div>
     <div class="modal-body">
       <div class="mainDetails row">
       <div class = "col-md-6">
         <div class = "linkedInURL">
         <img src="{{detail.alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" />
-        <a href = "detail.alumni.linkedin_url"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></br>
+        <a href = "{{detail.alumni.linkedin_url}}" target = "_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></br>
         </br>
         </div>
       </div>
@@ -51,8 +50,12 @@
       <strong>High School</strong>: {{detail.alumni.high_school}}</br>
       <strong>Current City</strong>: {{detail.alumni.city}}, {{detail.alumni.state}}</br>
       <strong>Focus/Major</strong>: {{detail.alumni.focus}}</br>
-      <strong>Internship</strong>: <span ng-show ="detail.alumni.internship[0]">{{detail.alumni.internship[0].site}} : {{detail.alumni.internship[0].year}}</span>, <span ng-show = "detail.alumni.internship[1]">{{detail.alumni.internship[1].site}} : {{detail.alumni.internship[1].year}}</span>
-      <span ng-show = "detail.alumni.internship[2]">{{detail.alumni.internship[2].site}} : {{detail.alumni.internship[2].year}}</span>
+      <strong>The BrandLab Internship(s)</strong>: <span ng-show ="detail.alumni.internship[0]">{{detail.alumni.internship[0].site}} : {{detail.alumni.internship[0].year}}</span>
+      <span ng-show = "detail.alumni.internship[1]">&nbsp; | &nbsp; {{detail.alumni.internship[1].site}} : {{detail.alumni.internship[1].year}}</span>
+      <span ng-show = "detail.alumni.internship[2]">&nbsp; | &nbsp; {{detail.alumni.internship[2].site}} : {{detail.alumni.internship[2].year}}</span>
+      <span ng-show = "detail.alumni.internship[3]">&nbsp; | &nbsp; {{detail.alumni.internship[3].site}} : {{detail.alumni.internship[3].year}}</span>
+      <span ng-show = "detail.alumni.internship[4]">&nbsp; | &nbsp; {{detail.alumni.internship[4].site}} : {{detail.alumni.internship[4].year}}</span>
+      <span ng-show = "detail.alumni.internship[5]">&nbsp; | &nbsp; {{detail.alumni.internship[5].site}} : {{detail.alumni.internship[5].year}}</span>
       </br>
       </br>
       <em>"{{detail.alumni.quote}}"</em>

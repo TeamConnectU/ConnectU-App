@@ -132,6 +132,10 @@ main {
   font-size: .75em;
 }
 
+.smallPadding {
+  padding: 4px;
+}
+
 .selected {
   color: white;
   background-color: #3faa77;
@@ -343,6 +347,19 @@ main {
 
 .st-sort-descent:before{
   content: '\25BC';
+}
+
+.section {
+  margin-top: 3%;
+}
+
+.firstTable{
+  border-right: 1px solid black;
+  margin-bottom: 5%;
+}
+
+.secondTable{
+  border-right: 1px solid black;
 }
 
 .talentPoolText{

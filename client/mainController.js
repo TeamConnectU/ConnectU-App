@@ -17,7 +17,7 @@ angular.module('connectUApp')
       console.log(vm.newUser);
       ConnectUService.postUsers(vm.newUser, vm.zip_code);
       vm.newUser = {};
-      ConnectUService.getUsers();
+      // ConnectUService.getUsers();
     }
 
   }]);
