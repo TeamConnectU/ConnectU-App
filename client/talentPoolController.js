@@ -4,7 +4,7 @@ angular.module('connectUApp')
 
     vm.users = ConnectUService.someUsers;
     vm.data = ConnectUService.data.shuffledUsers;
-    console.log('vm.data:', vm.data);
+    console.log('vm.data:', vm.data);x
 
 
     //these are for ng-show to change more button to get more data from correct array
