@@ -10,22 +10,22 @@ var adminSchema = new Schema({
   });
 
   adminSchema.pre('save', function(next){
-    console.log('Running pre save user function');
+    console.log('running pre save user function');
     var user = this;
-    //If password has not changed, do not proceed
-    if(!user.isModified('password')){
+    //if password has not changed, do not proceed
+    if(!admin.isModified('password')){
       return next();
     }
     bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
       if(err){
         return next(err);
       }
-      bcrypt.hash(user.password, salt, function(err, hash){
+      bcrypt.hash(admin.password, salt, function(err, hash){
         if(err){
           return next(err);
         }
-        //Replace clear text password with hashed password
-        user.password = hash;
+        //replace clear text password with hashed password
+        admin.password = hash;
         next();
       });
     });
@@ -41,10 +41,6 @@ var adminSchema = new Schema({
     });
   };
 
+  var admin = mongoose.model('admin', adminSchema);
 
-
-  var adminModel = mongoose.model('admin', adminSchema);
-
-  
-
-  module.exports = adminModel;
+module.exports = admin;

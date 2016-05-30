@@ -6,13 +6,13 @@ var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
 
-//[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ LOCAL ROUTES ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+//local routes
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var getCityRouter = require('./routes/getCity');
 
-//[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]] MONGODB ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+//MongoDb
 var mongoURI = 'mongodb://localhost/connectU';
 var MongoDB = mongoose.connect(mongoURI).connection;
 
@@ -23,7 +23,7 @@ MongoDB.once('open', function() {
     console.log('MongoDB connection open');
 });
 
-//[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ EXPRESS ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+//express
 var app = express();
 
 app.use(bodyParser.json());
@@ -45,8 +45,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//[[[[[[[[[[[[[[]]]][[[[[[[[[ PASSPORT STRATEGY ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-
+//admin login Passport strategy
 passport.use('local', new localStrategy({
   passReqToCallback: true,
   usernameField: 'email'
@@ -54,24 +53,24 @@ passport.use('local', new localStrategy({
   function(request, email, password, done){
     console.log('CHECKING PASSWORD');
 
-    User.findOne({email: email}, function(err, user){
+    Admin.findOne({email: email}, function(err, user){
       if(err){
         console.log(err);
       }
 
-      if(!user){
-        return done(null, false, {message: 'Incorrect username or password'});
+      if(!admin){
+        return done(null, false, {message: 'invalid email'});
       }
 
-      user.comparePassword(password, function(err, isMatch){
+      admin.comparePassword(password, function(err, isMatch){
         if(err){
           console.log(err);
         }
 
         if(isMatch){
-          return done(null, user);
+          return done(null, admin);
         } else {
-          return done(null, false, {message: 'Incorrect username or password'});
+          return done(null, false, {message: 'incorrect password'});
         }
 
       });
@@ -81,19 +80,19 @@ passport.use('local', new localStrategy({
   }
 ));
 
-passport.serializeUser(function(user, done){
-  console.log('Hit serializeUser');
-  done(null, user.email-address);
+passport.serializeUser(function(admin, done){
+  console.log('hit serializeUser');
+  done(null, admin.email);
 });
 
 passport.deserializeUser(function(id, done){
-  console.log('Hit deserializeUser');
+  console.log('hit deserializeUser');
 
-  User.findById(email, function(err, user){
+  Admin.findById(email, function(err, admin){
     if(err){
       done(err);
     } else {
-      done(null, user);
+      done(null, admin);
     }
   });
 
