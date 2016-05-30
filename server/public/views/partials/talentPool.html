@@ -14,11 +14,10 @@
         <div class ="talentPoolText">
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
         {{alumni.first_name}} &nbsp {{alumni.last_name}} </br>
-        <span ng-show="alumni.college">{{alumni.college}}</span></br>
-        <strong>Interested in</strong>: &nbsp {{alumni.focus}} </br>
+        <span class="smallText" ng-show="alumni.college">{{alumni.college}}</br></span>
+        <span class="smallText"><strong>Interested in</strong>: &nbsp {{alumni.focus}} </br></span>
         </div>
       </row>
-      <!-- Button trigger modal -->
     </div>
   </row>
 </div>
@@ -42,7 +41,7 @@
       <div class = "col-md-6">
         <div class = "linkedInURL">
         <img src="{{detail.alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" />
-        <a href = "detail.alumni.linkedin_url"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></br>
+        <a href = "{{detail.alumni.linkedin_url}}" target = "_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></br>
         </br>
         </div>
       </div>
