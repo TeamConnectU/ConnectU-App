@@ -20,24 +20,20 @@ router.get('/logout', function(req, res, next) {
 });
 
 //Password authentication for adminModel
-router.get('/failure', function(request, response) {
-  response.sendFile(path.join(__dirname, '../public/views/failure.html'));
-});
-
 router.get('/', function(request, response){
   console.log('User', request.user);
   console.log('Is authenticated', request.isAuthenticated());
   response.sendFile(path.join(__dirname, '../public/views/main.html'));
 });
 
+router.get('/failure', function(request, response) {
+  response.sendFile(path.join(__dirname, '../public/views/failure.html'));
+});
+
 router.post('/', passport.authenticate('local', {
   successRedirect: '/success',
   failureRedirect: '/failure'
 }));
-
-router.get('/register', function(request, response){
-  response.sendFile(path.join(__dirname, '../public/views/register.html'));
-});
 
 router.get('/success', function(request, response) {
   console.log(request.user);
@@ -50,10 +46,10 @@ router.get('/logout', function(request, response){
   response.redirect('/');
 });
 
-router.post('/register', function(request, response){
+router.post('/new', function(request, response){
   console.log(request.body);
 
-  User.create(request.body, function(err){
+  Admin.create(request.body, function(err){
     if(err){
       console.log('AHHH ERROR', err);
       response.sendStatus(500);
