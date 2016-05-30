@@ -26,7 +26,7 @@
         <td class = "col_6">{{us.city}}, {{us.state}}</td>
         <td class = "col_7">{{us.current_workplace}}</td>
         <td>
-            <button class="btn-sm btn-danger" ng-show="alumni.isAdmin" ng-click="alumni.removeUser(us)">Delete</button>
+            <button class="btn-sm btn-danger" ng-show="alumni.isAdmin" ng-click="alumni.deletePressed(us)">Delete</button>
         </td>
       </tr>
       <tr ng-show="alumni.expanded == us._id" ng-repeat-end="">
@@ -39,7 +39,7 @@
                 <span class = "displayInline">&nbsp <a href="{{us.linkedin_url}}" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></span>
                 <span class = "displayInline">&nbsp <i class="fa fa-slack fa-3x" aria-hidden="true" ng-click = "alumni.showSlackMessage()"></i></span>
               </div>
-                <div class= "col-md-6 secondTable">
+                <div class= "col-md-9">
                 <span class = "onlyMobile"><label>High School: </label> &nbsp {{us.high_school}}</span><br />
                 <span class = "onlyMobile"><label>College: </label> &nbsp {{us.college}}</span><br />
                 <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Phone Number: </label> &nbsp {{us.phone}}</span><br />
@@ -61,7 +61,7 @@
                 </span>
                 <span class = "onlyMobile"><label>Current Workplace: </label> &nbsp {{us.current_workplace}}</span><br />
               </div>
-              <div class = "col-md-3">
+              <div>
                 <span class="section fenix italics medMargin centerText">"{{us.quote}}"</span>
               </div>
               <div clas = "well">
@@ -76,5 +76,24 @@
     </tbody>
   </table>
   <div id="bottomSpace"></div>
+
+  <!-- Delete Modal -->
+  <script type="text/ng-template" id="myModalContent2.html">
+    <div class="modal-header">
+      <div class = "removal">
+      <h2>Are you sure you want to delete?</h2>
+    </div>
+    </div>
+    <div class ="modal-body">
+      <div class = "removal">
+      <button class="btn btn-warning" type="button" ng-click="remove.cancel()">No</button>
+      &nbsp
+      &nbsp
+      &nbsp
+      &nbsp
+      <button class="btn btn-danger" type="button" ng-click="remove.removeUser(remove.us)">Yes</button>
+    </div>
+    </div>
+  </script>
 
 <!-- </div> -->
