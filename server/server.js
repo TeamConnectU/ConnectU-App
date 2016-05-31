@@ -124,11 +124,12 @@ passport.use(new LinkedInStrategy({
 
 }));
 
-app.get('/auth/linkedin',
-  passport.authenticate('linkedin', {state: 'LOLznuiJZx'}),
-  function(req, res){
-    console.log('passport.authenticate');
-  });
+// app.get('/auth/linkedin',
+//   passport.authenticate('linkedin', {state: 'LOLznuiJZx'}),
+//   function(req, res){
+//     console.log('request from authenticate:', req);
+//     console.log('passport.authenticate');
+//   });
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
   successRedirect: '/',
