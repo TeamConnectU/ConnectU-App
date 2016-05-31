@@ -120,7 +120,7 @@ passport.use(new LinkedInStrategy({
   }
 
 );
-    return done(null, profile);
+    // return done(null, profile);
 
 }));
 
@@ -131,7 +131,7 @@ app.get('/auth/linkedin',
   });
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/alumniIndex',
+  successRedirect: '/',
   failureRedirect: '/login'
 }));
 
