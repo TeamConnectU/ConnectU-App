@@ -13,8 +13,16 @@
       <row class= "col-md-3 talentPool">
         <div class ="talentPoolText">
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
-        <strong>{{alumni.first_name}} &nbsp; {{alumni.last_name}} </br></strong>
-        <span class="smallText" ng-show="alumni.college">{{alumni.college}}</br></span>
+        <span><strong>{{alumni.first_name}} &nbsp; {{alumni.last_name}} <br /></strong></span>
+        <span class="smallText" ng-show="alumni.college">{{alumni.college}}<br /></span>
+        <span ng-show="alumni.seeking_internship || alumni.seeking_employment">
+          <span class="smallText italics"><label>Seeking:</label> &nbsp;
+            <span ng-show="alumni.seeking_internship">Internship</span>
+            <span ng-show="alumni.seeking_internship && alumni.seeking_employment"> &nbsp; | &nbsp; </span>
+            <span ng-show="alumni.seeking_employment">Employment</span>
+            <br />
+          </span>
+      </span>
         <span class="smallText"><strong>Interested in</strong>: &nbsp; {{alumni.focus}} </br></span>
         </div>
       </row>

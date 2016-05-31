@@ -17,6 +17,7 @@ var userSchema = new Schema({
   college: {type: String},
   current_workplace: {type: String},
   slack_id: {type: String, required: true},
+  linkedin_id: {type: String},
   linkedin_url: {type: String},
   focus: {type: String},
   quote: {type: String},

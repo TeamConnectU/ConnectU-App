@@ -2,9 +2,11 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
+var User = require('../models/user');
 var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
 //local routes
 var indexRouter = require('./routes/index');
@@ -30,11 +32,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('server/public'));
 
-app.use('/', indexRouter);
-app.use('/users', userRouter);
-app.use('/auth', authRouter);
-app.use('/getCity', getCityRouter);
 
+//express
 app.use(session({
   secret:'keyboard cat',
   resave: true,
@@ -42,61 +41,128 @@ app.use(session({
   cookie: {maxAge: 600000, secure: false}
 }));
 
+//passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 //admin login Passport strategy
-passport.use('local', new localStrategy({
-  passReqToCallback: true,
-  usernameField: 'email'
- },
-  function(request, email, password, done){
-    console.log('CHECKING PASSWORD');
+// passport.use('local', new localStrategy({
+//   passReqToCallback: true,
+//   usernameField: 'email'
+//  },
+//   function(request, email, password, done){
+//     console.log('CHECKING PASSWORD');
+//
+//     Admin.findOne({email: email}, function(err, user){
+//       if(err){
+//         console.log(err);
+//       }
+//
+//       if(!admin){
+//         return done(null, false, {message: 'invalid email'});
+//       }
+//
+//       admin.comparePassword(password, function(err, isMatch){
+//         if(err){
+//           console.log(err);
+//         }
+//
+//         if(isMatch){
+//           return done(null, admin);
+//         } else {
+//           return done(null, false, {message: 'incorrect password'});
+//         }
+//
+//       });
+//
+//     });
+//
+//   }
+// ));
 
-    Admin.findOne({email: email}, function(err, user){
-      if(err){
-        console.log(err);
+//alumni LinkedIn Passport strategy
+passport.use(new LinkedInStrategy({
+  clientID: '773a8a5y9gfyug',
+  clientSecret: 'V3KSkOqbhSUHUmzv',
+  callbackURL: 'http://localhost:3000/auth/linkedin/callback',
+  scope: ['r_emailaddress', 'r_basicprofile'],
+}, function(accessToken, refreshToken, profile, done) {
+  console.log('accessToken area');
+  process.nextTick(function(){
+    console.log('nextTick');
+    console.log('profile:',profile);
+    console.log('profile._json:',profile._json);
+    var searchQuery = {
+      linkedin_id: profile.id
+    };
+
+    var updates = {
+      linkedin_id: profile._json.id,
+      email: profile._json.emailAddress,
+      first_name: profile._json.firstName,
+      last_name: profile._json.lastName,
+      photo_url: profile._json.pictureUrls,
+      linkedin_url: profile._json.publicProfileUrl
+    };
+
+    var options = {
+      upsert: true
+    };
+
+    //update the user if s/he exists or add a new user
+    User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
+      if(err) {
+        return done(err);
+      } else {
+        return done(null, user);
       }
-
-      if(!admin){
-        return done(null, false, {message: 'invalid email'});
-      }
-
-      admin.comparePassword(password, function(err, isMatch){
-        if(err){
-          console.log(err);
-        }
-
-        if(isMatch){
-          return done(null, admin);
-        } else {
-          return done(null, false, {message: 'incorrect password'});
-        }
-
-      });
-
     });
-
   }
-));
 
-passport.serializeUser(function(admin, done){
+);
+    return done(null, profile);
+
+}));
+
+app.get('/auth/linkedin',
+  passport.authenticate('linkedin', {state: 'LOLznuiJZx'}),
+  function(req, res){
+    console.log('passport.authenticate');
+  });
+
+app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+
+//serialization for both user and admin logins
+passport.serializeUser(function(user, done){
   console.log('hit serializeUser');
-  done(null, admin.email);
+  // console.log(user.username);
+  console.log('user:', user);
+  console.log('user.id:', user.id);
+  // console.log('user._id:', user._id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done){
   console.log('hit deserializeUser');
 
-  Admin.findById(email, function(err, admin){
+  User.findOne({linkedin_id: id}, function(err, user){
+    console.log('findOne hit');
     if(err){
       done(err);
     } else {
-      done(null, admin);
+      done(null, user);
     }
   });
 
 });
+
+app.use('/', indexRouter);
+app.use('/users', userRouter);
+app.use('/auth', authRouter);
+app.use('/getCity', getCityRouter);
 
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ SERVER ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var server = app.listen(process.env.PORT || 3000, function(){

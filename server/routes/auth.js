@@ -1,15 +1,17 @@
 var router = require('express').Router();
 var passport = require('passport');
-var passportLinkedIn = require('../../auth/linkedIn');
+// var passportLinkedIn = require('../../auth/linkedIn');
 var adminModel = require('../../models/admin');
-var LinkedInStrategy = require('passport-linkedin');
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+var session = require('express-session');
 
 //Passport-LinkedIn routes
-router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));
+// router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));
 
 router.get('/linkedin/callback',
-  passportLinkedIn.authenticate('linkedin', { failureRedirect: '/login' }),
+  passport.authenticate('linkedin', { failureRedirect: '/login' }),
   function(req, res) {
+    console.log('this is from the callback');
     // Successful authentication
     res.json(req.user);
   });
