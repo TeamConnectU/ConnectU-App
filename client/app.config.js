@@ -14,4 +14,8 @@ angular.module('connectUApp')
 
   $locationProvider.html5Mode(true);
 
+  if( window.location.hash == '#!' ) {
+  window.location.href = 'http://localhost:3000';
+  }
+
   }]);//closes app.config()
