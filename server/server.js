@@ -109,27 +109,44 @@ passport.use(new LinkedInStrategy({
       upsert: true
     };
 
+
+    //We want this to be find or create, make user if not there
+
     //update the user if s/he exists or add a new user
-    User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
+    User.findOne(searchQuery, options, function(err, user) {
       if(err) {
         return done(err);
-      } else {
+      }
+
+      if(user){
+        console.log('user found, using it');
         return done(null, user);
+      } else {
+        console.log('no user found, making one with', updates);
+        User.create(updates, function(err, createdUser){
+          console.log('errz', err);
+          console.log('created user', createdUser);
+          return done(null, createdUser)
+        })
       }
     });
-  }
 
-);
-    return done(null, profile);
+
+    // User.find(searchQuery)
+
+    }
+
+  );
+    // return done(null, profile);
 
 }));
 
-// app.get('/auth/linkedin',
-//   passport.authenticate('linkedin', {state: 'LOLznuiJZx'}),
-//   function(req, res){
-//     console.log('request from authenticate:', req);
-//     console.log('passport.authenticate');
-//   });
+app.get('/auth/linkedin',
+  passport.authenticate('linkedin', {state: 'LOLznuiJZx'}),
+  function(req, res){
+    console.log('request from authenticate:', req);
+    console.log('passport.authenticate');
+  });
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
   successRedirect: '/',
