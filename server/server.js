@@ -101,10 +101,10 @@ passport.use(new LinkedInStrategy({
       email: profile._json.emailAddress,
       first_name: profile._json.firstName,
       last_name: profile._json.lastName,
-      photo_url: profile._json.pictureUrls,
+      photo_url: profile._json.pictureUrls.values[0],
       linkedin_url: profile._json.publicProfileUrl
     };
-
+    console.log('updates:', updates);
     var options = {
       upsert: true
     };
@@ -131,7 +131,7 @@ app.get('/auth/linkedin',
   });
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/',
+  successRedirect: '/alumniIndex',
   failureRedirect: '/login'
 }));
 
