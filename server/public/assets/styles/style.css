@@ -32,9 +32,12 @@ footer {
   background-color: #272C45;
 }
 
-main {
 
+*:focus,
+*:active {
+  outline: none;
 }
+
 /*messing with modal*/
 .modal.fade .modal-dialog {
 	-webkit-transform: scale(0.1);
