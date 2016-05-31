@@ -26,7 +26,12 @@
 <br />
 <row class="col-md-11">
   <uib-pagination class="pagination-sm floatRight linkMargin" max-size = "talent.maxSize" total-items="talent.totalItems" ng-model="talent.currentPage" ng-change="talent.pageChanged()"></uib-pagination>
-  <div class = "floatRight footerText">View <select ng-model="talent.viewby" ng-change="talent.setItemsPerPage(talent.viewby)"><option>20</option><option>40</option><option>80</option><option>100</option></select> records at a time. </div>
+  <div class = "floatRight footerText">
+    View <select
+      ng-model="talent.viewby"
+      ng-change="talent.setItemsPerPage(talent.viewby)"
+      ng-options = "number for number in talent.viewbyArray">
+    </select> alumni at a time. </div>
 </row>
 <br />
 <div id="bottomSpace"></div>

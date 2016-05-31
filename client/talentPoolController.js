@@ -16,6 +16,7 @@ angular.module('connectUApp')
     vm.totalItems = vm.data.length;
     vm.currentPage = 1;
     vm.viewby = 20;
+    vm.viewbyArray = [20, 40, 60, 80];
     vm.maxSize = 2;
     vm.itemsPerPage = vm.viewby;
 
