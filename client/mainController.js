@@ -2,6 +2,10 @@ angular.module('connectUApp')
   .controller('MainController', ['$http', 'ConnectUService', function($http, ConnectUService){
     var vm = this;
 
+    vm.loggedIn = false;
+
+    ConnectUService.getAuth();
+
     vm.someUsers = ConnectUService.someUsers;
     console.log("maincontroller", vm.someUsers);
 
@@ -11,8 +15,8 @@ angular.module('connectUApp')
     vm.newUser.internships = [];
 
 // if vm.loggedIn = true - shows Profle and Log Out, if vm.loggedIn = false - shows Alumni login
-    vm.loggedIn = ConnectUService.data.loggedIn;
-    console.log('ConnectUService.data.loggedIn:', ConnectUService.data.loggedIn);
+    vm.loggedIn = ConnectUService.data;
+    console.log('vm.loggedIn:', vm.loggedIn);
 
 
     vm.registerUser = function(){

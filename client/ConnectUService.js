@@ -49,7 +49,6 @@ angular.module('connectUApp')
         // console.log('shuffledUsers:', shuffledUsers);
         // console.log('usersSeekingInternship after shuffle:', usersSeekingInternship);
         // console.log('usersSeekingEmployment after shuffle:', usersSeekingEmployment);
-        getAuth();
       });
     };
 
@@ -63,6 +62,7 @@ angular.module('connectUApp')
         console.log('getAuth response.data:', response.data);
         data.loggedIn = response.data;
       });
+      console.log('data from getAuth function:', data);
     };
 
 
@@ -128,6 +128,7 @@ angular.module('connectUApp')
     deleteUser: deleteUser,
     data: data,
     slackProbe: slackProbe,
+    getAuth: getAuth
   }
 
 
