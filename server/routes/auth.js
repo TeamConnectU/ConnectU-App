@@ -18,7 +18,7 @@ router.get('/linkedin/callback',
     console.log('req.user:', req.user);
     console.log('req.isAuthenticated:', req.isAuthenticated());
     // Successful authentication
-    res.send();
+    res.redirect('/');
 
     // res.json(req.user);
   });

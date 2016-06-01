@@ -9,6 +9,12 @@ angular.module('connectUApp')
     vm.slackClicked = false;
     vm.isAdmin = true;
 
+    if (vm.isAdmin === true){
+      vm.isCollapsed = false;
+    } else {
+      vm.isCollapsed = true;
+    }
+
     vm.deletePressed = function(us){
       console.log('deletePressed');
 
