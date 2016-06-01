@@ -6,6 +6,7 @@ angular.module('connectUApp')
     data.usersSeekingInternship = [];
     data.usersSeekingEmployment = [];
     data.loggedIn = false;
+    // data.loggedIn;
     var zipAPIResponse = {};
 
 
