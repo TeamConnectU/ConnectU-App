@@ -148,7 +148,8 @@ app.get('/auth/linkedin',
     console.log('passport.authenticate');
   });
 
-app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+//Oliver changed get to post
+app.post('/auth/linkedin/callback', passport.authenticate('linkedin', {
   successRedirect: '/',
   failureRedirect: '/login'
 }));

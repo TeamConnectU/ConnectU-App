@@ -4,16 +4,23 @@ var passport = require('passport');
 var adminModel = require('../../models/admin');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 var session = require('express-session');
+var path = require('path');
 
 //Passport-LinkedIn routes
 // router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));
 
+
+//Oliver changed. res.redirect
 router.get('/linkedin/callback',
   passport.authenticate('linkedin', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('this is from the callback');
+    console.log('req.user:', req.user);
+    console.log('req.isAuthenticated:', req.isAuthenticated());
     // Successful authentication
-    res.json(req.user);
+    res.send();
+
+    // res.json(req.user);
   });
 
 router.get('/logout', function(req, res, next) {
@@ -50,7 +57,7 @@ router.get('/logout', function(req, res, next) {
 //
 // router.post('/new', function(request, response){
 //   console.log(request.body);
-// 
+//
 //   Admin.create(request.body, function(err){
 //     if(err){
 //       console.log('AHHH ERROR', err);
