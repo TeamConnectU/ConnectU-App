@@ -126,8 +126,8 @@ passport.use(new LinkedInStrategy({
         User.create(updates, function(err, createdUser){
           console.log('errz', err);
           console.log('created user', createdUser);
-          return done(null, createdUser)
-        })
+          return done(null, createdUser);
+        });
       }
     });
 
