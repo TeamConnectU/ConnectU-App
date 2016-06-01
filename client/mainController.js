@@ -11,8 +11,9 @@ angular.module('connectUApp')
     vm.newUser.internships = [];
 
 // if vm.loggedIn = true - shows Profle and Log Out, if vm.loggedIn = false - shows Alumni login
-// MUST ADD IF STATEMENT TO CHANGE TRUE/FALSE
-    vm.loggedIn = false;
+    vm.loggedIn = ConnectUService.data.loggedIn;
+    console.log('ConnectUService.data.loggedIn:', ConnectUService.data.loggedIn);
+
 
     vm.registerUser = function(){
       console.log('vm.newUser from mainController:', vm.newUser);
@@ -26,7 +27,7 @@ angular.module('connectUApp')
 
     vm.logIn = function(){
       console.log('clicked login function');
-      
+
 
     }
 

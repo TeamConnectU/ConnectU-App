@@ -167,8 +167,9 @@ passport.serializeUser(function(user, done){
 passport.deserializeUser(function(id, done){
   console.log('hit deserializeUser');
 
-  User.findOne({linkedin_id: id}, function(err, user){
+  User.findOne({_id: id}, function(err, user){
     console.log('findOne hit');
+    console.log('user:', user);
     if(err){
       done(err);
     } else {
