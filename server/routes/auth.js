@@ -8,7 +8,7 @@ var path = require('path');
 
 //Passport-LinkedIn routes
 // router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));
-
+var loggedIn = '';
 
 //Oliver changed. res.redirect
 router.get('/linkedin/callback',
@@ -17,10 +17,19 @@ router.get('/linkedin/callback',
     console.log('this is from the callback');
     console.log('req.user:', req.user);
     console.log('req.isAuthenticated:', req.isAuthenticated());
+    var loggedIn = req.isAuthenticated();
     // Successful authentication
     res.redirect('/');
 
     // res.json(req.user);
+  });
+
+  router.get('/loggedIn', function(req, res, next) {
+      console.log('loggedIn from auth/loggedIn');
+      // console.log('request:', req);
+      // console.log('response:', res);
+      loggedIn = req.isAuthenticated();
+      res.send(loggedIn);
   });
 
 router.get('/logout', function(req, res, next) {

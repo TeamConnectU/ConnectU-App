@@ -5,6 +5,7 @@ angular.module('connectUApp')
     data.shuffledUsers = [];
     data.usersSeekingInternship = [];
     data.usersSeekingEmployment = [];
+    data.loggedIn = false;
     var zipAPIResponse = {};
 
 
@@ -48,11 +49,21 @@ angular.module('connectUApp')
         // console.log('shuffledUsers:', shuffledUsers);
         // console.log('usersSeekingInternship after shuffle:', usersSeekingInternship);
         // console.log('usersSeekingEmployment after shuffle:', usersSeekingEmployment);
-
       });
     };
 
     getUsers();
+
+    var getAuth = function(){
+      console.log('getAuth called');
+    $http.get('auth/loggedIn')
+    .then(
+      function(response) {
+        console.log('getAuth response.data:', response.data);
+        data.loggedIn = response.data;
+      });
+      console.log('data from getAuth function:', data);
+    };
 
 
     var postUsers = function(userInfo, zip_code){
@@ -117,6 +128,7 @@ angular.module('connectUApp')
     deleteUser: deleteUser,
     data: data,
     slackProbe: slackProbe,
+    getAuth: getAuth
   }
 
 
