@@ -66,6 +66,7 @@ angular.module('connectUApp')
     }
     //end of filter functions
 
+    // vm.animationsEnabled = false;
 
     vm.open = function (alumni) {
 
