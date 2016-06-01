@@ -32,8 +32,9 @@ router.get('/linkedin/callback',
       res.send(loggedIn);
   });
 
-router.get('/logout', function(req, res, next) {
-  req.session = null;
+router.get('/logout', function(req, res) {
+  console.log('called log out');
+  req.logout();
   res.redirect('/');
 });
 
