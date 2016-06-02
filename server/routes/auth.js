@@ -33,6 +33,7 @@ router.get('/linkedin/callback',
       res.send(loggedIn);
   });
 
+
   router.get('/getUserId', function(req, res, next) {
       console.log('loggedIn from auth/loggedIn');
       console.log('requestUser:', req.user);
@@ -42,6 +43,9 @@ router.get('/linkedin/callback',
 
 router.get('/logout', function(req, res, next) {
   req.session = null;
+router.get('/logout', function(req, res) {
+  console.log('called log out');
+  req.logout();
   res.redirect('/');
 });
 

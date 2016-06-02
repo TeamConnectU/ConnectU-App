@@ -29,8 +29,9 @@
       <row>
         <img id="connectLogo" src="assets/styles/images/TBL-connect_logo_RGB_horizontal_BIG.png" alt="ConnectU Logo" height="150px">
         <a data-toggle="modal" href="#loginModal" class="floatRight login" ng-hide="main.loggedIn.loggedIn">Alumni Login</a>
-        <a href="/logout" class="floatRight login" ng-show="main.loggedIn.loggedIn">Log Out</a>
         <a data-toggle="modal" href="#registerModal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.getProfile()">My Profile</a>
+
+        <a href="/auth/logout" class="floatRight login" ng-show="main.loggedIn.loggedIn" target="_self">Log Out</a>
       </row>
     </header>
 
