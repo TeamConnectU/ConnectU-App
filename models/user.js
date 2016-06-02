@@ -1,10 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
-var internshipSchema = new Schema({
-  site: {type: String},
-  year: {type: Number}
-})
+var internshipSchema = require('./internship').schema;
 
 var userSchema = new Schema({
   email: {type: String, required: true, unique: true},

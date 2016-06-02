@@ -158,8 +158,8 @@ app.post('/auth/linkedin/callback', passport.authenticate('linkedin', {
 passport.serializeUser(function(user, done){
   console.log('hit serializeUser');
   // console.log(user.username);
-  console.log('user:', user);
-  console.log('user.id:', user.id);
+  // console.log('user:', user);
+  // console.log('user.id:', user.id);
   // console.log('user._id:', user._id);
   done(null, user.id);
 });
@@ -168,8 +168,8 @@ passport.deserializeUser(function(id, done){
   console.log('hit deserializeUser');
 
   User.findOne({_id: id}, function(err, user){
-    console.log('findOne hit');
-    console.log('user:', user);
+    // console.log('findOne hit');
+    // console.log('user:', user);
     if(err){
       done(err);
     } else {

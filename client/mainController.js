@@ -31,7 +31,7 @@ angular.module('connectUApp')
 
 
     vm.registerUser = function(){
-      // console.log('vm.newUser from mainController:', vm.newUser);
+      console.log('vm.newUser from mainController:', vm.newUser);
       // console.log('vm.newUser.internships[0] from mainController:', vm.newUser.internships[0]);
       // console.log('vm.newUser.internships[1] from mainController:', vm.newUser.internships[1]);
 
