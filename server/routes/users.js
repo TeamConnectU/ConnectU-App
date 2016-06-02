@@ -1,6 +1,14 @@
-var router = require('express').Router();
+var express = require('express');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var path = require('path');
 var User = require('../../models/user');
 var Internship = require('../../models/internship').model;
+var passport = require('passport');
+var session = require('express-session');
+var localStrategy = require('passport-local').Strategy;
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+var router = require('express').Router();
 
 router.get('/', function(req, res){
     User.find({}, function(err, users){

@@ -7,6 +7,7 @@ var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+var users = require('./routes/users');
 
 //local routes
 var indexRouter = require('./routes/index');
@@ -46,39 +47,39 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //admin login Passport strategy
-// passport.use('local', new localStrategy({
-//   passReqToCallback: true,
-//   usernameField: 'email'
-//  },
-//   function(request, email, password, done){
-//     console.log('CHECKING PASSWORD');
-//
-//     Admin.findOne({email: email}, function(err, user){
-//       if(err){
-//         console.log(err);
-//       }
-//
-//       if(!admin){
-//         return done(null, false, {message: 'invalid email'});
-//       }
-//
-//       admin.comparePassword(password, function(err, isMatch){
-//         if(err){
-//           console.log(err);
-//         }
-//
-//         if(isMatch){
-//           return done(null, admin);
-//         } else {
-//           return done(null, false, {message: 'incorrect password'});
-//         }
-//
-//       });
-//
-//     });
-//
-//   }
-// ));
+passport.use('local', new localStrategy({
+  passReqToCallback: true,
+  usernameField: 'email'
+ },
+  function(request, email, password, done){
+    console.log('CHECKING PASSWORD');
+
+    User.findOne({email: email}, function(err, user){
+      if(err){
+        console.log(err);
+      }
+
+      if(!user){
+        return done(null, false, {message: 'invalid email'});
+      }
+
+      user.comparePassword(password, function(err, isMatch){
+        if(err){
+          console.log(err);
+        }
+
+        if(isMatch){
+          return done(null, user);
+        } else {
+          return done(null, false, {message: 'incorrect password'});
+        }
+
+      });
+
+    });
+
+  }
+));
 
 //alumni LinkedIn Passport strategy
 passport.use(new LinkedInStrategy({

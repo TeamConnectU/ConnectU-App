@@ -90,6 +90,12 @@ angular.module('connectUApp')
       });
     };
 
+    var postAdmin = function(adminInfo){
+      $http.get('/', adminInfo).then(function(response){
+        console.log(response);
+      });
+    };
+
     var deleteUser = function(user){
       console.log('Controller says: Alumni to be deleted is', user);
       id = user._id;
@@ -142,7 +148,8 @@ angular.module('connectUApp')
     slackProbe: slackProbe,
     getAuth: getAuth,
     getUserIdentification: getUserIdentification,
-    userIDResponse: userIDResponse
+    userIDResponse: userIDResponse,
+    postAdmin: postAdmin
   }
 
 
