@@ -41,13 +41,14 @@ router.get('/linkedin/callback',
       res.send(req.user);
   });
 
-router.get('/logout', function(req, res, next) {
-  req.session = null;
+// router.get('/logout', function(req, res, next) {
+//   req.session = null;
 router.get('/logout', function(req, res) {
   console.log('called log out');
   req.logout();
   res.redirect('/');
 });
+
 
 //Password authentication for adminModel
 // router.get('/', function(request, response){
