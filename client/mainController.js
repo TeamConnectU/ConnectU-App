@@ -13,6 +13,7 @@ angular.module('connectUApp')
     vm.userInformation = '';
 
     vm.newUser = {};
+    vm.newAdmin = {};
     vm.newUser.internships = [];
 
 // if vm.loggedIn = true - shows Profle and Log Out, if vm.loggedIn = false - shows Alumni login
@@ -39,6 +40,11 @@ angular.module('connectUApp')
       vm.newUser = {};
       // ConnectUService.getUsers();
     }
+
+    vm.loginAdmin = function(){
+      ConnectUService.postAdmin(vm.newAdmin);
+      vm.newAdmin = {};
+    };
 
     vm.logIn = function(){
       console.log('clicked login function');
