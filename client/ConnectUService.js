@@ -71,7 +71,7 @@ angular.module('connectUApp')
       console.log('getUserIdentification Clicked');
       $http.get('auth/getUserId').then(function(response){
         console.log('getUserIdentification', response.data);
-        userIDResponse.info = response.data
+        userIDResponse.info = response.data;
       });
     };
 
