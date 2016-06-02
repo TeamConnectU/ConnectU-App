@@ -15,7 +15,7 @@
       <div class="clearfix" ng-if="$index % 4 == 0"></div>
       <row class= "col-md-3 talentPool">
         <div class ="talentPoolText">
-        <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
+        <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" /><br />
         <span><strong>{{alumni.first_name}} &nbsp; {{alumni.last_name}} <br /></strong></span>
         <span class="smallText" ng-show="alumni.first_year">First Year,</span>
         <span class="smallText" ng-show="alumni.sophomore">Sophomore,</span>
@@ -59,14 +59,14 @@
     </div>
     <div class="modal-body">
       <div class="mainDetails row">
-      <div class = "col-md-6">
+      <div class = "col-md-5">
         <div class = "linkedInURL">
-        <img src="{{detail.alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" />
+        <img src="{{detail.alumni.photo_url}}" class = "img-circle medMargin" width = "170px" />
         <a href = "{{detail.alumni.linkedin_url}}" target = "_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></br>
         </br>
         </div>
       </div>
-      <div class = "col-md-6">
+      <div class = "col-md-7">
       <span ng-show="detail.alumni.college"><strong>College</strong>: &nbsp;
         <span ng-show="detail.alumni.first_year">First Year,</span>
         <span ng-show="detail.alumni.sophomore">Sophomore,</span>
@@ -74,12 +74,16 @@
         <span ng-show="detail.alumni.senior">Senior,</span>
         <span ng-show="detail.alumni.graduate">Graduate,</span>
         {{detail.alumni.college}}</span></br>
-      <strong>High School</strong>: &nbsp; {{detail.alumni.high_school}}</br>
-      <strong>Current City</strong>: &nbsp; {{detail.alumni.city}}, {{detail.alumni.state}}</br>
-      <strong>Focus/Major</strong>: &nbsp; {{detail.alumni.focus}}</br>
+      <br />
+      <span ng-show="detail.alumni.high_school"><strong>High School</strong>: &nbsp; {{detail.alumni.high_school}}</br></span>
+      <br />
+      <span ng-show="detail.alumni.state"><strong>Current City</strong>: &nbsp; {{detail.alumni.city}}, {{detail.alumni.state}}</br></span>
+      <br />
+      <span ng-show="detail.alumni.focus"><strong>Focus/Major</strong>: &nbsp; {{detail.alumni.focus}}</br></span>
+      <br />
       <span ng-show="detail.alumni.interestedIn"><strong>Interested In</strong>: &nbsp; {{detail.alumni.interestedIn}} </br></span>
-
-      <strong>The BrandLab <span ng-if = "!detail.alumni.internships[1]">Internship</span><span ng-if = "detail.alumni.internships[1]">Internships</span></strong>: <span ng-show ="detail.alumni.internships[0]">{{detail.alumni.internships[0].site}} : {{detail.alumni.internships[0].year}}</span>
+      <br />
+      <span ng-show="detail.alumni.internships[0]"><strong>The BrandLab <span ng-if = "!detail.alumni.internships[1]">Internship</span><span ng-if = "detail.alumni.internships[1]">Internships</span></strong>: </span><span ng-show ="detail.alumni.internships[0]">{{detail.alumni.internships[0].site}} : {{detail.alumni.internships[0].year}}</span>
       <span ng-show = "detail.alumni.internships[1]">&nbsp; | &nbsp; {{detail.alumni.internships[1].site}} : {{detail.alumni.internships[1].year}}</span>
       <span ng-show = "detail.alumni.internships[2]">&nbsp; | &nbsp; {{detail.alumni.internships[2].site}} : {{detail.alumni.internships[2].year}}</span>
       <span ng-show = "detail.alumni.internships[3]">&nbsp; | &nbsp; {{detail.alumni.internships[3].site}} : {{detail.alumni.internships[3].year}}</span>
@@ -87,7 +91,7 @@
       <span ng-show = "detail.alumni.internships[5]">&nbsp; | &nbsp; {{detail.alumni.internships[5].site}} : {{detail.alumni.internships[5].year}}</span>
       </br>
       </br>
-      <em>"{{detail.alumni.quote}}"</em>
+      <span ng-show="detail.alumni.quote"><em>"{{detail.alumni.quote}}"</em></span>
       </br>
       </br>
       </div>
