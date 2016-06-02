@@ -10,6 +10,7 @@ var path = require('path');
 // router.get('/linkedin', passportLinkedIn.authenticate('linkedin'));
 var loggedIn = '';
 
+
 //Oliver changed. res.redirect
 router.get('/linkedin/callback',
   passport.authenticate('linkedin', { failureRedirect: '/login' }),
@@ -30,6 +31,13 @@ router.get('/linkedin/callback',
       // console.log('response:', res);
       loggedIn = req.isAuthenticated();
       res.send(loggedIn);
+  });
+
+  router.get('/getUserId', function(req, res, next) {
+      console.log('loggedIn from auth/loggedIn');
+      console.log('requestUser:', req.user);
+      // console.log('response:', res);
+      res.send(req.user);
   });
 
 router.get('/logout', function(req, res, next) {

@@ -8,6 +8,7 @@ angular.module('connectUApp')
     data.loggedIn = false;
     // data.loggedIn;
     var zipAPIResponse = {};
+    var userIDResponse = {};
 
 
     // console.log('usersSeekingInternship before loop:', usersSeekingInternship);
@@ -66,6 +67,13 @@ angular.module('connectUApp')
       console.log('data from getAuth function:', data);
     };
 
+    var getUserIdentification = function(){
+      console.log('getUserIdentification Clicked');
+      $http.get('auth/getUserId').then(function(response){
+        console.log('getUserIdentification', response.data);
+        userIDResponse.info = response.data
+      });
+    };
 
     var postUsers = function(userInfo, zip_code){
       // console.log('postUsers ran');
@@ -129,7 +137,9 @@ angular.module('connectUApp')
     deleteUser: deleteUser,
     data: data,
     slackProbe: slackProbe,
-    getAuth: getAuth
+    getAuth: getAuth,
+    getUserIdentification: getUserIdentification,
+    userIDResponse: userIDResponse
   }
 
 

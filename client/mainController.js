@@ -10,6 +10,7 @@ angular.module('connectUApp')
     // console.log("maincontroller", vm.someUsers);
 
     vm.zip_code = '';
+    vm.userInformation = '';
 
     vm.newUser = {};
     vm.newUser.internships = [];
@@ -20,6 +21,13 @@ angular.module('connectUApp')
 
     vm.loggedIn = ConnectUService.data;
     console.log('after vm.loggedIn:', vm.loggedIn);
+
+    vm.getProfile = function(){
+      ConnectUService.getUserIdentification();
+      vm.userInformation = ConnectUService.userIDResponse;
+      console.log(vm.userInformation);
+
+    };
 
 
     vm.registerUser = function(){
