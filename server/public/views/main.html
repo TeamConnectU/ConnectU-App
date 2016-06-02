@@ -29,15 +29,15 @@
       <row>
         <img id="connectLogo" src="assets/styles/images/TBL-connect_logo_RGB_horizontal_BIG.png" alt="ConnectU Logo" height="150px">
         <a data-toggle="modal" href="#loginModal" class="floatRight login" ng-hide="main.loggedIn.loggedIn">Alumni Login</a>
-        <a data-toggle="modal" href="#registerModal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.getProfile()">My Profile</a>
-
         <a href="/auth/logout" class="floatRight login" ng-show="main.loggedIn.loggedIn" target="_self">Log Out</a>
+        <a href="/alumniIndex" class="floatRight login" ng-show="main.loggedIn.loggedIn">Alumni Index</a>
+        <a data-toggle="modal" href="#registerModal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.getProfile()">My Profile</a>
       </row>
     </header>
 
     <main class="container-fluid">
       <!-- JUST FOR TESTS -->
-          <nav class = "navbar navbar-default">
+          <!-- <nav class = "navbar navbar-default">
                 <div class = "container">
                   <ul class = "nav navbar-nav">
                     <li>
@@ -51,7 +51,7 @@
                     </li>
                   </ul>
                 </div>
-              </nav>
+              </nav> -->
       <!-- END OF TEST SECTION -->
     <div ng-view>
 
@@ -83,65 +83,107 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="textGreen">ConnectU Registration</h4>
+            <h4 class="textGreen">ConnectU Alumni Profile</h4>
           </div>
           <div class="modal-body">
-            <label>Email*:</label>
-            <input type="email" name="email" ng-model = "main.newUser.email" placeholder="{{main.userInformation.info.email}}"required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <h2>{{main.userInformation.info.first_name}} &nbsp {{main.userInformation.info.last_name}}</h2>
 
-            <label>First Name*:</label>
-            <input type="text" name="firstName" ng-model = "main.newUser.first_name" placeholder="{{main.userInformation.info.first_name}}" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Last Name*:</label>
-            <input type="text" name="lastName" ng-model = "main.newUser.last_name" placeholder="{{main.userInformation.info.last_name}}"required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Zip:</label>
-            <input type="number" name="zip" maxlength="5" ng-model = "main.zip_code" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Phone:</label>
-            <input type="tel" name="phone" maxlength="12" ng-model = "main.newUser.phone" class="form-control" aria-describedby="sizing-addon1"></input>
-
-
-
-
-            <label>The BrandLab Internship Site*:</label>
-            <input type="text" name="internshipSite" ng-model = "main.newUser.internships[0].site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-            <label>The BrandLab Internship Year*:</label>
-            <input type="number" name="internshipYear" ng-model = "main.newUser.internships[0].year" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>The BrandLab Internship Site #2*:</label>
-            <input type="text" name="internshipSite" ng-model = "main.newUser.internships[1].site" class="form-control" aria-describedby="sizing-addon1"></input>
-            <label>The BrandLab Internship Year #2*:</label>
-            <input type="number" name="internshipYear" ng-model = "main.newUser.internships[1].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
-
-
-
-
-            <label>High School*:</label>
-            <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.high_school" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>College:</label>
-            <input type="text" name="college" uib-typeahead = "item.college for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Current Workplace:</label>
-            <input type="text" name="workplace" ng-model = "main.newUser.current_workplace" uib-typeahead = "item.current_workplace for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3"  class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Focus/Major:</label>
-            <input type="text" name="focus" ng-model = "main.newUser.focus" uib-typeahead = "item.focus for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Slack ID*:</label>
-            <input type="text" name="slack" ng-model = "main.newUser.slack_id" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Photo URL:</label>
-            <input type="url" name="photo" ng-model = "main.newUser.photo_url" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Quote:</label>
-            <textarea rows="4" cols="50" ng-model = "main.newUser.quote" name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
+            <br />
 
             <label>Seeking:</label>
             <input type="checkbox" name="seekingInternship" ng-model = "main.newUser.seeking_internship">Internship
             <input type="checkbox" name="seekingEmployment" ng-model = "main.newUser.seeking_employment">Employment
 
+            <br />
+            <br />
+
+            <label>The BrandLab Internship Site*:</label>
+            <input type="text" name="internshipSite" ng-model = "main.newUser.internships[0].site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <label>The BrandLab Internship Year*:</label>
+            <input type="number" name="internshipYear" ng-model = "main.newUser.internships[0].year" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="checkbox" name="check1" ng-model="main.internship2" /> <label class="smallText">Add internship</label>
+
+            <div ng-show="main.internship2">
+              <label>The BrandLab Internship Site #2:</label>
+              <input type="text" name="internshipSite" ng-model = "main.newUser.internships[1].site" class="form-control" aria-describedby="sizing-addon1"></input>
+              <label>The BrandLab Internship Year #2:</label>
+              <input type="number" name="internshipYear" ng-model = "main.newUser.internships[1].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+              <input type="checkbox" name="check2" ng-model="main.internship3" /> <label class="smallText">Add internship</label>
+            </div>
+
+            <div ng-show="main.internship3">
+              <label>The BrandLab Internship Site #3:</label>
+              <input type="text" name="internshipSite" ng-model = "main.newUser.internships[2].site" class="form-control" aria-describedby="sizing-addon1"></input>
+              <label>The BrandLab Internship Year #3:</label>
+              <input type="number" name="internshipYear" ng-model = "main.newUser.internships[2].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+              <input type="checkbox" name="check3" ng-model="main.internship4" /> <label class="smallText">Add internship</label>
+            </div>
+
+            <div ng-show="main.internship4">
+              <label>The BrandLab Internship Site #4:</label>
+              <input type="text" name="internshipSite" ng-model = "main.newUser.internships[3].site" class="form-control" aria-describedby="sizing-addon1"></input>
+              <label>The BrandLab Internship Year #4:</label>
+              <input type="number" name="internshipYear" ng-model = "main.newUser.internships[3].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+              <input type="checkbox" name="check4" ng-model="main.internship5" /> <label class="smallText">Add internship</label>
+            </div>
+
+            <div ng-show="main.internship5">
+              <label>The BrandLab Internship Site #5:</label>
+              <input type="text" name="internshipSite" ng-model = "main.newUser.internships[4].site" class="form-control" aria-describedby="sizing-addon1"></input>
+              <label>The BrandLab Internship Year #5:</label>
+              <input type="number" name="internshipYear" ng-model = "main.newUser.internships[4].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+            </div>
+
+            <br />
+            <br />
+
+            <label>Slack ID*:</label>
+            <input type="text" name="slack" ng-model = "main.newUser.slack_id" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>
+
+            <br />
+
+            <label>High School*:</label>
+            <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.high_school" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+            <br />
+
+            <label>College:</label>
+            <input type="text" name="college" uib-typeahead = "item.college for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
+            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="firstYear"> &nbsp; First-Year</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="sophomore"> &nbsp; Sophomore</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="junior"> &nbsp; Junior</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="senior"> &nbsp; Senior</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="graduate"> &nbsp; Graduate</label><br />
+
+            <br />
+
+            <label>Current Workplace:</label>
+            <input type="text" name="workplace" ng-model = "main.newUser.current_workplace" uib-typeahead = "item.current_workplace for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3"  class="form-control" aria-describedby="sizing-addon1"></input>
+
+            <br />
+
+            <label>Focus/Major:</label>
+            <input type="text" name="focus" ng-model = "main.newUser.focus" uib-typeahead = "item.focus for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" class="form-control" aria-describedby="sizing-addon1"></input>
+
+            <br />
+
+            <label>Quote:</label>
+            <textarea rows="4" cols="50" ng-model = "main.newUser.quote" name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
+
+            <br />
+
+            <label>Interested In:</label>
+            <textarea rows="4" cols="50" ng-model = "main.newUser.interest" name="interest" class="form-control" aria-describedby="sizing-addon1"></textarea>
+
+            <br />
+
+            <label>Phone:</label>
+            <input type="tel" name="phone" maxlength="12" ng-model = "main.newUser.phone" class="form-control" aria-describedby="sizing-addon1"></input>
+
+            <br />
+
+            <label>Zip:</label>
+            <input type="number" name="zip" maxlength="5" ng-model = "main.zip_code" class="form-control" aria-describedby="sizing-addon1"></input>
           </div>
 
           <div class="modal-footer">
@@ -166,11 +208,6 @@
           <div class="modal-body">
             <a href="https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=773a8a5y9gfyug&redirect_uri=http://localhost:3000/auth/linkedin/callback&state=LOLznuiJZx=&scope=r_basicprofile%20r_emailaddress%20w_share"><img src="assets/styles/images/Sign-in-Large---Default.png" height="40px"/></a>
           </div>
-            <!-- <label>Email*:</label>
-            <input type="email" name="email" ng-model = "main.userLogin.email" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <label>Password*:</label>
-            <input type="password" name="password" ng-model = "main.userLogin.password" required="true" class="form-control" aria-describedby="sizing-addon1"></input> -->
         </div>
 
         <div class="modal-footer">
