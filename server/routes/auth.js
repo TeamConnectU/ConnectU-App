@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var passport = require('passport');
-// var passportLinkedIn = require('../../auth/linkedIn');
-var adminModel = require('../../models/admin');
+var localStrategy = require('passport-local').Strategy;
+var User = require('../../models/user');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 var session = require('express-session');
 var path = require('path');
@@ -51,11 +51,18 @@ router.get('/logout', function(req, res) {
 
 
 //Password authentication for adminModel
-// router.get('/', function(request, response){
-//   console.log('User', request.user);
-//   console.log('Is authenticated', request.isAuthenticated());
-//   response.sendFile(path.join(__dirname, '../public/views/main.html'));
-// });
+router.get('/', function(req,res,next){
+  res.sendFile(path.resolve(__dirname,'../views/index.html'));
+});
+
+router.post('/',
+  passport.authenticate('local', {
+    successRedirect:'/users',
+    failureRedirect:'/'
+  })
+);
+
+
 
 // router.get('/failure', function(request, response) {
 //   response.sendFile(path.join(__dirname, '../public/views/failure.html'));
