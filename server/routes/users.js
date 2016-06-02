@@ -35,6 +35,21 @@ router.put('/update', function(req, res){
       console.log('newInternship:', newInternship);
       // user.internships[0].site = req.body.internships[0].site;
       // user.internships[0].year = req.body.internships[0].year;
+      if(req.body.seeking_internship){
+        user.seeking_internship = req.body.seeking_internship;
+      }
+      if(req.body.seeking_employment){
+        user.seeking_employment = req.body.seeking_employment;
+      }
+      if(req.body.college){
+        user.college = req.body.college;
+      }
+      if(req.body.collegeYear){
+        user.collegeYear = req.body.collegeYear;
+      }
+      if(req.body.current_workplace){
+        user.current_workplace = req.body.current_workplace;
+      }
 
       user.internships.push(newInternship);
 
@@ -43,6 +58,9 @@ router.put('/update', function(req, res){
       user.focus = req.body.focus;
       user.city = req.body.city;
       user.state = req.body.state;
+      user.quote = req.body.quote;
+      user.phone = req.body.phone;
+      user.interest = req.body.interest;
 
       user.save(function (err){
         if(err){
