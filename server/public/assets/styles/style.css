@@ -127,6 +127,10 @@ footer {
   padding: 20px;
 }
 
+.medText {
+  font-size: .8em;
+}
+
 .radius {
   border-radius: 5px;
 }

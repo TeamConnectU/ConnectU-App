@@ -14,6 +14,11 @@
         <div class ="talentPoolText">
         <img src="{{alumni.photo_url}}" class = "img-circle medMargin" width = "180px" height = "180px" /><br />
         <span><strong>{{alumni.first_name}} &nbsp; {{alumni.last_name}} <br /></strong></span>
+        <span class="smallText" ng-show="alumni.first_year">First Year,</span>
+        <span class="smallText" ng-show="alumni.sophomore">Sophomore,</span>
+        <span class="smallText" ng-show="alumni.junior">Junior,</span>
+        <span class="smallText" ng-show="alumni.senior">Senior,</span>
+        <span class="smallText" ng-show="alumni.graduate">Graduate,</span>
         <span class="smallText" ng-show="alumni.college">{{alumni.college}}<br /></span>
         <span ng-show="alumni.seeking_internship || alumni.seeking_employment">
           <span class="smallText italics"><label>Seeking:</label> &nbsp;
@@ -23,7 +28,7 @@
             <br />
           </span>
       </span>
-        <span class="smallText"><strong>Interested in</strong>: &nbsp; {{alumni.focus}} </br></span>
+        <span class="smallText" ng-show="alumni.interestedIn"><strong>Interested in</strong>: &nbsp; {{alumni.interestedIn}} </br></span>
         </div>
       </row>
     </div>
@@ -59,10 +64,18 @@
         </div>
       </div>
       <div class = "col-md-6">
-      <span ng-show="detail.alumni.college"><strong>College</strong>: {{detail.alumni.college}}</span></br>
-      <strong>High School</strong>: {{detail.alumni.high_school}}</br>
-      <strong>Current City</strong>: {{detail.alumni.city}}, {{detail.alumni.state}}</br>
-      <strong>Focus/Major</strong>: {{detail.alumni.focus}}</br>
+      <span ng-show="detail.alumni.college"><strong>College</strong>: &nbsp;
+        <span ng-show="detail.alumni.first_year">First Year,</span>
+        <span ng-show="detail.alumni.sophomore">Sophomore,</span>
+        <span ng-show="detail.alumni.junior">Junior,</span>
+        <span ng-show="detail.alumni.senior">Senior,</span>
+        <span ng-show="detail.alumni.graduate">Graduate,</span>
+        {{detail.alumni.college}}</span></br>
+      <strong>High School</strong>: &nbsp; {{detail.alumni.high_school}}</br>
+      <strong>Current City</strong>: &nbsp; {{detail.alumni.city}}, {{detail.alumni.state}}</br>
+      <strong>Focus/Major</strong>: &nbsp; {{detail.alumni.focus}}</br>
+      <span ng-show="detail.alumni.interestedIn"><strong>Interested In</strong>: &nbsp; {{detail.alumni.interestedIn}} </br></span>
+
       <strong>The BrandLab <span ng-if = "!detail.alumni.internships[1]">Internship</span><span ng-if = "detail.alumni.internships[1]">Internships</span></strong>: <span ng-show ="detail.alumni.internships[0]">{{detail.alumni.internships[0].site}} : {{detail.alumni.internships[0].year}}</span>
       <span ng-show = "detail.alumni.internships[1]">&nbsp; | &nbsp; {{detail.alumni.internships[1].site}} : {{detail.alumni.internships[1].year}}</span>
       <span ng-show = "detail.alumni.internships[2]">&nbsp; | &nbsp; {{detail.alumni.internships[2].site}} : {{detail.alumni.internships[2].year}}</span>
