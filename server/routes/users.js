@@ -11,7 +11,7 @@ var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 var router = require('express').Router();
 
 router.get('/', function(req, res){
-    User.find({}, function(err, users){
+    User.find({"admin": false}, function(err, users){
         if(err){
             console.log('error retrieving user', err);
             res.sendStatus(500);
