@@ -4,11 +4,13 @@ h1 {
   color: #3faa77;
 }
 
-a {
+a,
+a:visited {
   color: #3faa77;
 }
 
-a:hover {
+a:hover,
+a:focus {
   color: #d5e04e;
   text-decoration: none;
 }
@@ -125,6 +127,10 @@ footer {
 
 .medPadding {
   padding: 20px;
+}
+
+.medText {
+  font-size: .8em;
 }
 
 .radius {
