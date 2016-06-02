@@ -76,12 +76,15 @@ angular.module('connectUApp')
     };
 
     var postUsers = function(userInfo, zip_code){
-      // console.log('postUsers ran');
+      console.log('postUsers userInfo:', userInfo);
       $http.get('/getCity/' + zip_code).then(function(response){
+        console.log('http get response:', response);
           zipAPIResponse = response.data;
           userInfo.city = zipAPIResponse.city;
           userInfo.state = zipAPIResponse.state;
-          $http.post('/users/add', userInfo).then(function(response){
+          $http.put('/users/update', userInfo).then(function(response){
+            console.log('http put response:', response);
+            console.log('http put userInfo:', userInfo);
           });
           getUsers();
       });
