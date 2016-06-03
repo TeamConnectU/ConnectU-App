@@ -216,6 +216,14 @@ footer {
   text-align: center;
 }
 
+.dropDown .userImage{
+  margin-top: .0001px;
+  margin-bottom: 2px;
+}
+.dropDown {
+  text-align: center;
+}
+
 
 #sendSlackButton {
   margin: 0 0 60px 0;

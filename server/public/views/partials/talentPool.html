@@ -67,6 +67,7 @@
         </div>
       </div>
       <div class = "col-md-7">
+        <div uib-collapse="detail.isCollapsed">
       <span ng-show="detail.alumni.college"><strong>College</strong>: &nbsp;
         <span ng-show="detail.alumni.first_year">First Year,</span>
         <span ng-show="detail.alumni.sophomore">Sophomore,</span>
@@ -75,6 +76,7 @@
         <span ng-show="detail.alumni.graduate">Graduate,</span>
         {{detail.alumni.college}}</span></br>
       <br />
+      </div>
       <span ng-show="detail.alumni.high_school"><strong>High School</strong>: &nbsp; {{detail.alumni.high_school}}</br></span>
       <br />
       <span ng-show="detail.alumni.state"><strong>Current City</strong>: &nbsp; {{detail.alumni.city}}, {{detail.alumni.state}}</br></span>

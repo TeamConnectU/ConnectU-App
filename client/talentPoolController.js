@@ -68,6 +68,7 @@ angular.module('connectUApp')
 
     // vm.animationsEnabled = false;
 
+
     vm.open = function (alumni) {
 
       var modalInstance = $uibModal.open({
