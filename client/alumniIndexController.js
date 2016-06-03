@@ -7,12 +7,10 @@ angular.module('connectUApp')
     // vm.slackProbe = ConnectUService.slackProbe;
 
     vm.slackClicked = false;
-    vm.isAdmin = false;
+    vm.isAdmin = true;
 
     if (vm.isAdmin === true){
-      vm.isCollapsed = false;
-    } else {
-      vm.isCollapsed = true;
+      vm.isCollapsed === false;
     }
 
     vm.deletePressed = function(us){
