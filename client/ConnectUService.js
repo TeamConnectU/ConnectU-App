@@ -88,7 +88,8 @@ angular.module('connectUApp')
     };
 
     var postAdmin = function(adminInfo){
-      $http.get('/', adminInfo).then(function(response){
+      console.log('adminInfo', adminInfo);
+      $http.post('/auth', adminInfo).then(function(response){
         console.log(response);
       });
     };

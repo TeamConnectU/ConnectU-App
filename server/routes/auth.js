@@ -26,7 +26,7 @@ router.get('/linkedin/callback',
   });
 
   router.get('/loggedIn', function(req, res, next) {
-      console.log('loggedIn from auth/loggedIn');
+      console.log('requested from auth/loggedIn');
       // console.log('request:', req);
       // console.log('response:', res);
       loggedIn = req.isAuthenticated();
@@ -57,8 +57,8 @@ router.get('/', function(req,res,next){
 
 router.post('/',
   passport.authenticate('local', {
-    successRedirect:'/users',
-    failureRedirect:'/'
+    successRedirect:'/success',
+    failureRedirect:'/failure'
   })
 );
 

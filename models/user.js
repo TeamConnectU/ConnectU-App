@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 var encryptLib = require('../auth/encryption');
+var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
-var SALT_WORK_FACTOR = 10;
+// var SALT_WORK_FACTOR = 10;
 
 var internshipSchema = new Schema({
   site: {type: String},
