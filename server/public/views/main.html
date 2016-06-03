@@ -11,7 +11,6 @@
     <script src = "vendor/angular-animate/angular-animate.min.js"></script>
     <script src = "vendor/angular-aria/angular-aria.min.js"></script>
     <script src = "vendor/angular-material/angular-material.min.js"></script>
-    <script src = "vendor/ng-csv.min.js"></script>
     <script src = "vendor/jquery/dist/jquery.min.js"></script>
     <script src = "vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel = "stylesheet" href = "vendor/bootstrap/dist/css/bootstrap.min.css" />
@@ -97,20 +96,20 @@
           <br />
 
           <label>The BrandLab Internship Site*:</label>
-          <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[0].site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="internshipSite" ng-model = "profile.newUser.internshipOne.site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
           <label>The BrandLab Internship Year*:</label>
-          <input type="number" name="internshipYear" ng-model = "profile.newUser.internships[0].year" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipOne.year" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
           <input type="checkbox" name="check1" ng-model="profile.internship2" /> <label class="smallText">Add internship</label>
 
           <div ng-show="profile.internship2">
             <label>The BrandLab Internship Site #2:</label>
-            <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[1].site" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="text" name="internshipSite" ng-model = "profile.newUser.internshipTwo.site" class="form-control" aria-describedby="sizing-addon1"></input>
             <label>The BrandLab Internship Year #2:</label>
-            <input type="number" name="internshipYear" ng-model = "profile.newUser.internships[1].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
-            <input type="checkbox" name="check2" ng-model="profile.internship3" /> <label class="smallText">Add internship</label>
+            <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipTwo.year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+            <!-- <input type="checkbox" name="check2" ng-model="profile.internship3" /> <label class="smallText">Add internship</label> -->
           </div>
 
-          <div ng-show="profile.internship3">
+          <!-- <div ng-show="profile.internship3">
             <label>The BrandLab Internship Site #3:</label>
             <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[2].site" class="form-control" aria-describedby="sizing-addon1"></input>
             <label>The BrandLab Internship Year #3:</label>
@@ -131,7 +130,7 @@
             <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[4].site" class="form-control" aria-describedby="sizing-addon1"></input>
             <label>The BrandLab Internship Year #5:</label>
             <input type="number" name="internshipYear" ng-model = "profile.newUser.internships[4].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
-          </div>
+          </div> -->
 
           <br />
           <br />
