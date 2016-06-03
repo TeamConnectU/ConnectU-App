@@ -35,26 +35,32 @@
             <h1>{{us.first_name}} {{us.last_name}}</h1>
               <div class="section">
                 <div class= "col-md-3">
-                <img src = "{{us.photo_url}}" class = "userImage img-circle medMargin" width = "180px"/>
-                <div class = "medPadding">
-                  <span class = "displayInline">&nbsp; <a href="{{us.linkedin_url}}" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></span>
-                  <span class = "displayInline">&nbsp; <i class="fa fa-slack fa-3x" aria-hidden="true" ng-click = "alumni.showSlackMessage()"></i></span>
-                  <p class = "smallText">View LinkedIn Profile or send Slack PM</p>
+                  <div class= "dropDown">
+                    <img src = "{{us.photo_url}}" class = "userImage img-circle" width = "180px" height = "180px"/>
+                  <div class = "medPadding">
+                    <span class = "displayInline">&nbsp; <a href="{{us.linkedin_url}}" target="_blank"><i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a></span>
+                    <span class = "displayInline">&nbsp; <i class="fa fa-slack fa-3x" aria-hidden="true" ng-click = "alumni.showSlackMessage()"></i></span>
+                    <p class = "smallText">View LinkedIn Profile or send Slack PM</p>
+                  </div>
                 </div>
               </div>
                 <div class= "col-md-9 firstTable">
+                  <div uib-collapse="alumni.isCollapsed">
                   <span class = "onlyMobile"><label>High School: </label> &nbsp; {{us.high_school}}</span><br />
                   <span class = "onlyMobile"><label>College: </label> &nbsp; {{us.college}}</span><br />
-                  <span class = "displayInline" ng-show = "alumni.isAdmin" uib-collapse="alumni.isCollapsed"><label>Phone Number: </label> &nbsp; {{us.phone}}</span><br />
-                  <span class = "displayInline" ng-show = "alumni.isAdmin" uib-collapse="alumni.isCollapsed"><label>Email: </label> &nbsp; <a href="mailto: us.email"> {{us.email}} </a></span><br />
-                  <span ng-show="us.seeking_internship || us.seeking_employment" uib-collapse="alumni.isCollapsed">
-                    <span class = "displayInline" ng-show = "alumni.isAdmin" uib-collapse="alumni.isCollapsed"><label>Seeking:</label> &nbsp;
+                  <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Phone Number: </label> &nbsp; {{us.phone}}</span><br />
+                  <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Email: </label> &nbsp; <a href="mailto: us.email"> {{us.email}} </a></span><br />
+                  <span ng-show="us.seeking_internship || us.seeking_employment">
+                    <span class = "displayInline" ng-show = "alumni.isAdmin"><label>Seeking:</label> &nbsp;
                       <span ng-show="us.seeking_internship">Internship</span>
                       <span ng-show="us.seeking_internship && us.seeking_employment"> &nbsp; | &nbsp; </span>
                       <span ng-show="us.seeking_employment">Employment</span>
                     </span>
                   <br />
                 </span>
+
+                </div>
+
                 <span class = "displayInline" ng-if = "us.internshipOne"><label>The BrandLab <span ng-if = "!us.internshipTwo">Internship</span><span ng-if = "us.internshipTwo">Internships</span>:</label> &nbsp; {{us.internshipOne.site}} : {{us.internshipOne.year}}
                   <span ng-show="us.internshipTwo"> &nbsp; | &nbsp; {{us.internshipTwo.site}} : {{us.internshipTwo.year}} </span>
                   <!-- <span ng-show="us.internships[2]"> &nbsp; | &nbsp; {{us.internships[2].site}}, {{us.internships[2].year}} </span>
