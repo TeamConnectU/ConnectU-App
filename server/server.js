@@ -172,15 +172,15 @@ passport.deserializeUser(function(id, done){
   console.log('hit deserializeUser');
 
   User.findOne({_id: id}, function(err, user){
-    // console.log('findOne hit');
-    // console.log('user:', user);
+    console.log('findOne hit');
+    console.log('user:', user);
     if(err){
       done(err);
     } else {
       done(null, user);
     }
   });
-  
+
 
 });
 
