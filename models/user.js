@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var encryptLib = require('../auth/encryption');
+var bcrypt = require('bcrypt');
 var internshipSchema = require('./internship').schema;
 var Schema = mongoose.Schema;
 

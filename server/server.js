@@ -46,7 +46,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//admin login Passport strategy
+//admin local Passport strategy
 passport.use('local', new localStrategy({
   passReqToCallback: true,
   usernameField: 'email'
@@ -60,6 +60,7 @@ passport.use('local', new localStrategy({
       }
 
       if(!user){
+        console.log('User not found');
         return done(null, false, {message: 'invalid email'});
       }
 
@@ -69,8 +70,10 @@ passport.use('local', new localStrategy({
         }
 
         if(isMatch){
+          console.log('MATCH FOUND');
           return done(null, user);
         } else {
+          console.log('MATCH NOT FOUND');
           return done(null, false, {message: 'incorrect password'});
         }
 
@@ -103,7 +106,7 @@ passport.use(new LinkedInStrategy({
       first_name: profile._json.firstName,
       last_name: profile._json.lastName,
       photo_url: profile._json.pictureUrls.values[0],
-      linkedin_url: profile._json.publicProfileUrl
+      linkedin_url: profile._json.publicProfileUrl,
     };
     console.log('updates:', updates);
     var options = {
@@ -177,6 +180,7 @@ passport.deserializeUser(function(id, done){
       done(null, user);
     }
   });
+  
 
 });
 

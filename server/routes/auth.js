@@ -26,7 +26,7 @@ router.get('/linkedin/callback',
   });
 
   router.get('/loggedIn', function(req, res, next) {
-      console.log('loggedIn from auth/loggedIn');
+      console.log('requested from auth/loggedIn');
       // console.log('request:', req);
       // console.log('response:', res);
       loggedIn = req.isAuthenticated();
@@ -52,13 +52,13 @@ router.get('/logout', function(req, res) {
 
 //Password authentication for adminModel
 router.get('/', function(req,res,next){
-  res.sendFile(path.resolve(__dirname,'../views/index.html'));
+  res.sendFile(path.resolve(__dirname,'../views/main.html'));
 });
 
 router.post('/',
   passport.authenticate('local', {
-    successRedirect:'/users',
-    failureRedirect:'/'
+    successRedirect:'/',
+    failureRedirect:'/failure'
   })
 );
 
