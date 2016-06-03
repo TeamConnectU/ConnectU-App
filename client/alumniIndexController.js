@@ -4,7 +4,7 @@ angular.module('connectUApp')
 
 
     vm.someUsers = ConnectUService.someUsers;
-    vm.slackProbe = ConnectUService.slackProbe;
+    // vm.slackProbe = ConnectUService.slackProbe;
 
     vm.slackClicked = false;
     vm.isAdmin = false;
@@ -38,9 +38,8 @@ angular.module('connectUApp')
 
     vm.sendSlackMessage = function (user){
       console.log('clicked sendSlackMessage()');
-      vm.slackProbe(user);
+      ConnectUService.slackProbe(user);
       vm.slackClicked = false;
-      user.customMessage = '';
     }
     vm.cancelSlackMessage = function(user){
       vm.slackClicked = false;

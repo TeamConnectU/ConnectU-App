@@ -1,5 +1,5 @@
 angular.module('connectUApp')
-  .controller('MainController', ['$http', 'ConnectUService', function($http, ConnectUService){
+  .controller('MainController', ['$http', '$uibModal', 'ConnectUService', function($http, $uibModal, ConnectUService){
     var vm = this;
 
     // vm.loggedIn = false;
@@ -23,23 +23,22 @@ angular.module('connectUApp')
     vm.loggedIn = ConnectUService.data;
     console.log('after vm.loggedIn:', vm.loggedIn);
 
-    vm.getProfile = function(){
-      ConnectUService.getUserIdentification();
-      vm.userInformation = ConnectUService.userIDResponse;
-      console.log(vm.userInformation);
 
-    };
+    ConnectUService.getUserIdentification();
+    vm.userInformation = ConnectUService.userIDResponse;
+    console.log(vm.userInformation);
 
 
-    vm.registerUser = function(){
-      console.log('vm.newUser from mainController:', vm.newUser);
-      // console.log('vm.newUser.internships[0] from mainController:', vm.newUser.internships[0]);
-      // console.log('vm.newUser.internships[1] from mainController:', vm.newUser.internships[1]);
 
-      ConnectUService.postUsers(vm.newUser, vm.zip_code);
-      vm.newUser = {};
-      // ConnectUService.getUsers();
-    }
+    // vm.registerUser = function(){
+    //   console.log('vm.newUser from mainController:', vm.newUser);
+    //   // console.log('vm.newUser.internships[0] from mainController:', vm.newUser.internships[0]);
+    //   // console.log('vm.newUser.internships[1] from mainController:', vm.newUser.internships[1]);
+    //
+    //   ConnectUService.postUsers(vm.newUser, vm.zip_code);
+    //   vm.newUser = {};
+    //   // ConnectUService.getUsers();
+    // }
 
     vm.loginAdmin = function(){
       ConnectUService.postAdmin(vm.newAdmin);
@@ -51,5 +50,21 @@ angular.module('connectUApp')
 
 
     }
+
+
+    vm.open = function(alumniInfo) {
+
+      var modalInstance = $uibModal.open({
+        templateUrl: 'myProfileModal.html',
+        controller: 'ProfileController',
+        controllerAs: 'profile',
+        resolve: {
+          items: function () {
+            return alumniInfo;
+          }
+        }
+      });
+
+    };
 
   }]);
