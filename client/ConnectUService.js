@@ -1,5 +1,5 @@
 angular.module('connectUApp')
-  .factory('ConnectUService', ['$http', function($http){
+  .factory('ConnectUService', ['$http', '$location', function($http, $location){
     var data = {};
     var someUsers = {};
     data.shuffledUsers = [];
@@ -58,12 +58,31 @@ angular.module('connectUApp')
 
     var getAuth = function(){
       console.log('getAuth called');
-    $http.get('auth/loggedIn')
-    .then(
-      function(response) {
-        console.log('getAuth response.data:', response.data);
-        data.loggedIn = response.data;
-      });
+
+      $http.get('auth/loggedIn')
+        .then(
+          function(response) {
+            console.log('getAuth response.data:', response.data);
+            data.loggedIn = response.data;
+
+            //1. Set up ui-bootstrap and open in JS
+            //2. Update route to return pertinant information
+
+            //-------
+
+            var openProfile = false;
+
+            //here is where you make decision
+
+
+
+            if(openProfile) {
+              //open with ui-bootstrap
+            }
+
+
+          });
+
       console.log('data from getAuth function:', data);
     };
 
@@ -85,8 +104,8 @@ angular.module('connectUApp')
           $http.put('/users/update', userInfo).then(function(response){
             console.log('http put response:', response);
             console.log('http put userInfo:', userInfo);
+            getUsers();
           });
-          getUsers();
       });
     };
 

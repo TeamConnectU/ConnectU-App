@@ -32,7 +32,7 @@
         <a href="/auth/logout" class="floatRight login" ng-show="main.loggedIn.loggedIn" target="_self">Log Out</a>
         <a href="/alumniIndex" class="floatRight login" ng-show="main.loggedIn.loggedIn">Alumni Index</a>
         <a href="/" class="floatRight login" ng-show="main.loggedIn.loggedIn">Talent Pool</a>
-        <a data-toggle="modal" href="#registerModal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.getProfile()">Edit Profile</a>
+        <a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.open(main.userInformation.info)">Edit Profile</a>
       </row>
     </header>
 
@@ -78,123 +78,118 @@
 
 
   <!-- Register Modal -->
-  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <form ng-submit = "main.registerUser()">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="textGreen">ConnectU Alumni Profile</h4>
-          </div>
-          <div class="modal-body">
-            <h2>{{main.userInformation.info.first_name}} &nbsp {{main.userInformation.info.last_name}}</h2>
-
-            <br />
-
-            <label>Seeking:</label>
-            <input type="checkbox" name="seekingInternship" ng-model = "main.newUser.seeking_internship">Internship
-            <input type="checkbox" name="seekingEmployment" ng-model = "main.newUser.seeking_employment">Employment
-
-            <br />
-            <br />
-
-            <label>The BrandLab Internship Site*:</label>
-            <input type="text" name="internshipSite" ng-model = "main.newUser.internships[0].site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-            <label>The BrandLab Internship Year*:</label>
-            <input type="number" name="internshipYear" ng-model = "main.newUser.internships[0].year" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-            <input type="checkbox" name="check1" ng-model="main.internship2" /> <label class="smallText">Add internship</label>
-
-            <div ng-show="main.internship2">
-              <label>The BrandLab Internship Site #2:</label>
-              <input type="text" name="internshipSite" ng-model = "main.newUser.internships[1].site" class="form-control" aria-describedby="sizing-addon1"></input>
-              <label>The BrandLab Internship Year #2:</label>
-              <input type="number" name="internshipYear" ng-model = "main.newUser.internships[1].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
-              <input type="checkbox" name="check2" ng-model="main.internship3" /> <label class="smallText">Add internship</label>
-            </div>
-
-            <div ng-show="main.internship3">
-              <label>The BrandLab Internship Site #3:</label>
-              <input type="text" name="internshipSite" ng-model = "main.newUser.internships[2].site" class="form-control" aria-describedby="sizing-addon1"></input>
-              <label>The BrandLab Internship Year #3:</label>
-              <input type="number" name="internshipYear" ng-model = "main.newUser.internships[2].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
-              <input type="checkbox" name="check3" ng-model="main.internship4" /> <label class="smallText">Add internship</label>
-            </div>
-
-            <div ng-show="main.internship4">
-              <label>The BrandLab Internship Site #4:</label>
-              <input type="text" name="internshipSite" ng-model = "main.newUser.internships[3].site" class="form-control" aria-describedby="sizing-addon1"></input>
-              <label>The BrandLab Internship Year #4:</label>
-              <input type="number" name="internshipYear" ng-model = "main.newUser.internships[3].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
-              <input type="checkbox" name="check4" ng-model="main.internship5" /> <label class="smallText">Add internship</label>
-            </div>
-
-            <div ng-show="main.internship5">
-              <label>The BrandLab Internship Site #5:</label>
-              <input type="text" name="internshipSite" ng-model = "main.newUser.internships[4].site" class="form-control" aria-describedby="sizing-addon1"></input>
-              <label>The BrandLab Internship Year #5:</label>
-              <input type="number" name="internshipYear" ng-model = "main.newUser.internships[4].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
-            </div>
-
-            <br />
-            <br />
-
-            <label>Slack ID*:</label>
-            <input type="text" name="slack" ng-model = "main.newUser.slack_id" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <br />
-
-            <label>High School*:</label>
-            <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.high_school" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <br />
-
-            <label>College:</label>
-            <input type="text" name="college" uib-typeahead = "item.college for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
-            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="firstYear"> &nbsp; First-Year</label><br />
-            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="sophomore"> &nbsp; Sophomore</label><br />
-            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="junior"> &nbsp; Junior</label><br />
-            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="senior"> &nbsp; Senior</label><br />
-            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="graduate"> &nbsp; Graduate</label><br />
-
-            <br />
-
-            <label>Current Workplace:</label>
-            <input type="text" name="workplace" ng-model = "main.newUser.current_workplace" uib-typeahead = "item.current_workplace for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3"  class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <br />
-
-            <label>Focus/Major:</label>
-            <input type="text" name="focus" ng-model = "main.newUser.focus" required = "true" uib-typeahead = "item.focus for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <br />
-
-            <label>Quote:</label>
-            <textarea rows="4" cols="50" ng-model = "main.newUser.quote" required = "true" name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
-
-            <br />
-
-            <label>Interested In:</label>
-            <textarea rows="4" cols="50" ng-model = "main.newUser.interestedIn" required = "true" name="interest" class="form-control" aria-describedby="sizing-addon1"></textarea>
-
-            <br />
-
-            <label>Phone:</label>
-            <input type="tel" name="phone" maxlength="12" ng-model = "main.newUser.phone" required = "true" class="form-control" aria-describedby="sizing-addon1"></input>
-
-            <br />
-
-            <label>Zip:</label>
-            <input type="number" name="zip" maxlength="5" ng-model = "main.zip_code" required = "true" class="form-control" aria-describedby="sizing-addon1"></input>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
-            <input type="submit" class="btn btn-primary" value = "Submit and Enter"></input>
-          </div>
+  <script type="text/ng-template" id="myProfileModal.html">
+    <form ng-submit = "profile.registerUser()">
+        <div class="modal-header">
+          <h4 class="textGreen">ConnectU Alumni Profile</h4>
         </div>
-      </form>
-    </div>
-  </div>
+        <div class="modal-body">
+          <h2>{{profile.userInfo.first_name}} &nbsp; {{profile.userInfo.last_name}}</h2>
+
+          <br />
+
+          <label>Seeking:</label>
+          <input type="checkbox" name="seekingInternship" ng-model = "profile.newUser.seeking_internship">Internship
+          <input type="checkbox" name="seekingEmployment" ng-model = "profile.newUser.seeking_employment">Employment
+
+          <br />
+          <br />
+
+          <label>The BrandLab Internship Site*:</label>
+          <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[0].site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <label>The BrandLab Internship Year*:</label>
+          <input type="number" name="internshipYear" ng-model = "profile.newUser.internships[0].year" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="checkbox" name="check1" ng-model="profile.internship2" /> <label class="smallText">Add internship</label>
+
+          <div ng-show="profile.internship2">
+            <label>The BrandLab Internship Site #2:</label>
+            <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[1].site" class="form-control" aria-describedby="sizing-addon1"></input>
+            <label>The BrandLab Internship Year #2:</label>
+            <input type="number" name="internshipYear" ng-model = "profile.newUser.internships[1].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="checkbox" name="check2" ng-model="profile.internship3" /> <label class="smallText">Add internship</label>
+          </div>
+
+          <div ng-show="profile.internship3">
+            <label>The BrandLab Internship Site #3:</label>
+            <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[2].site" class="form-control" aria-describedby="sizing-addon1"></input>
+            <label>The BrandLab Internship Year #3:</label>
+            <input type="number" name="internshipYear" ng-model = "profile.newUser.internships[2].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="checkbox" name="check3" ng-model="profile.internship4" /> <label class="smallText">Add internship</label>
+          </div>
+
+          <div ng-show="profile.internship4">
+            <label>The BrandLab Internship Site #4:</label>
+            <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[3].site" class="form-control" aria-describedby="sizing-addon1"></input>
+            <label>The BrandLab Internship Year #4:</label>
+            <input type="number" name="internshipYear" ng-model = "profile.newUser.internships[3].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="checkbox" name="check4" ng-model="profile.internship5" /> <label class="smallText">Add internship</label>
+          </div>
+
+          <div ng-show="profile.internship5">
+            <label>The BrandLab Internship Site #5:</label>
+            <input type="text" name="internshipSite" ng-model = "profile.newUser.internships[4].site" class="form-control" aria-describedby="sizing-addon1"></input>
+            <label>The BrandLab Internship Year #5:</label>
+            <input type="number" name="internshipYear" ng-model = "profile.newUser.internships[4].year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+          </div>
+
+          <br />
+          <br />
+
+          <label>Slack ID*:</label>
+          <input type="text" name="slack" ng-model = "profile.newUser.slack_id" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <br />
+
+          <label>High School*:</label>
+          <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.high_school" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <br />
+
+          <label>College:</label>
+          <input type="text" name="college" uib-typeahead = "item.college for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
+          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="firstYear"> &nbsp; First-Year</label><br />
+          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="sophomore"> &nbsp; Sophomore</label><br />
+          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="junior"> &nbsp; Junior</label><br />
+          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="senior"> &nbsp; Senior</label><br />
+          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="graduate"> &nbsp; Graduate</label><br />
+
+          <br />
+
+          <label>Current Workplace:</label>
+          <input type="text" name="workplace" ng-model = "profile.newUser.current_workplace" uib-typeahead = "item.current_workplace for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3"  class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <br />
+
+          <label>Focus/Major:</label>
+          <input type="text" name="focus" ng-model = "profile.newUser.focus" required = "true" uib-typeahead = "item.focus for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <br />
+
+          <label>Quote:</label>
+          <textarea rows="4" cols="50" ng-model = "profile.newUser.quote" required = "true" name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
+
+          <br />
+
+          <label>Interested In:</label>
+          <textarea rows="4" cols="50" ng-model = "profile.newUser.interestedIn" required = "true" name="interest" class="form-control" aria-describedby="sizing-addon1"></textarea>
+
+          <br />
+
+          <label>Phone:</label>
+          <input type="tel" name="phone" maxlength="12" ng-model = "profile.newUser.phone" required = "true" class="form-control" aria-describedby="sizing-addon1"></input>
+
+          <br />
+
+          <label>Zip:</label>
+          <input type="number" name="zip" maxlength="5" ng-model = "profile.zip_code" required = "true" class="form-control" aria-describedby="sizing-addon1"></input>
+        </div>
+
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-primary" ng-click = "profile.cancel()" value ="Submit and Enter"></input>
+        </div>
+      </div>
+    </form>
+  </script>
 
 
   <!-- Alumni Login Modal -->
