@@ -60,7 +60,7 @@ router.put('/update', function(req, res){
       user.state = req.body.state;
       user.quote = req.body.quote;
       user.phone = req.body.phone;
-      user.interest = req.body.interest;
+      user.interestedIn = req.body.interestedIn;
 
       user.save(function (err){
         if(err){
