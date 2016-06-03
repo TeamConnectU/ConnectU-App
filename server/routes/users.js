@@ -46,12 +46,16 @@ router.put('/update', function(req, res){
       if(req.body.current_workplace){
         user.current_workplace = req.body.current_workplace;
       }
-      if(req.body.internshipTwo.site){
-        user.internshipTwo.site = req.body.internshipTwo.site;
+      // if(req.body.internshipTwo.site){
+      //   user.internshipTwo.site = req.body.internshipTwo.site;
+      // }
+      // if(req.body.internshipTwo.year){
+      //   user.internshipTwo.year = req.body.internshipTwo.year;
+      // }
+      if(req.body.internshipTwo){
+        user.internshipTwo = req.body.internshipTwo;
       }
-      if(req.body.internshipTwo.year){
-        user.internshipTwo.year = req.body.internshipTwo.year;
-      }
+
       // user.internships.push(newInternship);
       user.internshipOne.site = req.body.internshipOne.site;
       user.internshipOne.year = req.body.internshipOne.year;
