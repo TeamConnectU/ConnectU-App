@@ -1,13 +1,10 @@
 var mongoose = require('mongoose');
 var encryptLib = require('../auth/encryption');
-<<<<<<< HEAD
 var bcrypt = require('bcrypt');
-=======
 var internshipSchema = require('./internship').schema;
->>>>>>> 1d0949226a356fb268ec9de99bd38a2eeb476162
 var Schema = mongoose.Schema;
 
-// var SALT_WORK_FACTOR = 10;
+var SALT_WORK_FACTOR = 10;
 
 var internshipSchema = new Schema({
   site: {type: String},
