@@ -52,12 +52,12 @@ router.get('/logout', function(req, res) {
 
 //Password authentication for adminModel
 router.get('/', function(req,res,next){
-  res.sendFile(path.resolve(__dirname,'../views/index.html'));
+  res.sendFile(path.resolve(__dirname,'../views/main.html'));
 });
 
 router.post('/',
   passport.authenticate('local', {
-    successRedirect:'/success',
+    successRedirect:'/',
     failureRedirect:'/failure'
   })
 );
