@@ -23,7 +23,7 @@
         <td class = "col_3 backgroundLightGray">{{us.high_school}}</td>
         <td class = "col_4">{{us.college}}</td>
         <td class = "col_5 backgroundLightGray">{{us.focus}}</td>
-        <td class = "col_6">{{us.city}}, {{us.state}}</td>
+        <td class = "col_6">{{us.city}}<span ng-if = "us.city && us.state">,</span> {{us.state}}</td>
         <td class = "col_7 backgroundLightGray">{{us.current_workplace}}</td>
         <td>
             <button class="btn-sm btn-danger" ng-show="alumni.isAdmin" ng-click="alumni.deletePressed(us)">Delete</button>
@@ -55,7 +55,7 @@
                     </span>
                   <br />
                 </span>
-                <span class = "displayInline"><label>The BrandLab <span ng-if = "!us.internships[1]">Internship</span><span ng-if = "us.internships[1]">Internships</span>:</label> &nbsp; {{us.internships[0].site}} : {{us.internships[0].year}}
+                <span class = "displayInline" ng-if = "us.internships[0]"><label>The BrandLab <span ng-if = "!us.internships[1]">Internship</span><span ng-if = "us.internships[1]">Internships</span>:</label> &nbsp; {{us.internships[0].site}} : {{us.internships[0].year}}
                   <span ng-show="us.internships[1]"> &nbsp; | &nbsp; {{us.internships[1].site}}, {{us.internships[1].year}} </span>
                   <span ng-show="us.internships[2]"> &nbsp; | &nbsp; {{us.internships[2].site}}, {{us.internships[2].year}} </span>
                   <span ng-show="us.internships[3]"> &nbsp; | &nbsp; {{us.internships[3].site}}, {{us.internships[3].year}} </span>
@@ -64,7 +64,7 @@
                 </span>
                 <span class = "onlyMobile"><label>Current Workplace: </label> &nbsp {{us.current_workplace}}</span><br />
                 <div>
-                  <span class="section fenix italics medMargin centerText">"{{us.quote}}"</span>
+                  <span class="section fenix italics medMargin centerText"><span ng-if = "us.quote">"</span>{{us.quote}}<span ng-if = "us.quote">"</span></span>
                 </div>
               </div>
               <div clas = "well">

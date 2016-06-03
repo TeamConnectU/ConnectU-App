@@ -149,11 +149,11 @@
 
             <label>College:</label>
             <input type="text" name="college" uib-typeahead = "item.college for item in main.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "main.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
-            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="firstYear"> &nbsp; First-Year</label><br />
-            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="sophomore"> &nbsp; Sophomore</label><br />
-            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="junior"> &nbsp; Junior</label><br />
-            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="senior"> &nbsp; Senior</label><br />
-            <label class="smallText"><input type="radio" ng-model="main.collegeYear" value="graduate"> &nbsp; Graduate</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="firstYear"> &nbsp; First-Year</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="sophomore"> &nbsp; Sophomore</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="junior"> &nbsp; Junior</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="senior"> &nbsp; Senior</label><br />
+            <label class="smallText"><input type="radio" ng-model="main.newUser.collegeYear" value="graduate"> &nbsp; Graduate</label><br />
 
             <br />
 
