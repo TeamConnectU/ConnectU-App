@@ -1,5 +1,5 @@
 angular.module('connectUApp')
-  .factory('ConnectUService', ['$http', '$location', function($http, $location){
+  .factory('ConnectUService', ['$http', '$location', '$uibModal', function($http, $location, $uibModal){
     var data = {};
     var someUsers = {};
     data.shuffledUsers = [];
@@ -61,24 +61,49 @@ angular.module('connectUApp')
           function(response) {
             console.log('getAuth response.data:', response.data);
             data.loggedIn = response.data;
+          });
+
+      console.log('data from getAuth function:', data);
+    };
+
+
+    var validateData = function(){
+      console.log('getValidateData called from the service');
+
+      $http.get('auth/validateData')
+        .then(
+          function(response) {
+            console.log('getValidateData response.data:', response.data);
 
             //1. Set up ui-bootstrap and open in JS
             //2. Update route to return pertinant information
 
             //-------
 
-            var openProfile = false;
+            var openProfile = response.data;
 
             //here is where you make decision
 
-
-
-            if(openProfile) {
+            if(!openProfile) {
+              // $uibModalInstance.open()
               //open with ui-bootstrap
+
+                var modalInstance = $uibModal.open({
+                  templateUrl: 'myProfileModal.html',
+                  controller: 'ProfileController',
+                  controllerAs: 'profile',
+                  resolve: {
+                    items: function () {
+                      return userIDResponse.info;
+                    }
+                  }
+                });
+
+              };
             }
 
 
-          });
+          );
 
       console.log('data from getAuth function:', data);
     };
@@ -104,6 +129,7 @@ angular.module('connectUApp')
             console.log('http put response:', response);
             console.log('http put userInfo:', userInfo);
             getUsers();
+            $location.path('/alumniIndex');
           });
       });
     };
@@ -180,7 +206,8 @@ angular.module('connectUApp')
     getAuth: getAuth,
     getUserIdentification: getUserIdentification,
     userIDResponse: userIDResponse,
-    postAdmin: postAdmin
+    postAdmin: postAdmin,
+    getValidateData: validateData
   }
 
 

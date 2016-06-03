@@ -33,6 +33,20 @@ router.get('/linkedin/callback',
       res.send(loggedIn);
   });
 
+  router.get('/validateData', function(req, res, next) {
+      console.log('hi from validateData');
+      var user = req.user;
+      var dataValid = false;
+      User.findById(user._id, function(err, user){
+        console.log('findbyid user:', user);
+        if(user.high_school){
+          dataValid = true;
+        }
+        res.send(dataValid);
+      })
+
+  });
+
 
   router.get('/getUserId', function(req, res, next) {
       console.log('loggedIn from auth/loggedIn');

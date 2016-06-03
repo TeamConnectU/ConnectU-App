@@ -23,10 +23,12 @@ angular.module('connectUApp')
     vm.loggedIn = ConnectUService.data;
     console.log('after vm.loggedIn:', vm.loggedIn);
 
-
     ConnectUService.getUserIdentification();
     vm.userInformation = ConnectUService.userIDResponse;
     console.log(vm.userInformation);
+
+    ConnectUService.getValidateData();
+
 
 
 
