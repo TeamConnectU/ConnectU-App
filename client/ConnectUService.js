@@ -75,37 +75,25 @@ angular.module('connectUApp')
           function(response) {
             console.log('getValidateData response.data:', response.data);
 
-            //1. Set up ui-bootstrap and open in JS
-            //2. Update route to return pertinant information
-
-            //-------
-
             var openProfile = response.data;
 
-            //here is where you make decision
-
             if(!openProfile) {
-              // $uibModalInstance.open()
-              //open with ui-bootstrap
 
-                var modalInstance = $uibModal.open({
-                  templateUrl: 'myProfileModal.html',
-                  controller: 'ProfileController',
-                  controllerAs: 'profile',
-                  resolve: {
-                    items: function () {
-                      return userIDResponse.info;
-                    }
+              var modalInstance = $uibModal.open({
+                templateUrl: 'myProfileModal.html',
+                controller: 'ProfileController',
+                controllerAs: 'profile',
+                resolve: {
+                  items: function () {
+                    return userIDResponse.info;
                   }
-                });
-
-              };
-            }
-
-
-          );
-
-      console.log('data from getAuth function:', data);
+                }
+              });
+            } else {
+              $location.path('/alumniIndex');
+            };
+          }
+        );
     };
 
     var getUserIdentification = function(user){
