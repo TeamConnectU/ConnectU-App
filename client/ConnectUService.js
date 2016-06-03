@@ -1,5 +1,5 @@
 angular.module('connectUApp')
-  .factory('ConnectUService', ['$http', function($http){
+  .factory('ConnectUService', ['$http', '$location', function($http, $location){
     var data = {};
     var someUsers = {};
     data.shuffledUsers = [];
@@ -9,6 +9,8 @@ angular.module('connectUApp')
     // data.loggedIn;
     var zipAPIResponse = {};
     var userIDResponse = {};
+
+    var userInformation = '';
 
 
     // console.log('usersSeekingInternship before loop:', usersSeekingInternship);
@@ -39,18 +41,13 @@ angular.module('connectUApp')
           }
         }
 
-        // console.log('someUsers.info after loop:', someUsers.info);
-        // console.log('usersSeekingInternship after loop:', data.usersSeekingInternship);
-        // console.log('usersSeekingEmployment after loop:', data.usersSeekingEmployment);
 
         //shuffles lists for Talent pool page
         data.shuffledUsers = shuffle(data.shuffledUsers);
         data.usersSeekingInternship = shuffle(data.usersSeekingInternship);
         data.usersSeekingEmployment = shuffle(data.usersSeekingEmployment);
 
-        // console.log('shuffledUsers:', shuffledUsers);
-        // console.log('usersSeekingInternship after shuffle:', usersSeekingInternship);
-        // console.log('usersSeekingEmployment after shuffle:', usersSeekingEmployment);
+
       });
     };
 
@@ -58,22 +55,43 @@ angular.module('connectUApp')
 
     var getAuth = function(){
       console.log('getAuth called');
-    $http.get('auth/loggedIn')
-    .then(
-      function(response) {
-        console.log('getAuth response.data:', response.data);
-        data.loggedIn = response.data;
-      });
+
+      $http.get('auth/loggedIn')
+        .then(
+          function(response) {
+            console.log('getAuth response.data:', response.data);
+            data.loggedIn = response.data;
+
+            //1. Set up ui-bootstrap and open in JS
+            //2. Update route to return pertinant information
+
+            //-------
+
+            var openProfile = false;
+
+            //here is where you make decision
+
+
+
+            if(openProfile) {
+              //open with ui-bootstrap
+            }
+
+
+          });
+
       console.log('data from getAuth function:', data);
     };
 
-    var getUserIdentification = function(){
+    var getUserIdentification = function(user){
       console.log('getUserIdentification Clicked');
       $http.get('auth/getUserId').then(function(response){
         console.log('getUserIdentification', response.data);
         userIDResponse.info = response.data;
+        makeSlackCall(user);
       });
     };
+
 
     var postUsers = function(userInfo, zip_code){
       console.log('postUsers userInfo:', userInfo);
@@ -85,8 +103,8 @@ angular.module('connectUApp')
           $http.put('/users/update', userInfo).then(function(response){
             console.log('http put response:', response);
             console.log('http put userInfo:', userInfo);
+            getUsers();
           });
-          getUsers();
       });
     };
 
@@ -132,10 +150,22 @@ angular.module('connectUApp')
 
 
     var slackProbe = function(user){
+      console.log('M3SSAGE', user.customMessage);
+      getUserIdentification(user);
+    }
+
+    var makeSlackCall = function(user) {
+      console.log('userIDResponse:', userIDResponse);
+      console.log('userIDResponse.info:', userIDResponse.info);
+      console.log('makeSlackCall user:', user);
+      var slackSender = userIDResponse.info.first_name+' '+userIDResponse.info.last_name;
       var slackRecipient = user.slack_id;
-      var slackMessage = user.customMessage;
-      $http.post('https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-46067180946-8876c76749&channel='+slackRecipient+'&text='+slackMessage+'&username=ConnectU-BOT').then(function(){
+      var slackMessage = user.customMessage+' --- Please open direct message with me '+userIDResponse.info.slack_id+' to reply!';
+      var url = 'https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-46067180946-8876c76749&channel='+slackRecipient+'&text='+slackMessage+'&username='+slackSender;
+      console.log('sending to: ', url);
+      $http.post(url).then(function(){
         console.log('message sent');
+        user.customMessage = '';
       })
     }
 

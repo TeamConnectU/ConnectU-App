@@ -58,13 +58,15 @@
                     </span>
                   <br />
                 </span>
+
                 </div>
-                <span class = "displayInline" ng-if = "us.internships[0]"><label>The BrandLab <span ng-if = "!us.internships[1]">Internship</span><span ng-if = "us.internships[1]">Internships</span>:</label> &nbsp; {{us.internships[0].site}} : {{us.internships[0].year}}
-                  <span ng-show="us.internships[1]"> &nbsp; | &nbsp; {{us.internships[1].site}}, {{us.internships[1].year}} </span>
-                  <span ng-show="us.internships[2]"> &nbsp; | &nbsp; {{us.internships[2].site}}, {{us.internships[2].year}} </span>
+
+                <span class = "displayInline" ng-if = "us.internshipOne"><label>The BrandLab <span ng-if = "!us.internshipTwo">Internship</span><span ng-if = "us.internshipTwo">Internships</span>:</label> &nbsp; {{us.internshipOne.site}} : {{us.internshipOne.year}}
+                  <span ng-show="us.internshipTwo"> &nbsp; | &nbsp; {{us.internshipTwo.site}} : {{us.internshipTwo.year}} </span>
+                  <!-- <span ng-show="us.internships[2]"> &nbsp; | &nbsp; {{us.internships[2].site}}, {{us.internships[2].year}} </span>
                   <span ng-show="us.internships[3]"> &nbsp; | &nbsp; {{us.internships[3].site}}, {{us.internships[3].year}} </span>
                   <span ng-show="us.internships[4]"> &nbsp; | &nbsp; {{us.internships[4].site}}, {{us.internships[4].year}} </span>
-                  <span ng-show="us.internships[5]"> &nbsp; | &nbsp; {{us.internships[5].site}}, {{us.internships[5].year}} </span>
+                  <span ng-show="us.internships[5]"> &nbsp; | &nbsp; {{us.internships[5].site}}, {{us.internships[5].year}} </span> -->
                 </span>
                 <span class = "onlyMobile"><label>Current Workplace: </label> &nbsp {{us.current_workplace}}</span><br />
                 <div>
@@ -83,6 +85,7 @@
     </tbody>
   </table>
   <div id="bottomSpace"></div>
+
 
   <!-- Delete Modal -->
   <script type="text/ng-template" id="myModalContent2.html">

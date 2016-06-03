@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
 var User = require('../../models/user');
-var Internship = require('../../models/internship').model;
 var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
@@ -28,11 +27,8 @@ router.put('/update', function(req, res){
 
   User.findById(req.user._id, function(err, user){
     console.log('findbyid user:', user);
-    // user = req.body;
-    // req.user = req.body;
-
-    Internship.create({site:req.body.internships[0].site, year: req.body.internships[0].year}, function(err, newInternship){
-      console.log('newInternship:', newInternship);
+    // Internship.create({site:req.body.internships[0].site, year: req.body.internships[0].year}, function(err, newInternship){
+      // console.log('newInternship:', newInternship);
       // user.internships[0].site = req.body.internships[0].site;
       // user.internships[0].year = req.body.internships[0].year;
       if(req.body.seeking_internship){
@@ -50,9 +46,15 @@ router.put('/update', function(req, res){
       if(req.body.current_workplace){
         user.current_workplace = req.body.current_workplace;
       }
-
-      user.internships.push(newInternship);
-
+      if(req.body.internshipTwo.site){
+        user.internshipTwo.site = req.body.internshipTwo.site;
+      }
+      if(req.body.internshipTwo.year){
+        user.internshipTwo.year = req.body.internshipTwo.year;
+      }
+      // user.internships.push(newInternship);
+      user.internshipOne.site = req.body.internshipOne.site;
+      user.internshipOne.year = req.body.internshipOne.year;
       user.slack_id = req.body.slack_id;
       user.high_school = req.body.high_school;
       user.focus = req.body.focus;
@@ -73,7 +75,7 @@ router.put('/update', function(req, res){
 
         }
       })
-    });
+    // });
 
   });
 });

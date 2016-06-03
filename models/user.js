@@ -1,15 +1,9 @@
 var mongoose = require('mongoose');
 var encryptLib = require('../auth/encryption');
 var bcrypt = require('bcrypt');
-var internshipSchema = require('./internship').schema;
 var Schema = mongoose.Schema;
 
 var SALT_WORK_FACTOR = 10;
-
-var internshipSchema = new Schema({
-  site: {type: String},
-  year: {type: Number}
-});
 
 var userSchema = new Schema({
   email: {type: String, required: true, unique: true},
@@ -35,7 +29,8 @@ var userSchema = new Schema({
   seeking_internship: {type: Boolean},
   seeking_employment: {type: Boolean},
   admin: {type: Boolean, default: false},
-  internships: [internshipSchema],
+  internshipOne: {site: {type: String}, year: {type: Number}},
+  internshipTwo: {site: {type: String}, year: {type: Number}},
   photo_url: {type: String},
   password: {type: String}
 
