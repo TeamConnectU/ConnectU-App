@@ -46,7 +46,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//admin login Passport strategy
+//admin local Passport strategy
 passport.use('local', new localStrategy({
   passReqToCallback: true,
   usernameField: 'email'
@@ -180,6 +180,7 @@ passport.deserializeUser(function(id, done){
       done(null, user);
     }
   });
+  
 
 });
 
