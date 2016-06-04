@@ -7,9 +7,11 @@ angular.module('connectUApp')
 
     vm.someUsers = ConnectUService.someUsers;
 
+    //changes required on register form so that single items can be updated if the data already exists
     vm.required = ConnectUService.data.required;
-
     console.log('vm.required:', vm.required);
+
+    vm.edit = false;
 
     vm.newUser = {};
 
@@ -17,10 +19,8 @@ angular.module('connectUApp')
       console.log('vm.newUser from profileController:', vm.newUser);
 
       if (isValid) {
-      alert('our form is amazing');
     }
-      // console.log('vm.newUser.internships[0] from mainController:', vm.newUser.internships[0]);
-      // console.log('vm.newUser.internships[1] from mainController:', vm.newUser.internships[1]);
+
 
       ConnectUService.postUsers(vm.newUser, vm.zip_code);
       vm.newUser = {};
