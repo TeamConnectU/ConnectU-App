@@ -80,106 +80,170 @@
   <!-- Register Modal -->
   <script type="text/ng-template" id="myProfileModal.html">
     <form name="profileForm" ng-submit="profile.registerUser(profileForm.$valid)" novalidate>
-        <div class="modal-header">
+        <div class="modal-header backgroundNavy">
           <h4 class="textGreen">ConnectU Alumni Profile</h4>
         </div>
         <div class="modal-body">
-          <h2>{{profile.userInfo.first_name}} &nbsp; {{profile.userInfo.last_name}}</h2>
+          <button ng-hide="profile.required" type="button" class="close backgroundLightGray" ng-click="profile.cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div>
+            <h1>{{profile.userInfo.first_name}} {{profile.userInfo.last_name}}</h1>
+            <span ng-show="profile.userInfo.high_school"><input type="checkbox" name="editProfile" ng-model="profile.edit"><span class="smallText">Click to edit existing info</span></span>
+          </div>
 
           <br />
 
-          <label>Seeking:</label>
-          <input type="checkbox" name="seekingInternship" ng-model = "profile.newUser.seeking_internship">Internship
-          <input type="checkbox" name="seekingEmployment" ng-model = "profile.newUser.seeking_employment">Employment
+          <div class="form-group">
+            <label class="textGreen">Seeking:</label>
+            <span ng-show="profile.userInfo.seeking_employment && !profile.edit">Employment</span>
+            <span ng-show="profile.userInfo.seeking_internship && !profile.edit">Internship</span>
+          </div>
 
-          <br />
-          <br />
+          <div class="form-group" ng-hide="(profile.userInfo.seeking_employment || profile.userInfo.seeking_internship) && !profile.edit">
+            <input type="checkbox" name="seekingInternship" ng-model = "profile.newUser.seeking_internship"><span class="smallText"> Internship </span>
+            <input type="checkbox" name="seekingEmployment" ng-model = "profile.newUser.seeking_employment"><span class="smallText">Employment </span>
+          </div>
 
           <div class="form-group" ng-class="{ 'has-error' : profileForm.internshipSite.$invalid && !profileForm.internshipSite.$pristine }">
-            <label>The BrandLab Internship Site*:</label>
-            <input type="text" name="internshipSite" uib-typeahead = "item.internshipOne.site || item.internshipTwo.site for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.internshipOne.site" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
-            <p ng-show="profileForm.internshipSite.$invalid && !profileForm.internshipSite.$pristine" class="help-block smallText">Internship site is required.</p>
+            <label class="textGreen">The BrandLab Internship Site<span ng-hide="profile.userInfo.high_school">*</span>:</label>
+            <span ng-show="profile.userInfo.internshipOne.site && !profile.edit">{{profile.userInfo.internshipOne.site}}
+              <span ng-show="profile.userInfo.internshipOne.year && !profile.edit">, &nbsp; {{profile.userInfo.internshipOne.year}}</span>
+            </span>
+
+            <div ng-hide="profile.userInfo.internshipOne.site && !profile.edit">
+              <input type="text" name="internshipSite" uib-typeahead = "item.internshipOne.site || item.internshipTwo.site for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.internshipOne.site" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
+              <p ng-show="profileForm.internshipSite.$invalid && !profileForm.internshipSite.$pristine" class="help-block smallText">Internship site is required.</p>
+            </div>
           </div>
 
           <div class="form-group" ng-class="{ 'has-error' : profileForm.internshipYear.$invalid && !profileForm.internshipYear.$pristine }">
-            <label>The BrandLab Internship Year*:</label>
-            <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipOne.year" maxlength="4" min="2007" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
-            <p ng-show="profileForm.internshipYear.$invalid && !profileForm.internshipYear.$pristine" class="help-block smallText">Internship year is required.</p>
-            <input type="checkbox" name="check1" ng-model="profile.internship2" /> <label class="smallText">Add internship</label>
+            <div ng-hide="profile.userInfo.internshipOne.site && !profile.edit">
+              <label class="textGreen">The BrandLab Internship Year<span ng-hide="profile.userInfo.high_school">*</span>:</label>
+              <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipOne.year" maxlength="4" min="2007" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
+              <p ng-show="profileForm.internshipYear.$invalid && !profileForm.internshipYear.$pristine" class="help-block smallText">Internship year is required.</p>
+            </div>
+            <div ng-hide="profile.userInfo.internshipTwo.site">
+              <input type="checkbox" name="check1" ng-model="profile.internship2checked" /> <label class="smallText">Add internship</label>
+            </div>
           </div>
 
-          <div ng-show="profile.internship2">
-            <label>The BrandLab Internship Site #2:</label>
-            <input type="text" name="internship2Site" uib-typeahead = "item.internshipOne.site || item.internshipTwo.site for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.internshipTwo.site" class="form-control" aria-describedby="sizing-addon1"></input>
-            <label>The BrandLab Internship Year #2:</label>
-            <input type="number" name="internship2Year" ng-model = "profile.newUser.internshipTwo.year" maxlength="4" min="2007" class="form-control" aria-describedby="sizing-addon1"></input>
+          <div class="form-group" ng-show="profile.userInfo.internshipTwo.site || profile.internship2checked">
+            <label class="textGreen">The BrandLab Internship #2 Site:</label>
+            <span ng-show="profile.userInfo.internshipTwo.site && !profile.edit">{{profile.userInfo.internshipTwo.site}}
+              <span ng-show="profile.userInfo.internshipTwo.year && !profile.edit">, &nbsp; {{profile.userInfo.internshipTwo.year}}</span></span>
+              <br/>
+            <div ng-hide="profile.userInfo.internshipTwo.site && !profile.edit">
+              <input type="text" name="internship2Site" uib-typeahead = "item.internshipOne.site || item.internshipTwo.site for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.internshipTwo.site" class="form-control" aria-describedby="sizing-addon1"></input>
+              <br />
+              <div>
+                <label class="textGreen">The BrandLab Internship #2 Year:</label>
+                <input type="number" name="internship2Year" ng-model = "profile.newUser.internshipTwo.year" maxlength="4" min="2007" class="form-control" aria-describedby="sizing-addon1"></input>
+              </div>
+            </div>
           </div>
 
-
-          <br />
-          <br />
 
           <div class="form-group" ng-class="{ 'has-error' : profileForm.slack.$invalid && !profileForm.slack.$pristine }">
-            <label>Slack ID*:</label>
-            <input type="text" name="slack" ng-model = "profile.newUser.slack_id" ng-required="profile.required" placeholder="@MySlackID" class="form-control" aria-describedby="sizing-addon1"></input>
-            <p ng-show="profileForm.slack.$invalid && !profileForm.slack.$pristine" class="help-block smallText">Slack ID is required.</p>
+            <label class="textGreen">Slack ID<span ng-hide="profile.userInfo.high_school">*</span>:</label>
+            <span ng-show="profile.userInfo.slack_id && !profile.edit">{{profile.userInfo.slack_id}}</span>
+            <div ng-hide="profile.userInfo.slack_id && !profile.edit">
+              <input type="text" name="slack" ng-model = "profile.newUser.slack_id" ng-required="profile.required" placeholder="@MySlackID" class="form-control" aria-describedby="sizing-addon1"></input>
+              <p ng-show="profileForm.slack.$invalid && !profileForm.slack.$pristine" class="help-block smallText">Slack ID is required.</p>
+            </div>
           </div>
 
-          <br />
 
           <div class="form-group" ng-class="{ 'has-error' : profileForm.highSchool.$invalid && !profileForm.highSchool.$pristine }">
-            <label>High School*:</label>
-            <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.high_school" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
-            <p ng-show="profileForm.highSchool.$invalid && !profileForm.highSchool.$pristine" class="help-block smallText">High school is required.</p>
+            <label class="textGreen">High School<span ng-hide="profile.userInfo.high_school">*</span>:</label>
+            <span ng-show="profile.userInfo.high_school && !profile.edit">{{profile.userInfo.high_school}}</span>
+            <div ng-hide="profile.userInfo.high_school && !profile.edit">
+              <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.high_school" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
+              <p ng-show="profileForm.highSchool.$invalid && !profileForm.highSchool.$pristine" class="help-block smallText">High school is required.</p>
+            </div>
+          </div>
+
+          <label class="textGreen">College:</label>
+          <span ng-show="profile.userInfo.college">
+            <span ng-show="profile.userInfo.first_year && !profile.edit">First Year,</span>
+            <span ng-show="profile.userInfo.sophomore && !profile.edit">Sophomore,</span>
+            <span ng-show="profile.userInfo.junior && !profile.edit">Junior,</span>
+            <span ng-show="profile.userInfo.senior && !profile.edit">Senior,</span>
+            <span ng-show="profile.userInfo.graduate && !profile.edit">Graduate,</span>
+            <span ng-show="profile.userInfo.college && !profile.edit">{{profile.userInfo.college}}</span>
+          </span>
+
+          <br />
+
+          <div ng-hide="profile.userInfo.college">
+            <input type="text" name="college" uib-typeahead = "item.college for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
+          </div>
+
+          <div ng-hide="(profile.userInfo.first_year || profile.userInfo.sophomore || profile.userInfo.junior || profile.userInfo.senior || profile.userInfo.graduate) && !profile.edit">
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.first_year" value="firstYear"> &nbsp; First-Year</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.sophomore" value="sophomore"> &nbsp; Sophomore</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.junior" value="junior"> &nbsp; Junior</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.senior" value="senior"> &nbsp; Senior</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.graduate" value="graduate"> &nbsp; Graduate</label><br />
           </div>
 
           <br />
 
-          <label>College:</label>
-          <input type="text" name="college" uib-typeahead = "item.college for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
-          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="firstYear"> &nbsp; First-Year</label><br />
-          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="sophomore"> &nbsp; Sophomore</label><br />
-          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="junior"> &nbsp; Junior</label><br />
-          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="senior"> &nbsp; Senior</label><br />
-          <label class="smallText"><input type="radio" ng-model="profile.newUser.collegeYear" value="graduate"> &nbsp; Graduate</label><br />
+          <div class="form-group">
+            <label class="textGreen">Focus/Major:</label>
+            <span ng-show="profile.userInfo.focus && !profile.edit">{{profile.userInfo.focus}}</span>
+            <div ng-hide="profile.userInfo.focus && !profile.edit">
+              <input type="text" name="focus" ng-model = "profile.newUser.focus"  uib-typeahead = "item.focus for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" class="form-control" aria-describedby="sizing-addon1"></input>
+            </div>
+          </div>
 
-          <br />
+          <div class="form-group">
+            <label class="textGreen">Current Workplace:</label>
+            <span ng-show="profile.userInfo.current_workplace && !profile.edit">{{profile.userInfo.current_workplace}}</span>
+            <div ng-hide="profile.userInfo.current_workplace && !profile.edit">
+              <input type="text" name="workplace" ng-model = "profile.newUser.current_workplace" uib-typeahead = "item.current_workplace for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3"  class="form-control" aria-describedby="sizing-addon1"></input>
+            </div>
+          </div>
 
-          <label>Current Workplace:</label>
-          <input type="text" name="workplace" ng-model = "profile.newUser.current_workplace" uib-typeahead = "item.current_workplace for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3"  class="form-control" aria-describedby="sizing-addon1"></input>
+          <div class="form-group">
+            <label class="textGreen">Quote:</label>
+            <span ng-show="profile.userInfo.quote && !profile.edit">{{profile.userInfo.quote}}</span>
+            <div ng-hide="profile.userInfo.quote && !profile.edit">
+              <span class="smallText">Tell us about yourself</span>
+              <textarea rows="4" cols="50" ng-model = "profile.newUser.quote"  name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
+            </div>
+          </div>
 
-          <br />
+          <div class="form-group">
+            <label class="textGreen">Interested In:</label>
+            <span ng-show="profile.userInfo.interestedIn && !profile.edit">{{profile.userInfo.interestedIn}}</span>
+            <div ng-hide="profile.userInfo.interestedIn && !profile.edit">
+              <textarea rows="4" cols="50" ng-model = "profile.newUser.interestedIn" name="interest" class="form-control" aria-describedby="sizing-addon1"></textarea>
+            </div>
+          </div>
 
-          <label>Focus/Major:</label>
-          <input type="text" name="focus" ng-model = "profile.newUser.focus"  uib-typeahead = "item.focus for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" class="form-control" aria-describedby="sizing-addon1"></input>
-
-          <br />
-
-          <label>Quote:</label>
-          <textarea rows="4" cols="50" ng-model = "profile.newUser.quote"  name="quote" class="form-control" aria-describedby="sizing-addon1"></textarea>
-
-          <br />
-
-          <label>Interested In:</label>
-          <textarea rows="4" cols="50" ng-model = "profile.newUser.interestedIn" name="interest" class="form-control" aria-describedby="sizing-addon1"></textarea>
-
-          <br />
           <div class="form-group" ng-class="{ 'has-error' : profileForm.phone.$invalid && !profileForm.phone.$pristine }">
-            <label>Phone*:</label>
-            <input type="tel" name="phone" ng-minlength="10" ng-maxlength="12" placeholder="xxx-xxx-xxxx" ng-model="profile.newUser.phone" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
-            <p ng-show="profileForm.phone.$error.minlength" class="help-block smallText">Use format xxx-xxx-xxxx</p>
-            <p ng-show="profileForm.phone.$error.maxlength" class="help-block smallText">Use format xxx-xxx-xxxx</p>          <br />
+            <label class="textGreen">Phone<span ng-hide="profile.userInfo.high_school">*</span>:</label>
+            <span ng-show="profile.userInfo.phone && !profile.edit">{{profile.userInfo.phone}}</span>
+            <div ng-hide="profile.userInfo.phone && !profile.edit">
+              <input type="tel" name="phone" ng-minlength="10" ng-maxlength="12" placeholder="xxx-xxx-xxxx" ng-model="profile.newUser.phone" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
+              <p ng-show="profileForm.phone.$error.minlength" class="help-block smallText">Use format xxx-xxx-xxxx</p>
+              <p ng-show="profileForm.phone.$error.maxlength" class="help-block smallText">Use format xxx-xxx-xxxx</p>
+            </div>
           </div>
 
           <div class="form-group" ng-class="{ 'has-error' : profileForm.zip.$invalid && !profileForm.zip.$pristine }">
-            <label>Zip*:</label>
-            <input type="number" name="zip" ng-minlength="5" ng-maxlength="5" ng-model="profile.zip_code" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
-            <p ng-show="profileForm.zip.$invalid && !profileForm.zip.$pristine" class="help-block smallText">5-digit zip code is required.</p>
+            <span ng-show="profile.userInfo.state && !profile.edit">
+              <label class="textGreen">Location:</label>{{profile.userInfo.city}}, {{profile.userInfo.state}}
+            </span>
+            <div ng-hide="profile.userInfo.state && !profile.edit">
+              <label class="textGreen">Zip Code<span ng-hide="profile.userInfo.high_school">*</span>:</label>
+              <input type="number" name="zip" ng-minlength="5" ng-maxlength="5" ng-model="profile.zip_code" ng-required="profile.required" class="form-control" aria-describedby="sizing-addon1"></input>
+              <p ng-show="profileForm.zip.$invalid && !profileForm.zip.$pristine" class="help-block smallText">5-digit zip code is required.</p>
+            </div>
           </div>
         </div>
 
-        <div class="modal-footer">
-          <input type="submit" class="btn btn-primary" ng-disabled="profileForm.$invalid" ng-click="profile.cancel()" value ="Submit and Enter"></input>
+        <div class="modal-footer backgroundNavy">
+          <input type="submit" class="btn btn-primary" ng-disabled="profileForm.$invalid" ng-click="profile.cancel()" value="Submit and Enter"></input>
         </div>
       </div>
     </form>

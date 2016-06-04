@@ -85,6 +85,8 @@ angular.module('connectUApp')
                 templateUrl: 'myProfileModal.html',
                 controller: 'ProfileController',
                 controllerAs: 'profile',
+                backdrop  : 'static',
+                keyboard  : false,
                 resolve: {
                   items: function () {
                     return userIDResponse.info;
