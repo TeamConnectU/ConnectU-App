@@ -79,7 +79,7 @@
 
   <!-- Register Modal -->
   <script type="text/ng-template" id="myProfileModal.html">
-    <form ng-submit = "profile.registerUser()">
+    <form name="profileForm" ng-submit="profile.registerUser(profileForm.$valid)" novalidate>
         <div class="modal-header">
           <h4 class="textGreen">ConnectU Alumni Profile</h4>
         </div>
@@ -95,11 +95,16 @@
           <br />
           <br />
 
-          <label>The BrandLab Internship Site*:</label>
-          <input type="text" name="internshipSite" uib-typeahead = "item.internshipOne.site || item.internshipTwo.site for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.internshipOne.site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-          <label>The BrandLab Internship Year*:</label>
-          <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipOne.year" maxlength="4" min="2007" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
-          <input type="checkbox" name="check1" ng-model="profile.internship2" /> <label class="smallText">Add internship</label>
+          <div class="form-group" ng-class="{ 'has-error' : profileForm.internshipSite.$invalid}">
+            <label>The BrandLab Internship Site*:</label>
+            <input type="text" name="internshipSite" uib-typeahead = "item.internshipOne.site || item.internshipTwo.site for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.internshipOne.site" ng-required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <p ng-show="profileForm.internshipSite.$invalid && !profileForm.internshipSite.$pristine" class="help-block">Internship site is required.</p>
+            <br />
+            <label>The BrandLab Internship Year*:</label>
+            <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipOne.year" maxlength="4" min="2007" ng-required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="checkbox" name="check1" ng-model="profile.internship2" /> <label class="smallText">Add internship</label>
+            <p ng-show="profileForm.internshipYear.$invalid && !profileForm.internshipYear.$pristine" class="help-block">Internship year is required.</p>
+          </div>
 
           <div ng-show="profile.internship2">
             <label>The BrandLab Internship Site #2:</label>
@@ -112,13 +117,19 @@
           <br />
           <br />
 
-          <label>Slack ID*:</label>
-          <input type="text" name="slack" ng-model = "profile.newUser.slack_id" required="true" placeholder="@slackID" class="form-control" aria-describedby="sizing-addon1"></input>
+          <div class="form-group" ng-class="{ 'has-error' : profileForm.slack.$invalid}">
+            <label>Slack ID*:</label>
+            <input type="text" name="slack" ng-model = "profile.newUser.slack_id" ng-required="true" placeholder="@MySlackID" class="form-control" aria-describedby="sizing-addon1"></input>
+            <p ng-show="profileForm.slack.$invalid && !profileForm.slack.$pristine" class="help-block">Slack ID is required.</p>
+          </div>
 
           <br />
 
-          <label>High School*:</label>
-          <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.high_school" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <div class="form-group" ng-class="{ 'has-error' : profileForm.highSchool.$invalid}">
+            <label>High School*:</label>
+            <input type="text" name="highSchool" uib-typeahead = "item.high_school for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.high_school" ng-required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <p ng-show="profileForm.highschool.$invalid && !profileForm.highschool.$pristine" class="help-block">High school is required.</p>
+          </div>
 
           <br />
 
@@ -151,18 +162,22 @@
           <textarea rows="4" cols="50" ng-model = "profile.newUser.interestedIn" required = "true" name="interest" class="form-control" aria-describedby="sizing-addon1"></textarea>
 
           <br />
+          <div class="form-group" ng-class="{ 'has-error' : profileForm.phone.$invalid}">
+            <label>Phone:</label>
+            <input type="tel" name="phone" ng-minlength="10" ng-maxlength="12" placeholder="xxx-xxx-xxxx" ng-model="profile.newUser.phone" ng-required = "true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <p ng-show="profileForm.phone.$error.minlength" class="help-block">Use format xxx-xxx-xxxx</p>
+            <p ng-show="profileForm.phone.$error.maxlength" class="help-block">Use format xxx-xxx-xxxx</p>          <br />
+          </div>
 
-          <label>Phone:</label>
-          <input type="tel" name="phone" maxlength="12" ng-model = "profile.newUser.phone" required = "true" class="form-control" aria-describedby="sizing-addon1"></input>
-
-          <br />
-
-          <label>Zip:</label>
-          <input type="number" name="zip" maxlength="5" ng-model = "profile.zip_code" required = "true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <div class="form-group" ng-class="{ 'has-error' : profileForm.zip.$invalid}">
+            <label>Zip:</label>
+            <input type="number" name="zip" ng-minlength="5" ng-maxlength="5" ng-model="profile.zip_code" ng-required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <p ng-show="profileForm.zip.$invalid && !profileForm.zip.$pristine" class="help-block">5-digit zip code is required.</p>
+          </div>
         </div>
 
         <div class="modal-footer">
-          <input type="submit" class="btn btn-primary" ng-click = "profile.cancel()" value ="Submit and Enter"></input>
+          <input type="submit" class="btn btn-primary" ng-disabled="profileForm.$invalid" ng-click="profile.cancel()" value ="Submit and Enter"></input>
         </div>
       </div>
     </form>

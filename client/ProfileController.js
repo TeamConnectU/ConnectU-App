@@ -8,8 +8,12 @@ angular.module('connectUApp')
 
     vm.newUser = {};
 
-    vm.registerUser = function(){
+    vm.registerUser = function(isValid){
       console.log('vm.newUser from profileController:', vm.newUser);
+
+      if (isValid) {
+      alert('our form is amazing');
+    }
       // console.log('vm.newUser.internships[0] from mainController:', vm.newUser.internships[0]);
       // console.log('vm.newUser.internships[1] from mainController:', vm.newUser.internships[1]);
 
