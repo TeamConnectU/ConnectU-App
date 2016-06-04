@@ -53,20 +53,47 @@ router.put('/update', function(req, res){
       //   user.internshipTwo.year = req.body.internshipTwo.year;
       // }
       if(req.body.internshipTwo){
-        user.internshipTwo = req.body.internshipTwo;
+        user.internshipTwo.site = req.body.internshipTwo.site;
+        user.internshipTwo.year = req.body.internshipTwo.year;
       }
 
       // user.internships.push(newInternship);
-      user.internshipOne.site = req.body.internshipOne.site;
-      user.internshipOne.year = req.body.internshipOne.year;
-      user.slack_id = req.body.slack_id;
-      user.high_school = req.body.high_school;
-      user.focus = req.body.focus;
-      user.city = req.body.city;
-      user.state = req.body.state;
-      user.quote = req.body.quote;
-      user.phone = req.body.phone;
-      user.interestedIn = req.body.interestedIn;
+      if(req.body.internshipOne){
+        user.internshipOne.site = req.body.internshipOne.site;
+        user.internshipOne.year = req.body.internshipOne.year;
+      }
+
+      if(req.body.slack_id){
+        user.slack_id = req.body.slack_id;
+      }
+
+      if(req.body.high_school){
+        user.high_school = req.body.high_school;
+      }
+
+      if(req.body.focus){
+        user.focus = req.body.focus;
+      }
+
+      if(req.body.city){
+        user.city = req.body.city;
+      }
+
+      if(req.body.state){
+        user.state = req.body.state;
+      }
+
+      if(req.body.quote){
+        user.quote = req.body.quote;
+      }
+
+      if(req.body.phone){
+        user.phone = req.body.phone;
+      }
+
+      if(req.body.interestedIn){
+        user.interestedIn = req.body.interestedIn;
+      }
 
       user.save(function (err){
         if(err){

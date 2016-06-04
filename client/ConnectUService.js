@@ -6,7 +6,7 @@ angular.module('connectUApp')
     data.usersSeekingInternship = [];
     data.usersSeekingEmployment = [];
     data.loggedIn = false;
-    // data.loggedIn;
+    data.required = true;
     var zipAPIResponse = {};
     var userIDResponse = {};
 
@@ -76,6 +76,8 @@ angular.module('connectUApp')
             console.log('getValidateData response.data:', response.data);
 
             var openProfile = response.data;
+            data.required = !response.data;
+            console.log('data.required:', data.required);
 
             if(!openProfile) {
 

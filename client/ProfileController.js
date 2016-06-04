@@ -2,9 +2,14 @@ angular.module('connectUApp')
   .controller('ProfileController', ['ConnectUService','$uibModalInstance','items', function(ConnectUService, $uibModalInstance, items){
     var vm = this;
     vm.userInfo = items;
+
     console.log('profile userInfo:', vm.userInfo);
 
     vm.someUsers = ConnectUService.someUsers;
+
+    vm.required = ConnectUService.data.required;
+
+    console.log('vm.required:', vm.required);
 
     vm.newUser = {};
 
