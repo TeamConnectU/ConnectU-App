@@ -96,16 +96,16 @@
           <br />
 
           <label>The BrandLab Internship Site*:</label>
-          <input type="text" name="internshipSite" ng-model = "profile.newUser.internshipOne.site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="internshipSite" uib-typeahead = "item.internshipOne.site || item.internshipTwo.site for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.internshipOne.site" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
           <label>The BrandLab Internship Year*:</label>
-          <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipOne.year" maxlength="4" min="2000" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipOne.year" maxlength="4" min="2007" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
           <input type="checkbox" name="check1" ng-model="profile.internship2" /> <label class="smallText">Add internship</label>
 
           <div ng-show="profile.internship2">
             <label>The BrandLab Internship Site #2:</label>
-            <input type="text" name="internshipSite" ng-model = "profile.newUser.internshipTwo.site" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="text" name="internshipSite" uib-typeahead = "item.internshipOne.site || item.internshipTwo.site for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.internshipTwo.site" class="form-control" aria-describedby="sizing-addon1"></input>
             <label>The BrandLab Internship Year #2:</label>
-            <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipTwo.year" maxlength="4" min="2000" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="number" name="internshipYear" ng-model = "profile.newUser.internshipTwo.year" maxlength="4" min="2007" class="form-control" aria-describedby="sizing-addon1"></input>
           </div>
 
 
