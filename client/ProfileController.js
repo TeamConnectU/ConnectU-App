@@ -4,6 +4,8 @@ angular.module('connectUApp')
     vm.userInfo = items;
     console.log('profile userInfo:', vm.userInfo);
 
+    vm.someUsers = ConnectUService.someUsers;
+
     vm.newUser = {};
 
     vm.registerUser = function(){
