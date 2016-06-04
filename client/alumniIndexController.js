@@ -7,7 +7,8 @@ angular.module('connectUApp')
     // vm.slackProbe = ConnectUService.slackProbe;
 
     vm.slackClicked = false;
-    vm.isAdmin = true;
+    vm.isAdmin = false;
+    vm.isCollapsed = true;
 
     if (vm.isAdmin === true){
       vm.isCollapsed === false;
