@@ -27,16 +27,25 @@ router.put('/update', function(req, res){
 
   User.findById(req.user._id, function(err, user){
     console.log('findbyid user:', user);
+    user.seeking_internship = false;
+    user.seeking_employment = false;
     // Internship.create({site:req.body.internships[0].site, year: req.body.internships[0].year}, function(err, newInternship){
       // console.log('newInternship:', newInternship);
       // user.internships[0].site = req.body.internships[0].site;
       // user.internships[0].year = req.body.internships[0].year;
-      if(req.body.seeking_internship){
+      if(req.body.seeking_internship && req.body.seeking_employment){
         user.seeking_internship = req.body.seeking_internship;
+        req.body.seeking_employment = req.body.seeking_employment;
       }
+
       if(req.body.seeking_employment){
         user.seeking_employment = req.body.seeking_employment;
       }
+
+      if(req.body.seeking_internship){
+        user.seeking_internship = req.body.seeking_internship;
+      }
+
       if(req.body.college){
         user.college = req.body.college;
       }
