@@ -27,8 +27,6 @@ router.put('/update', function(req, res){
 
   User.findById(req.user._id, function(err, user){
     console.log('findbyid user:', user);
-    user.seeking_internship = false;
-    user.seeking_employment = false;
     // Internship.create({site:req.body.internships[0].site, year: req.body.internships[0].year}, function(err, newInternship){
       // console.log('newInternship:', newInternship);
       // user.internships[0].site = req.body.internships[0].site;
@@ -39,10 +37,12 @@ router.put('/update', function(req, res){
       }
 
       if(req.body.seeking_employment){
+        user.seeking_internship = false;
         user.seeking_employment = req.body.seeking_employment;
       }
 
       if(req.body.seeking_internship){
+        user.seeking_employment = false;
         user.seeking_internship = req.body.seeking_internship;
       }
 
@@ -55,18 +55,12 @@ router.put('/update', function(req, res){
       if(req.body.current_workplace){
         user.current_workplace = req.body.current_workplace;
       }
-      // if(req.body.internshipTwo.site){
-      //   user.internshipTwo.site = req.body.internshipTwo.site;
-      // }
-      // if(req.body.internshipTwo.year){
-      //   user.internshipTwo.year = req.body.internshipTwo.year;
-      // }
+
       if(req.body.internshipTwo){
         user.internshipTwo.site = req.body.internshipTwo.site;
         user.internshipTwo.year = req.body.internshipTwo.year;
       }
 
-      // user.internships.push(newInternship);
       if(req.body.internshipOne){
         user.internshipOne.site = req.body.internshipOne.site;
         user.internshipOne.year = req.body.internshipOne.year;
