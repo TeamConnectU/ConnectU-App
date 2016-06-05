@@ -18,9 +18,6 @@ angular.module('connectUApp')
     vm.registerUser = function(isValid){
       console.log('vm.newUser from profileController:', vm.newUser);
 
-      if (isValid) {
-    }
-
 
       ConnectUService.postUsers(vm.newUser, vm.zip_code);
       vm.newUser = {};
