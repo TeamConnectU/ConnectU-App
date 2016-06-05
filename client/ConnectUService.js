@@ -6,11 +6,12 @@ angular.module('connectUApp')
     data.usersSeekingInternship = [];
     data.usersSeekingEmployment = [];
     data.loggedIn = false;
+    data.admin = false;
     data.required = true;
     var zipAPIResponse = {};
     var userIDResponse = {};
 
-    var userInformation = '';
+    // var userInformation = '';
 
 
     // console.log('usersSeekingInternship before loop:', usersSeekingInternship);
@@ -65,6 +66,20 @@ angular.module('connectUApp')
 
       console.log('data from getAuth function:', data);
     };
+
+    var getAdmin = function(){
+      console.log('getAdmin called');
+
+      $http.get('auth/validateAdmin')
+        .then(
+          function(response) {
+            console.log('getAdmin response.data:', response.data);
+            data.admin = response.data;
+          });
+
+      console.log('data from getAdmin function:', data);
+    };
+
 
 
     var validateData = function(){
@@ -199,7 +214,8 @@ angular.module('connectUApp')
     getUserIdentification: getUserIdentification,
     userIDResponse: userIDResponse,
     postAdmin: postAdmin,
-    getValidateData: validateData
+    getValidateData: validateData,
+    getAdmin: getAdmin
   }
 
 
