@@ -100,14 +100,26 @@ passport.use(new LinkedInStrategy({
       linkedin_id: profile.id
     };
 
-    var updates = {
-      linkedin_id: profile._json.id,
-      email: profile._json.emailAddress,
-      first_name: profile._json.firstName,
-      last_name: profile._json.lastName,
-      photo_url: profile._json.pictureUrls.values[0],
-      linkedin_url: profile._json.publicProfileUrl,
-    };
+    if(profile._json.pictureUrls.values){
+      var updates = {
+        linkedin_id: profile._json.id,
+        email: profile._json.emailAddress,
+        first_name: profile._json.firstName,
+        last_name: profile._json.lastName,
+        photo_url: profile._json.pictureUrls.values[0],
+        linkedin_url: profile._json.publicProfileUrl,
+      };
+    } else {
+
+      var updates = {
+        linkedin_id: profile._json.id,
+        email: profile._json.emailAddress,
+        first_name: profile._json.firstName,
+        last_name: profile._json.lastName,
+        linkedin_url: profile._json.publicProfileUrl,
+      };
+    }
+
     console.log('updates:', updates);
     var options = {
       upsert: true
