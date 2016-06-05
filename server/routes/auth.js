@@ -27,14 +27,14 @@ router.get('/linkedin/callback',
 
   router.get('/loggedIn', function(req, res, next) {
       console.log('requested from auth/loggedIn');
-      // console.log('request:', req);
+      // console.log('request from loggedIn:', req);
       // console.log('response:', res);
       loggedIn = req.isAuthenticated();
       res.send(loggedIn);
   });
 
   router.get('/validateData', function(req, res, next) {
-      console.log('hi from validateData');
+      // console.log('hi from validateData');
       var user = req.user;
       var dataValid = false;
       User.findById(user._id, function(err, user){
@@ -43,6 +43,20 @@ router.get('/linkedin/callback',
           dataValid = true;
         }
         res.send(dataValid);
+      })
+
+  });
+
+  router.get('/validateAdmin', function(req, res, next) {
+      // console.log('hi from validateAdmin');
+      var user = req.user;
+      var admin = false;
+      User.findById(user._id, function(err, user){
+        console.log('validateAdmin findbyid user:', user);
+        if(user.admin === true){
+          admin = true;
+        }
+        res.send(admin);
       })
 
   });

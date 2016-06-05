@@ -2,17 +2,15 @@ angular.module('connectUApp')
   .controller('AlumniIndexController', ['$http', '$uibModal', 'ConnectUService', function($http, $uibModal, ConnectUService){
     var vm = this;
 
+    // ConnectUService.getAdmin();
 
     vm.someUsers = ConnectUService.someUsers;
     // vm.slackProbe = ConnectUService.slackProbe;
 
     vm.slackClicked = false;
-    vm.isAdmin = false;
-    vm.isCollapsed = true;
+    vm.isAdmin = ConnectUService.data.admin;
+    vm.isCollapsed = !ConnectUService.data.admin;
 
-    if (vm.isAdmin === true){
-      vm.isCollapsed === false;
-    }
 
     vm.deletePressed = function(us){
       console.log('deletePressed');

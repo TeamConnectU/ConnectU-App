@@ -31,33 +31,79 @@ router.put('/update', function(req, res){
       // console.log('newInternship:', newInternship);
       // user.internships[0].site = req.body.internships[0].site;
       // user.internships[0].year = req.body.internships[0].year;
-      if(req.body.seeking_internship){
-        user.seeking_internship = req.body.seeking_internship;
+      if(req.body.seeking_none){
+        user.seeking_internship = false;
+        user.seeking_employment = false;
       }
+
+      if(req.body.seeking_internship && req.body.seeking_employment){
+        user.seeking_internship = req.body.seeking_internship;
+        req.body.seeking_employment = req.body.seeking_employment;
+      }
+
       if(req.body.seeking_employment){
+        user.seeking_internship = false;
         user.seeking_employment = req.body.seeking_employment;
       }
+
+      if(req.body.seeking_internship){
+        user.seeking_employment = false;
+        user.seeking_internship = req.body.seeking_internship;
+      }
+
       if(req.body.college){
         user.college = req.body.college;
       }
-      if(req.body.collegeYear){
-        user.collegeYear = req.body.collegeYear;
+
+      if(req.body.graduate){
+        user.first_year = false;
+        user.sophomore = false;
+        user.junior = false;
+        user.senior = false;
+        user.graduate = req.body.graduate;
       }
+
+      if(req.body.first_year){
+        user.first_year = req.body.fisrt_year;
+        user.sophomore = false;
+        user.junior = false;
+        user.senior = false;
+        user.graduate = false;
+      }
+
+      if(req.body.sophomore){
+        user.first_year = false;
+        user.sophomore = req.body.sophomore;
+        user.junior = false;
+        user.senior = false;
+        user.graduate = false;
+      }
+
+      if(req.body.junior){
+        user.first_year = false;
+        user.sophomore = false;
+        user.junior = req.body.junior;
+        user.senior = false;
+        user.graduate = false;
+      }
+
+      if(req.body.senior){
+        user.first_year = false;
+        user.sophomore = false;
+        user.junior = false;
+        user.senior = req.body.senior;
+        user.graduate = false;
+      }
+
       if(req.body.current_workplace){
         user.current_workplace = req.body.current_workplace;
       }
-      // if(req.body.internshipTwo.site){
-      //   user.internshipTwo.site = req.body.internshipTwo.site;
-      // }
-      // if(req.body.internshipTwo.year){
-      //   user.internshipTwo.year = req.body.internshipTwo.year;
-      // }
+
       if(req.body.internshipTwo){
         user.internshipTwo.site = req.body.internshipTwo.site;
         user.internshipTwo.year = req.body.internshipTwo.year;
       }
 
-      // user.internships.push(newInternship);
       if(req.body.internshipOne){
         user.internshipOne.site = req.body.internshipOne.site;
         user.internshipOne.year = req.body.internshipOne.year;

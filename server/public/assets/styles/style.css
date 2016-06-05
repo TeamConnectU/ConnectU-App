@@ -95,6 +95,14 @@ footer {
   display: block;
 }
 
+.closeReg {
+  color: white;
+}
+
+.closeReg:hover {
+  color: #d5e04e;
+}
+
 .displayInline {
   display: inline;
 }
