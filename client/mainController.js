@@ -16,6 +16,9 @@ angular.module('connectUApp')
     vm.newAdmin = {};
     vm.newUser.internships = [];
 
+    ConnectUService.getAdmin();
+    vm.isAdmin = ConnectUService.data.admin;
+
 // if vm.loggedIn = true - shows Profle and Log Out, if vm.loggedIn = false - shows Alumni login
     console.log('pre vm.loggedIn:', vm.loggedIn);
     console.log('ConnectUService.data:', ConnectUService.data);

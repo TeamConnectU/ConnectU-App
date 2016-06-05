@@ -2,7 +2,7 @@ angular.module('connectUApp')
   .controller('AlumniIndexController', ['$http', '$uibModal', 'ConnectUService', function($http, $uibModal, ConnectUService){
     var vm = this;
 
-    ConnectUService.getAdmin();
+    // ConnectUService.getAdmin();
 
     vm.someUsers = ConnectUService.someUsers;
     // vm.slackProbe = ConnectUService.slackProbe;

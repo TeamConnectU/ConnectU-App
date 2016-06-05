@@ -34,7 +34,7 @@ router.get('/linkedin/callback',
   });
 
   router.get('/validateData', function(req, res, next) {
-      console.log('hi from validateData');
+      // console.log('hi from validateData');
       var user = req.user;
       var dataValid = false;
       User.findById(user._id, function(err, user){
@@ -48,11 +48,11 @@ router.get('/linkedin/callback',
   });
 
   router.get('/validateAdmin', function(req, res, next) {
-      console.log('hi from validateAdmin');
+      // console.log('hi from validateAdmin');
       var user = req.user;
       var admin = false;
       User.findById(user._id, function(err, user){
-        console.log('findbyid user:', user);
+        console.log('validateAdmin findbyid user:', user);
         if(user.admin === true){
           admin = true;
         }
