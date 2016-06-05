@@ -18,6 +18,7 @@ angular.module('connectUApp')
     vm.registerUser = function(isValid){
       console.log('vm.newUser from profileController:', vm.newUser);
 
+
       if (isValid) {
     }
 
@@ -30,6 +31,7 @@ angular.module('connectUApp')
 
     vm.cancel = function () {
       $uibModalInstance.dismiss('cancel');
+      ConnectUService.getUserIdentification();
     };
 
 
