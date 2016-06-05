@@ -32,7 +32,7 @@
         <a href="/auth/logout" class="floatRight login" ng-show="main.loggedIn.loggedIn" target="_self">Log Out</a>
         <a href="/alumniIndex" class="floatRight login" ng-show="main.loggedIn.loggedIn">Alumni Index</a>
         <a href="/" class="floatRight login" ng-show="main.loggedIn.loggedIn">Talent Pool</a>
-        <a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.open(main.userInformation.info)">Edit Profile</a>
+        <a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.open(main.userInformation.info)">My Profile</a>
       </row>
     </header>
 
@@ -81,7 +81,7 @@
   <script type="text/ng-template" id="myProfileModal.html">
     <form name="profileForm" ng-submit="profile.registerUser(profileForm.$valid)" novalidate>
         <div class="modal-header backgroundNavy">
-          <button ng-hide="profile.required" type="button" class="close" ng-click="profile.cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button ng-hide="profile.required" type="button" class="close closeReg" ng-click="profile.cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="textGreen">ConnectU Alumni Profile</h4>
         </div>
         <div class="modal-body">
@@ -280,8 +280,8 @@
       <form ng-submit = "main.loginAdmin()">
         <div class="modal-content">
           <div class="modal-header">
-            <h1>Admin Login</h1>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h1>Admin Login</h1>
           </div>
           <div class="modal-body">
             <label>Email:</label>

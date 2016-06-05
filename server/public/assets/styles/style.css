@@ -95,11 +95,11 @@ footer {
   display: block;
 }
 
-.close {
+.closeReg {
   color: white;
 }
 
-.close:hover {
+.closeReg:hover {
   color: #d5e04e;
 }
 
