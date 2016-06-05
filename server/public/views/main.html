@@ -81,10 +81,10 @@
   <script type="text/ng-template" id="myProfileModal.html">
     <form name="profileForm" ng-submit="profile.registerUser(profileForm.$valid)" novalidate>
         <div class="modal-header backgroundNavy">
+          <button ng-hide="profile.required" type="button" class="close" ng-click="profile.cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="textGreen">ConnectU Alumni Profile</h4>
         </div>
         <div class="modal-body">
-          <button ng-hide="profile.required" type="button" class="close backgroundLightGray" ng-click="profile.cancel()" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <div>
             <h1>{{profile.userInfo.first_name}} {{profile.userInfo.last_name}}</h1>
             <span ng-show="profile.userInfo.high_school"><input type="checkbox" name="editProfile" ng-model="profile.edit"><span class="smallText">Click to edit existing info</span></span>

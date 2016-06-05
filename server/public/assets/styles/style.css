@@ -95,6 +95,14 @@ footer {
   display: block;
 }
 
+.close {
+  color: white;
+}
+
+.close:hover {
+  color: #d5e04e;
+}
+
 .displayInline {
   display: inline;
 }
