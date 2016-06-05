@@ -27,6 +27,7 @@ angular.module('connectUApp')
 
     vm.cancel = function () {
       $uibModalInstance.dismiss('cancel');
+      ConnectUService.getUserIdentification();
     };
 
 

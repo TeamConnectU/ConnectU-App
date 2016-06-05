@@ -26,9 +26,14 @@ angular.module('connectUApp')
     vm.loggedIn = ConnectUService.data;
     console.log('after vm.loggedIn:', vm.loggedIn);
 
+    vm.updateUser = function(){
+    console.log('updateUser clicked');
     ConnectUService.getUserIdentification();
     vm.userInformation = ConnectUService.userIDResponse;
-    console.log(vm.userInformation);
+    // console.log(vm.userInformation);
+  };
+
+    vm.updateUser();
 
     ConnectUService.getValidateData();
 
