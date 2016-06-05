@@ -96,11 +96,13 @@
             <label class="textGreen">Seeking:</label>
             <span ng-show="profile.userInfo.seeking_employment && !profile.edit">Employment</span>
             <span ng-show="profile.userInfo.seeking_internship && !profile.edit">Internship</span>
+            <span ng-hide="profile.userInfo.seeking_internship || profile.userInfo.seeking_employment || !profile.userInfo.high_school || profile.edit">Nothing at this time</span>
           </div>
 
           <div class="form-group" ng-hide="(profile.userInfo.seeking_employment || profile.userInfo.seeking_internship) && !profile.edit">
             <input type="checkbox" name="seekingInternship" ng-model = "profile.newUser.seeking_internship"><span class="smallText"> Internship </span>
             <input type="checkbox" name="seekingEmployment" ng-model = "profile.newUser.seeking_employment"><span class="smallText">Employment </span>
+            <input type="checkbox" name="seekingNone" ng-model = "profile.newUser.seeking_none"><span class="smallText">Nothing at this time</span>
           </div>
 
           <div class="form-group" ng-class="{ 'has-error' : profileForm.internshipSite.$invalid && !profileForm.internshipSite.$pristine }">
@@ -173,7 +175,7 @@
 
           <br />
 
-          <div ng-hide="profile.userInfo.college">
+          <div ng-hide="profile.userInfo.college && !profile.edit">
             <input type="text" name="college" uib-typeahead = "item.college for item in profile.someUsers.info | filter:$viewValue | limitTo:8" typeahead-min-length = "3" ng-model = "profile.newUser.college" class="form-control" aria-describedby="sizing-addon1"></input>
           </div>
 
