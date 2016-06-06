@@ -194,7 +194,7 @@ angular.module('connectUApp')
       var slackSender = userIDResponse.info.first_name+' '+userIDResponse.info.last_name;
       var slackRecipient = user.slack_id;
       var slackMessage = user.customMessage+' --- Please open direct message with me '+userIDResponse.info.slack_id+' to reply!';
-      var url = 'https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-46067180946-8876c76749&channel='+slackRecipient+'&text='+slackMessage+'&username='+slackSender;
+      var url = 'https://slack.com/api/chat.postMessage?token=xoxp-3545121647-7271844961-48522715751-e94f1eba23&channel='+slackRecipient+'&text='+slackMessage+'&username='+slackSender;
       console.log('sending to: ', url);
       $http.post(url).then(function(){
         console.log('message sent');
