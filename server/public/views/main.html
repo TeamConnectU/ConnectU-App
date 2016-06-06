@@ -32,7 +32,7 @@
         <a href="/auth/logout" class="floatRight login" ng-show="main.loggedIn.loggedIn" target="_self">Log Out</a>
         <a href="/alumniIndex" class="floatRight login" ng-show="main.loggedIn.loggedIn">Alumni Index</a>
         <a href="/" class="floatRight login" ng-show="main.loggedIn.loggedIn">Talent Pool</a>
-        <a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.open(main.userInformation.info)">My Profile</a>
+        <a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.open(main.userInformation)">My Profile</a>
       </row>
     </header>
 
@@ -180,11 +180,11 @@
           </div>
 
           <div ng-hide="(profile.userInfo.first_year || profile.userInfo.sophomore || profile.userInfo.junior || profile.userInfo.senior || profile.userInfo.graduate) && !profile.edit">
-            <label class="smallText"><input type="radio" ng-model="profile.newUser.first_year" value="firstYear"> &nbsp; First-Year</label><br />
-            <label class="smallText"><input type="radio" ng-model="profile.newUser.sophomore" value="sophomore"> &nbsp; Sophomore</label><br />
-            <label class="smallText"><input type="radio" ng-model="profile.newUser.junior" value="junior"> &nbsp; Junior</label><br />
-            <label class="smallText"><input type="radio" ng-model="profile.newUser.senior" value="senior"> &nbsp; Senior</label><br />
-            <label class="smallText"><input type="radio" ng-model="profile.newUser.graduate" value="graduate"> &nbsp; Graduate</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.first_year" name="schoolYear" value="firstYear"> &nbsp; First-Year</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.sophomore" name="schoolYear" value="sophomore"> &nbsp; Sophomore</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.junior" name="schoolYear" value="junior"> &nbsp; Junior</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.senior" name="schoolYear" value="senior"> &nbsp; Senior</label><br />
+            <label class="smallText"><input type="radio" ng-model="profile.newUser.graduate" name="schoolYear" value="graduate"> &nbsp; Graduate</label><br />
           </div>
 
           <br />

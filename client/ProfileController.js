@@ -1,7 +1,7 @@
 angular.module('connectUApp')
   .controller('ProfileController', ['ConnectUService','$uibModalInstance','items', function(ConnectUService, $uibModalInstance, items){
     var vm = this;
-    vm.userInfo = items;
+    vm.userInfo = items.data;
 
     console.log('profile userInfo:', vm.userInfo);
 
@@ -22,7 +22,7 @@ angular.module('connectUApp')
       ConnectUService.postUsers(vm.newUser, vm.zip_code);
       vm.newUser = {};
 
-    }
+    };
 
 
     vm.cancel = function () {

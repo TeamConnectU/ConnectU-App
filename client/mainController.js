@@ -62,7 +62,8 @@ angular.module('connectUApp')
     }
 
 
-    vm.open = function(alumniInfo) {
+    vm.open = function() {
+      vm.updateUser();
 
       var modalInstance = $uibModal.open({
         templateUrl: 'myProfileModal.html',
@@ -70,7 +71,8 @@ angular.module('connectUApp')
         controllerAs: 'profile',
         resolve: {
           items: function () {
-            return alumniInfo;
+            return ConnectUService.modalUpdate();
+            
           }
         }
       });

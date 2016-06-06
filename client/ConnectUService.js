@@ -124,6 +124,11 @@ angular.module('connectUApp')
       });
     };
 
+    var modalUpdate = function(){
+      validateData();
+      return $http.get('auth/getUserId');
+    };
+
 
     var postUsers = function(userInfo, zip_code){
       console.log('postUsers userInfo:', userInfo);
@@ -215,7 +220,8 @@ angular.module('connectUApp')
     userIDResponse: userIDResponse,
     postAdmin: postAdmin,
     getValidateData: validateData,
-    getAdmin: getAdmin
+    getAdmin: getAdmin,
+    modalUpdate: modalUpdate
   }
 
 
