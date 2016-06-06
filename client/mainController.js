@@ -17,7 +17,7 @@ angular.module('connectUApp')
     vm.newUser.internships = [];
 
     ConnectUService.getAdmin();
-    vm.isAdmin = ConnectUService.data.admin;
+    vm.isAdmin = ConnectUService.data;
 
 // if vm.loggedIn = true - shows Profle and Log Out, if vm.loggedIn = false - shows Alumni login
     console.log('pre vm.loggedIn:', vm.loggedIn);
@@ -72,7 +72,7 @@ angular.module('connectUApp')
         resolve: {
           items: function () {
             return ConnectUService.modalUpdate();
-            
+
           }
         }
       });

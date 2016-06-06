@@ -32,7 +32,7 @@
         <a href="/auth/logout" class="floatRight login" ng-show="main.loggedIn.loggedIn" target="_self">Log Out</a>
         <a href="/alumniIndex" class="floatRight login" ng-show="main.loggedIn.loggedIn">Alumni Index</a>
         <a href="/" class="floatRight login" ng-show="main.loggedIn.loggedIn">Talent Pool</a>
-        <a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.open(main.userInformation)">My Profile</a>
+        <span ng-hide="main.isAdmin.admin"><a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.open(main.userInformation)">My Profile</a></span>
       </row>
     </header>
 
