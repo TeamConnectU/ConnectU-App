@@ -5,3 +5,4 @@ adminMongo
 .DS_Store
 MOCK_DATA.json
 server/public/vendor
+_config.js

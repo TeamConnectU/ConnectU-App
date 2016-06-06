@@ -84,10 +84,10 @@ router.get('/', function(req,res,next){
 });
 
 router.post('/',
-  passport.authenticate('local', {
-    successRedirect:'/',
-    failureRedirect:'/failure'
-  })
+  passport.authenticate('local'), function(req, res){
+    res.sendStatus(200);
+
+  }
 );
 
 
