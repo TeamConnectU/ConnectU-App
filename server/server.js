@@ -200,6 +200,7 @@ app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
 app.use('/getCity', getCityRouter);
+app.use('/*', indexRouter);
 
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ SERVER ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 var server = app.listen(process.env.PORT || 3000, function(){
