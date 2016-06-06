@@ -57,7 +57,8 @@ router.get('/linkedin/callback',
           admin = true;
         }
         res.send(admin);
-      })
+
+      });
 
   });
 
@@ -86,11 +87,7 @@ router.get('/', function(req,res,next){
 router.post('/',
   passport.authenticate('local'), function(req, res){
     res.sendStatus(200);
-
-  }
-);
-
-
+  });
 
 // router.get('/failure', function(request, response) {
 //   response.sendFile(path.join(__dirname, '../public/views/failure.html'));

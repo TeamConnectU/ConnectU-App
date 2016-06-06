@@ -54,12 +54,18 @@ angular.module('connectUApp')
       ConnectUService.postAdmin(vm.newAdmin);
       vm.newAdmin = {};
     };
+    
+    vm.open = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'adminLoginModal.html',
+        controller: 'ModalController',
+        controllerAs: 'modal'
+      });
+    };
 
     vm.logIn = function(){
       console.log('clicked login function');
-
-
-    }
+    };
 
 
     vm.open = function() {
@@ -72,7 +78,7 @@ angular.module('connectUApp')
         resolve: {
           items: function () {
             return ConnectUService.modalUpdate();
-            
+
           }
         }
       });

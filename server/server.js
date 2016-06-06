@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
 var User = require('../models/user');
+var morgan = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
@@ -33,8 +34,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('server/public'));
 
+// log requests to the console
+app.use(morgan('dev'));
 
-//express
+//express session
 app.use(session({
   secret:'keyboard cat',
   resave: true,
