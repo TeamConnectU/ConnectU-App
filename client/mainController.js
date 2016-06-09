@@ -14,6 +14,7 @@ angular.module('connectUApp')
 
     vm.newUser = {};
     vm.newAdmin = {};
+    vm.regAdmin = {};
     vm.newUser.internships = [];
 
     ConnectUService.getAdmin();
@@ -54,7 +55,12 @@ angular.module('connectUApp')
       ConnectUService.postAdmin(vm.newAdmin);
       vm.newAdmin = {};
     };
-    
+
+    vm.regAdmin = function(){
+      ConnectUService.regAdmin(vm.regAdmin);
+      vm.regAdmin = {};
+    };
+
     vm.open = function () {
       var modalInstance = $modal.open({
         templateUrl: 'adminLoginModal.html',
