@@ -29,5 +29,3 @@ angular.module('connectUApp')
 
 
         }]);
-
-}());
