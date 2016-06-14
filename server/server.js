@@ -9,7 +9,10 @@ var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 var users = require('./routes/users');
+<<<<<<< HEAD
 // var flash = require('connect-flash');
+=======
+>>>>>>> 1d02612a3317fb61e8347b1cd92304ce8028de8c
 
 //local routes
 var indexRouter = require('./routes/index');
@@ -34,9 +37,6 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('server/public'));
-
-// use connect-flash for flash messages stored in session
-// app.use(flash());
 
 // log requests to the console
 app.use(morgan('dev'));
