@@ -31,17 +31,17 @@ angular.module('connectUApp')
 
     vm.showSlackMessage = function (){
       vm.slackClicked = true;
-    }
+    };
 
     vm.sendSlackMessage = function (user){
       console.log('clicked sendSlackMessage()');
       ConnectUService.slackProbe(user);
       vm.slackClicked = false;
-    }
+    };
     vm.cancelSlackMessage = function(user){
       vm.slackClicked = false;
       user.customMessage = '';
-    }
+    };
 
     vm.moreInfo = function(us) {
       // console.log('works');

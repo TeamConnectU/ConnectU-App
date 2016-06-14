@@ -14,7 +14,6 @@ angular.module('connectUApp')
 
     vm.newUser = {};
     vm.newAdmin = {};
-    vm.regAdmin = {};
     vm.newUser.internships = [];
 
     ConnectUService.getAdmin();
@@ -54,11 +53,6 @@ angular.module('connectUApp')
     vm.loginAdmin = function(){
       ConnectUService.postAdmin(vm.newAdmin);
       vm.newAdmin = {};
-    };
-
-    vm.regAdmin = function(){
-      ConnectUService.regAdmin(vm.regAdmin);
-      vm.regAdmin = {};
     };
 
     vm.open = function () {

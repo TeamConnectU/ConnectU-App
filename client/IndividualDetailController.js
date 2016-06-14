@@ -14,6 +14,4 @@ angular.module('connectUApp')
       $uibModalInstance.dismiss('cancel');
     };
 
-
-
 }]);

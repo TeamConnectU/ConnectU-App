@@ -11,7 +11,7 @@ angular.module('connectUApp')
         controller: 'AlumniIndexController',
         controllerAs: 'alumni'
       });
-  }]);
+
 
   $locationProvider.html5Mode(true);
 
@@ -19,4 +19,4 @@ angular.module('connectUApp')
   window.location.href = 'http://localhost:3000';
   }
 
-  }]);//closes app.config()
+}]);//closes app.config()

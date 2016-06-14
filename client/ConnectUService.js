@@ -110,7 +110,7 @@ angular.module('connectUApp')
               });
             } else {
               $location.path('/alumniIndex');
-            };
+            }
           }
         );
     };
@@ -157,15 +157,6 @@ angular.module('connectUApp')
       });
     };
 
-    var regAdmin = function(adminInfo){
-      console.log('adminInfo', adminInfo);
-      $http.post('/auth', adminInfo).then(function(response){
-        data.loggedIn = true;
-        console.log(response);
-
-      });
-    };
-
     var deleteUser = function(user){
       console.log('Controller says: Alumni to be deleted is', user);
       id = user._id;
@@ -173,8 +164,8 @@ angular.module('connectUApp')
       $http.delete('/users/remove/' + id).then(function(response){
         console.log('deleted', user);
         getUsers();
-      })
-    }
+      });
+    };
 
 
     //The Fisher-Yates shuffle
@@ -196,14 +187,14 @@ angular.module('connectUApp')
       }
 
       return tempArr;
-    }
+    };
 
 
 
     var slackProbe = function(user){
       console.log('M3SSAGE', user.customMessage);
       getUserIdentification(user);
-    }
+    };
 
     var makeSlackCall = function(user) {
       console.log('userIDResponse:', userIDResponse);
@@ -217,8 +208,8 @@ angular.module('connectUApp')
       $http.post(url).then(function(){
         console.log('message sent');
         user.customMessage = '';
-      })
-    }
+      });
+    };
 
 
   return {
@@ -235,7 +226,7 @@ angular.module('connectUApp')
     getValidateData: validateData,
     getAdmin: getAdmin,
     modalUpdate: modalUpdate
-  }
+  };
 
 
 }]);//closes app.factory()
