@@ -27,7 +27,6 @@ angular.module('connectUApp')
   };
 
   vm.pageChanged = function() {
-    console.log('Page changed to: ' + vm.currentPage);
   };
 
   vm.setItemsPerPage = function(num) {
@@ -39,7 +38,6 @@ angular.module('connectUApp')
 
     //filter functions
     vm.switchToAll = function(){
-      console.log('switchToAll clicked');
       vm.allSelected = true;
       vm.intSelected = false;
       vm.empSelected = false;
@@ -48,7 +46,6 @@ angular.module('connectUApp')
     }
 
     vm.switchToEmp = function(){
-      console.log('switchToEmp clicked');
       vm.allSelected = false;
       vm.intSelected = false;
       vm.empSelected = true;
@@ -57,7 +54,6 @@ angular.module('connectUApp')
     }
 
     vm.switchToInt = function(){
-      console.log('switchToInt clicked');
       vm.allSelected = false;
       vm.intSelected = true;
       vm.empSelected = false;

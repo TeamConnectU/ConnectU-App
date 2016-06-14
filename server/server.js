@@ -95,11 +95,8 @@ passport.use(new LinkedInStrategy({
   callbackURL: 'http://localhost:3000/auth/linkedin/callback',
   scope: ['r_emailaddress', 'r_basicprofile'],
 }, function(accessToken, refreshToken, profile, done) {
-  console.log('accessToken area');
   process.nextTick(function(){
-    console.log('nextTick');
-    console.log('profile:',profile);
-    console.log('profile._json:',profile._json);
+
     var searchQuery = {
       linkedin_id: profile.id
     };
@@ -124,7 +121,6 @@ passport.use(new LinkedInStrategy({
       };
     }
 
-    console.log('updates:', updates);
     var options = {
       upsert: true
     };
@@ -139,36 +135,28 @@ passport.use(new LinkedInStrategy({
       }
 
       if(user){
-        console.log('user found, using it');
         return done(null, user);
       } else {
-        console.log('no user found, making one with', updates);
         User.create(updates, function(err, createdUser){
-          console.log('errz', err);
-          console.log('created user', createdUser);
           return done(null, createdUser);
         });
       }
     });
 
 
-    // User.find(searchQuery)
 
     }
 
   );
-    // return done(null, profile);
 
 }));
 
 app.get('/auth/linkedin',
   passport.authenticate('linkedin', {state: 'LOLznuiJZx'}),
   function(req, res){
-    console.log('request from authenticate:', req);
-    console.log('passport.authenticate');
+    // console.log('passport.authenticate');
   });
 
-//Oliver changed get to post
 app.post('/auth/linkedin/callback', passport.authenticate('linkedin', {
   successRedirect: '/',
   failureRedirect: '/login'
@@ -176,20 +164,12 @@ app.post('/auth/linkedin/callback', passport.authenticate('linkedin', {
 
 //serialization for both user and admin logins
 passport.serializeUser(function(user, done){
-  console.log('hit serializeUser');
-  // console.log(user.username);
-  // console.log('user:', user);
-  // console.log('user.id:', user.id);
-  // console.log('user._id:', user._id);
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done){
-  console.log('hit deserializeUser');
 
   User.findOne({_id: id}, function(err, user){
-    console.log('findOne hit');
-    console.log('user:', user);
     if(err){
       done(err);
     } else {

@@ -37,7 +37,6 @@ var userSchema = new Schema({
 });
 
   userSchema.pre('save', function(next){
-    console.log('running pre save user function');
     var user = this;
     //if password has not changed, do not proceed
     if(!user.isModified('password')){

@@ -20,14 +20,11 @@ angular.module('connectUApp')
     vm.isAdmin = ConnectUService.data;
 
 // if vm.loggedIn = true - shows Profle and Log Out, if vm.loggedIn = false - shows Alumni login
-    console.log('pre vm.loggedIn:', vm.loggedIn);
-    console.log('ConnectUService.data:', ConnectUService.data);
+
 
     vm.loggedIn = ConnectUService.data;
-    console.log('after vm.loggedIn:', vm.loggedIn);
 
     vm.updateUser = function(){
-    console.log('updateUser clicked');
     ConnectUService.getUserIdentification();
     vm.userInformation = ConnectUService.userIDResponse;
     // console.log(vm.userInformation);

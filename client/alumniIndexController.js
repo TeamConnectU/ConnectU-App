@@ -13,7 +13,6 @@ angular.module('connectUApp')
 
 
     vm.deletePressed = function(us){
-      console.log('deletePressed');
 
       var modalInstance = $uibModal.open({
         animation: vm.animationsEnabled,
@@ -34,7 +33,6 @@ angular.module('connectUApp')
     };
 
     vm.sendSlackMessage = function (user){
-      console.log('clicked sendSlackMessage()');
       ConnectUService.slackProbe(user);
       vm.slackClicked = false;
     };

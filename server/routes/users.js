@@ -12,7 +12,6 @@ var router = require('express').Router();
 router.get('/', function(req, res){
     User.find({"admin": false}, function(err, users){
         if(err){
-            console.log('error retrieving user', err);
             res.sendStatus(500);
         } else {
             res.send(users);
@@ -22,15 +21,9 @@ router.get('/', function(req, res){
 
 router.put('/update', function(req, res){
 
-  console.log('router.put req.body:', req.body);
-  console.log('request by user', req.user);
 
   User.findById(req.user._id, function(err, user){
-    console.log('findbyid user:', user);
-    // Internship.create({site:req.body.internships[0].site, year: req.body.internships[0].year}, function(err, newInternship){
-      // console.log('newInternship:', newInternship);
-      // user.internships[0].site = req.body.internships[0].site;
-      // user.internships[0].year = req.body.internships[0].year;
+
       if(req.body.seeking_none){
         user.seeking_internship = false;
         user.seeking_employment = false;
@@ -143,11 +136,9 @@ router.put('/update', function(req, res){
 
       user.save(function (err){
         if(err){
-          console.log('error updating user', err);
           res.sendStatus(500);
 
         } else {
-          console.log('sucess updating user!!!');
           res.sendStatus(200);
 
         }
@@ -158,18 +149,6 @@ router.put('/update', function(req, res){
 });
 
 //PUT and DELETE calls are only available to the site administrator
-// router.put('/update', function(req, res){
-//   var editedUser = req.body;
-//   User.findOneAndUpdate({_id: req.body._id}, editedUser).exec(function(err, user) {
-//     if (err){
-//       console.log('User update failed:', err);
-//       res.sendStatus(500);
-//     } else {
-//       console.log('User updated successfully:', user);
-//       res.sendStatus(200);
-//     }
-//   });
-// });
 
 router.delete('/remove/:id', function(req, res){
   console.log('delete call hit user router');

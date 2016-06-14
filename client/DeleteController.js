@@ -4,7 +4,6 @@ angular.module('connectUApp')
     vm.us = deleteItems;
 
     vm.removeUser = function(us){
-      console.log('clicked remove');
       ConnectUService.deleteUser(us);
       vm.cancel();
     };
