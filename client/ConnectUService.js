@@ -157,6 +157,13 @@ angular.module('connectUApp')
       });
     };
 
+    var brandNewAdmin = function(newAdminInfo){
+      console.log('newAdminInfo', newAdminInfo);
+      $http.post('/auth/register', newAdminInfo).then(function(response){
+        console.log(response);
+      });
+    };
+
     var deleteUser = function(user){
       console.log('Controller says: Alumni to be deleted is', user);
       id = user._id;
@@ -225,7 +232,8 @@ angular.module('connectUApp')
     postAdmin: postAdmin,
     getValidateData: validateData,
     getAdmin: getAdmin,
-    modalUpdate: modalUpdate
+    modalUpdate: modalUpdate,
+    brandNewAdmin: brandNewAdmin
   };
 
 

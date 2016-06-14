@@ -55,11 +55,30 @@ angular.module('connectUApp')
       vm.newAdmin = {};
     };
 
-    vm.open = function () {
-      var modalInstance = $modal.open({
+    vm.openAdminModal = function () {
+      console.log('openAdminModal clicked');
+      var modalInstance = $uibModal.open({
         templateUrl: 'adminLoginModal.html',
         controller: 'ModalController',
-        controllerAs: 'modal'
+        controllerAs: 'modal',
+        resolve: {
+          items: function(){
+            return vm.items;
+          }
+        }
+      });
+    };
+
+    vm.openAdminRegistration = function () {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'adminRegisterModal.html',
+        controller: 'AdminRegisterController',
+        controllerAs: 'adreg',
+        resolve: {
+          items: function(){
+            return vm.items;
+          }
+        }
       });
     };
 

@@ -33,6 +33,7 @@
         <a href="/alumniIndex" class="floatRight login" ng-show="main.loggedIn.loggedIn">Alumni Index</a>
         <a href="/" class="floatRight login" ng-show="main.loggedIn.loggedIn">Talent Pool</a>
         <span ng-hide="main.isAdmin.admin"><a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.open(main.userInformation)">My Profile</a></span>
+        <span ng-show ="main.isAdmin.admin"><a data-toggle="modal" class="floatRight login" ng-show="main.loggedIn.loggedIn" ng-click = "main.openAdminRegistration()">Register Admin</a></span>
       </row>
     </header>
 
@@ -70,7 +71,7 @@
           <script type="text/javascript">
             document.write(new Date().getFullYear());
           </script>
-          <a data-toggle="modal" href="#adminLoginModal" class="adminLogin">Admin Login</a>
+          <span><a data-toggle="modal" ng-click ="main.openAdminModal()">Admin Login</a></span>
         </p>
       </row>
     </footer>
@@ -275,9 +276,8 @@
 
   <!-- Admin Login Modal -->
 
-  <div class="modal fade" id="adminLoginModal" tabindex="-1" role="dialog" aria-labelledby="adminLoginModalLabel">
-    <div class="modal-dialog" role="document">
-      <form ng-submit = "main.loginAdmin()">
+  <script type="text/ng-template" id="adminLoginModal.html">
+      <form ng-submit = "modal.loginAdmin()">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -285,48 +285,48 @@
           </div>
           <div class="modal-body">
             <label>Email:</label>
-            <input type="email" name="email" ng-model = "main.newAdmin.email" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="email" name="email" ng-model = "modal.newAdmin.email" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
             <label>Password:</label>
-            <input type="password" name="password" ng-model = "main.newAdmin.password" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+            <input type="password" name="password" ng-model = "modal.newAdmin.password" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
           </div>
           <div class ="modal-footer">
-            <input type="submit" class="btn btn-primary" value = "Enter"></input>
+            <input type="submit" class="btn btn-primary" value = "Enter" ng-click="modal.cancel()"></input>
         </div>
       </form>
     </div>
-  </div>
+  </script>
 
 <!-- register new admin -->
 
-<div class="modal fade" id="adminRegModal" tabindex="-1" role="dialog" aria-labelledby="adminRegLabel">
-  <div class="modal-dialog" role="document">
+<script type="text/ng-template" id="adminRegisterModal.html">
     <form ng-submit = "main.loginAdmin()">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h1>Register New Admin</h1>
         </div>
-        <div-class = "modal-body">
+        <div class = "modal-body">
           <label>First Name</label>
-          <input type="text" name="first_name" ng-model="main.regAdmin.first_name" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="first_name" ng-model="adreg.regAdmin.first_name" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Last Name</label>
-          <input type="text" name="last_name" ng-model="main.regAdmin.last_name" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="text" name="last_name" ng-model="adreg.regAdmin.last_name" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Email</label>
-          <input type="email" name="email" ng-model="main.regAdmin.email" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="email" name="email" ng-model="adreg.regAdmin.email" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
 
           <label>Password</label>
-          <input type="password" name="password" ng-model="main.regAdmin.password" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
+          <input type="password" name="password" ng-model="adreg.regAdmin.password" required="true" class="form-control" aria-describedby="sizing-addon1"></input>
         </div>
 
         <div class="modal-footer">
-          <input type="submit" class="btn btn-primary" value = "Enter"></input>
+          <input type="submit" class="btn btn-primary" value = "Enter" ng-click = "adreg.registerAdmin()"></input>
+      </div>
       </div>
     </form>
   </div>
-</div>
+</script>
 
       <!--login inputs, buttons etc here-->
   </div>
