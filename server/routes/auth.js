@@ -4,6 +4,7 @@ var localStrategy = require('passport-local').Strategy;
 var User = require('../../models/user');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 var session = require('express-session');
+var mongoose = require('mongoose');
 var path = require('path');
 
 //Passport-LinkedIn routes
@@ -43,7 +44,7 @@ router.get('/linkedin/callback',
           dataValid = true;
         }
         res.send(dataValid);
-      })
+      });
 
   });
 
@@ -89,53 +90,22 @@ router.post('/',
     res.sendStatus(200);
   });
 
-// router.get('/failure', function(request, response) {
-//   response.sendFile(path.join(__dirname, '../public/views/failure.html'));
-// });
-//
-// router.post('/', passport.authenticate('local', {
-//   successRedirect: '/success',
-//   failureRedirect: '/failure'
-// }));
-//
-// router.get('/success', function(request, response) {
-//   console.log(request.user);
-//   console.log('User is logged in:' , request.isAuthenticated());
-//   response.sendFile(path.join(__dirname, '../public/views/success.html'));
-// });
-//
-// router.get('/logout', function(request, response){
-//   request.logout();
-//   response.redirect('/');
-// });
-//
-// router.post('/new', function(request, response){
-//   console.log(request.body);
-//
-//   Admin.create(request.body, function(err){
-//     if(err){
-//       console.log('AHHH ERROR', err);
-//       response.sendStatus(500);
-//     } else {
-//       response.sendStatus(200);
-//     }
-//   });
-// });
-//
-// router.get('/user/:id', function(request, response) {
-//   response.sendFile(path.join(__dirname, '../public/views/failure.html'));
-// });
-//
-// router.get('/:name', function(request, response) {
-//   response.sendFile(path.join(__dirname, '../public/views/failure.html'));
-// });
-//
-// router.get('/*', function(request, response, next){
-//   if(request.isAuthenticated()){
-//     next();
-//   } else {
-//     response.send('404 not found');
-//   }
-// });
+
+// add new admin
+// create a new admin account (accessible via the admin login) (POST http://localhost:3000/auth/register)
+router.post('/register', function(request, response){
+  console.log(request.body);
+
+  User.create(request.body, function(err){
+    if(err){
+      console.log('AHHH ERROR', err);
+      response.sendStatus(500);
+    } else {
+      
+      response.sendStatus(200);
+    }
+  });
+});
+
 
 module.exports = router;

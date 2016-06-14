@@ -11,6 +11,7 @@ angular.module('connectUApp')
         controller: 'AlumniIndexController',
         controllerAs: 'alumni'
       });
+  // }]);
 
   $locationProvider.html5Mode(true);
 
